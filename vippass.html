@@ -11,7 +11,6 @@
     --blue: #8bd0e6;
     --border: #e4e7ed;
     --bg-light: #f8f9fa;
-    --gold: #d4b66e;
   }
   body {
     font-family: Arial, sans-serif;
@@ -20,73 +19,72 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-size: 13px;
   }
 
   /* =========================
      HEADER / BANNER
   ========================== */
   header {
-    height: 85px;
-    padding: 0 6%;
+    height: 70px;
+    padding: 0 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: white;
-    box-shadow: 0 2px 10px #0001;
+    box-shadow: 0 2px 8px #0001;
     position: sticky;
     top: 0;
     z-index: 10;
   }
   .logo {
     border: 2px solid var(--navy);
-    padding: 6px 10px;
-    font-size: 18px;
+    padding: 4px 8px;
+    font-size: 15px;
     font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-align: center;
     text-decoration: none;
     color: var(--navy);
     line-height: 1.1;
   }
-  .logo small { display: block; font-size: 7px; letter-spacing: 2px; }
+  .logo small { display: block; font-size: 6px; letter-spacing: 1.5px; }
 
   .nav-right {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
   }
   .nav-links {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
   }
   .nav-links a {
     text-decoration: none;
     color: var(--navy);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     transition: color 0.2s;
   }
-  .nav-links a:hover {
-    color: #0047ab;
-  }
+  .nav-links a:hover { color: #0047ab; }
 
   .language-selector {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     background: white;
-    padding: 7px 12px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: 12px;
     font-weight: bold;
     color: var(--navy);
     cursor: pointer;
   }
   .bandera-colombia {
-    width: 20px;
-    height: 14px;
+    width: 18px;
+    height: 12px;
     object-fit: cover;
     border-radius: 2px;
     display: inline-block;
@@ -98,20 +96,20 @@
   ========================== */
   .main-container {
     flex: 1;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
+    max-width: 1000px;
+    margin: 25px auto;
+    padding: 0 15px;
     width: 100%;
   }
 
   .reserva-layout {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: 40px;
+    gap: 25px;
     background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
   }
 
   /* =========================
@@ -119,40 +117,38 @@
   ========================== */
   .col-izquierda img {
     width: 100%;
-    height: 200px;
+    height: 150px;
     object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 10px;
   }
 
   .miniaturas {
     display: flex;
-    gap: 8px;
-    margin-bottom: 25px;
+    gap: 6px;
+    margin-bottom: 18px;
     overflow-x: auto;
-    padding-bottom: 5px;
+    padding-bottom: 3px;
   }
   .miniaturas img {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     opacity: 0.6;
     transition: all 0.2s ease;
     border: 2px solid transparent;
-    margin-bottom: 0;
     flex-shrink: 0;
   }
   .miniaturas img:hover { opacity: 1; }
   .miniaturas img.activa { opacity: 1; border-color: var(--navy); }
 
   .seccion-titulo {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
-    margin-bottom: 15px;
-    color: #555;
+    margin-bottom: 10px;
+    color: #666;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -161,35 +157,35 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--border);
   }
-  .participante-info h4 { font-size: 15px; margin-bottom: 3px; }
-  .participante-info p { font-size: 12px; color: #777; }
-  .contador { display: flex; align-items: center; gap: 12px; }
+  .participante-info h4 { font-size: 13px; margin-bottom: 2px; }
+  .participante-info p { font-size: 10px; color: #777; }
+  .contador { display: flex; align-items: center; gap: 8px; }
   .contador button {
-    width: 32px; height: 32px; border-radius: 50%;
+    width: 26px; height: 26px; border-radius: 50%;
     border: 1px solid var(--border); background: white;
-    font-size: 18px; color: var(--navy); cursor: pointer;
+    font-size: 14px; color: var(--navy); cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: 0.2s;
   }
   .contador button:hover { background: var(--navy); color: white; }
-  .contador span { font-size: 16px; font-weight: bold; min-width: 20px; text-align: center; }
+  .contador span { font-size: 13px; font-weight: bold; min-width: 16px; text-align: center; }
 
   .resumen-box {
     background: #f4f7f9;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 25px;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
   }
   .resumen-linea {
     display: flex; justify-content: space-between;
-    font-size: 14px; margin-bottom: 10px; color: #555;
+    font-size: 12px; margin-bottom: 6px; color: #555;
   }
   .resumen-linea.total {
-    font-weight: bold; font-size: 18px; color: var(--navy);
-    border-top: 1px solid var(--border); padding-top: 15px; margin-top: 10px;
+    font-weight: bold; font-size: 14px; color: var(--navy);
+    border-top: 1px solid var(--border); padding-top: 10px; margin-top: 6px;
   }
 
   /* =========================
@@ -197,45 +193,43 @@
   ========================== */
   .col-derecha .paquete-header {
     display: flex; justify-content: space-between;
-    align-items: flex-start; margin-bottom: 20px;
+    align-items: flex-start; margin-bottom: 15px;
   }
-  .paquete-header h1 { font-size: 24px; display: flex; align-items: center; gap: 10px; }
+  .paquete-header h1 { font-size: 20px; display: flex; align-items: center; gap: 8px; }
   .paquete-header .precio {
     text-align: right; color: #0047ab;
-    font-size: 22px; font-weight: bold;
+    font-size: 18px; font-weight: bold;
   }
   .paquete-header .precio small {
-    display: block; font-size: 11px; color: #888; font-weight: normal;
+    display: block; font-size: 9px; color: #888; font-weight: normal;
   }
 
-  /* =========================
-     SECCIÓN "QUÉ INCLUYE" (CORREGIDA)
-  ========================== */
+  /* "Qué incluye" en 2 columnas */
   .incluye-box {
     background: #f4f7f9;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 25px;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
   }
   .incluye-box h4 {
-    font-size: 12px;
+    font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 15px;
-    color: #555;
+    margin-bottom: 10px;
+    color: #666;
   }
   .incluye-box ul {
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 columnas */
-    gap: 10px 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 15px;
   }
   .incluye-box ul li {
-    font-size: 14px;
+    font-size: 12px;
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    line-height: 1.4;
+    gap: 6px;
+    line-height: 1.3;
   }
   .incluye-box ul li::before {
     content: "✓";
@@ -247,23 +241,23 @@
   /* Calendario */
   .calendario-header {
     display: flex; justify-content: space-between;
-    align-items: center; margin-bottom: 15px;
+    align-items: center; margin-bottom: 10px;
   }
-  .calendario-header h4 { font-size: 16px; }
+  .calendario-header h4 { font-size: 14px; }
   .calendario-header button {
     background: none; border: 1px solid var(--border);
-    border-radius: 50%; width: 30px; height: 30px;
-    cursor: pointer; color: var(--navy);
+    border-radius: 50%; width: 24px; height: 24px;
+    cursor: pointer; color: var(--navy); font-size: 12px;
   }
   .calendario-grid {
     display: grid; grid-template-columns: repeat(7, 1fr);
-    gap: 5px; text-align: center;
+    gap: 3px; text-align: center;
   }
   .calendario-grid .dia-semana {
-    font-size: 11px; font-weight: bold; color: #888; padding: 5px 0;
+    font-size: 9px; font-weight: bold; color: #888; padding: 4px 0;
   }
   .calendario-grid .dia {
-    padding: 10px 0; font-size: 14px; border-radius: 8px;
+    padding: 7px 0; font-size: 12px; border-radius: 6px;
     cursor: pointer; transition: 0.2s;
   }
   .calendario-grid .dia:hover { background: #eaf2f8; }
@@ -274,47 +268,46 @@
 
   /* Horarios */
   .horarios-section {
-    margin-top: 25px; display: none;
+    margin-top: 15px; display: none;
   }
   .horarios-section.visible { display: block; }
   .horario-item {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 20px; border: 1px solid var(--border);
-    border-radius: 12px; margin-bottom: 12px; cursor: pointer;
+    padding: 12px 15px; border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 8px; cursor: pointer;
     transition: all 0.2s ease; background: white;
   }
   .horario-item:hover {
-    border-color: var(--navy); box-shadow: 0 4px 12px rgba(25, 37, 66, 0.08);
+    border-color: var(--navy); box-shadow: 0 3px 8px rgba(25, 37, 66, 0.06);
   }
   .horario-item.seleccionado {
     border-color: #0047ab; background: #f0f6ff;
-    box-shadow: 0 4px 12px rgba(0, 71, 171, 0.15);
+    box-shadow: 0 3px 8px rgba(0, 71, 171, 0.12);
   }
-  .horario-info { display: flex; align-items: center; gap: 15px; }
+  .horario-info { display: flex; align-items: center; gap: 12px; }
   .horario-icono {
-    font-size: 28px; background: #f4f7f9; border-radius: 10px;
-    width: 50px; height: 50px; display: flex;
+    font-size: 22px; background: #f4f7f9; border-radius: 8px;
+    width: 40px; height: 40px; display: flex;
     align-items: center; justify-content: center;
   }
-  .horario-texto h4 { font-size: 16px; margin-bottom: 5px; }
+  .horario-texto h4 { font-size: 13px; margin-bottom: 3px; }
   .horario-texto p {
-    font-size: 12px; color: #777;
-    display: flex; align-items: center; gap: 5px;
+    font-size: 10px; color: #777;
+    display: flex; align-items: center; gap: 4px;
   }
-  .horario-texto p span { color: #f39c12; }
-  .horario-disponible { font-size: 13px; color: #2ecc71; font-weight: bold; }
+  .horario-disponible { font-size: 11px; color: #2ecc71; font-weight: bold; }
 
   /* Botón Reservar */
   .btn-reservar {
-    width: 100%; padding: 18px; margin-top: 25px;
-    border: none; border-radius: 12px; background: var(--navy);
-    color: white; font-size: 16px; font-weight: bold;
+    width: 100%; padding: 14px; margin-top: 18px;
+    border: none; border-radius: 8px; background: var(--navy);
+    color: white; font-size: 14px; font-weight: bold;
     cursor: pointer; transition: 0.3s;
   }
   .btn-reservar:disabled { background: #ccc; cursor: not-allowed; }
   .btn-reservar:not(:disabled):hover { background: #2a3b5c; }
   .nota-fecha {
-    text-align: center; font-size: 12px; color: #888; margin-top: 10px;
+    text-align: center; font-size: 10px; color: #888; margin-top: 8px;
   }
 
   /* =========================
@@ -322,74 +315,72 @@
   ========================== */
   .footer-principal {
     background: var(--navy); color: white;
-    padding: 60px 6% 20px; margin-top: 60px;
+    padding: 40px 5% 15px; margin-top: 40px;
   }
   .footer-contenido {
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1100px; margin: 0 auto;
     display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 40px; margin-bottom: 40px;
+    gap: 30px; margin-bottom: 30px;
   }
   .footer-logo-seccion { text-align: center; }
-  .footer-logo-seccion img { width: 120px; margin-bottom: 15px; }
-  .footer-logo-seccion p { font-size: 14px; opacity: 0.8; }
+  .footer-logo-seccion img { width: 100px; margin-bottom: 10px; }
+  .footer-logo-seccion p { font-size: 12px; opacity: 0.8; }
   .footer-columna h4 {
-    font-size: 14px; text-transform: uppercase;
-    letter-spacing: 1px; margin-bottom: 20px; color: var(--blue);
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 15px; color: var(--blue);
   }
   .footer-columna ul { list-style: none; }
-  .footer-columna ul li { margin-bottom: 12px; }
+  .footer-columna ul li { margin-bottom: 8px; }
   .footer-columna ul li a {
-    color: white; text-decoration: none; font-size: 14px;
+    color: white; text-decoration: none; font-size: 12px;
     opacity: 0.9; transition: opacity 0.3s;
   }
   .footer-columna ul li a:hover { opacity: 1; text-decoration: underline; }
-  .footer-columna p { font-size: 14px; opacity: 0.9; margin-bottom: 15px; }
+  .footer-columna p { font-size: 12px; opacity: 0.9; margin-bottom: 10px; }
   .btn-escribenos {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: white; color: var(--navy); padding: 12px 25px;
-    border-radius: 8px; text-decoration: none; font-weight: bold;
-    font-size: 14px; transition: .3s; margin-top: 10px;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: white; color: var(--navy); padding: 10px 18px;
+    border-radius: 6px; text-decoration: none; font-weight: bold;
+    font-size: 12px; transition: .3s; margin-top: 8px;
   }
   .btn-escribenos:hover { background: #f0f0f0; }
-  .footer-redes { display: flex; gap: 15px; margin-top: 20px; }
+  .footer-redes { display: flex; gap: 12px; margin-top: 15px; }
   .footer-redes a {
-    color: white; font-size: 20px; text-decoration: none;
+    color: white; font-size: 16px; text-decoration: none;
     opacity: 0.8; transition: opacity 0.3s;
   }
   .footer-redes a:hover { opacity: 1; }
   .footer-copyright {
     border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px; text-align: center; font-size: 12px; opacity: 0.7;
+    padding-top: 15px; text-align: center; font-size: 10px; opacity: 0.7;
   }
 
   /* =========================
      RESPONSIVE
   ========================== */
   @media (max-width: 900px) {
-    .reserva-layout { grid-template-columns: 1fr; gap: 30px; padding: 25px; }
-    .footer-contenido { grid-template-columns: 1fr 1fr; }
-    .nav-links { gap: 15px; }
+    .reserva-layout { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+    .footer-contenido { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .nav-links { gap: 12px; }
     .nav-links a { font-size: 11px; }
   }
   @media (max-width: 600px) {
-    header { padding: 0 15px; height: 75px; }
-    .logo { font-size: 16px; padding: 5px 8px; }
-    .logo small { font-size: 6px; }
+    header { padding: 0 12px; height: 60px; }
+    .logo { font-size: 13px; padding: 4px 6px; }
+    .logo small { font-size: 5px; }
     .nav-links { display: none; }
-    .language-selector { padding: 5px 10px; font-size: 11px; }
-    .bandera-colombia { width: 16px; height: 12px; }
-    .footer-contenido { grid-template-columns: 1fr; }
-    .paquete-header { flex-direction: column; gap: 10px; }
+    .language-selector { padding: 4px 8px; font-size: 10px; }
+    .bandera-colombia { width: 14px; height: 10px; }
+    .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
+    .paquete-header { flex-direction: column; gap: 8px; }
     .paquete-header .precio { text-align: left; }
-    .horario-item { padding: 15px; }
-    .horario-icono { width: 40px; height: 40px; font-size: 22px; }
-    .horario-texto h4 { font-size: 14px; }
-    .miniaturas img { width: 50px; height: 50px; }
-    
-    /* En móvil, "Qué incluye" vuelve a una sola columna */
-    .incluye-box ul {
-      grid-template-columns: 1fr;
-    }
+    .horario-item { padding: 10px; }
+    .horario-icono { width: 34px; height: 34px; font-size: 18px; }
+    .horario-texto h4 { font-size: 12px; }
+    .miniaturas img { width: 40px; height: 40px; }
+    .incluye-box ul { grid-template-columns: 1fr; }
+    .reserva-layout { padding: 15px; }
+    .col-izquierda img { height: 120px; }
   }
 </style>
 </head>
@@ -418,14 +409,14 @@
     
     <!-- Columna Izquierda: Participantes y Resumen -->
     <div class="col-izquierda">
-      <img id="imagen-principal" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" alt="Atolón Beach Club">
+      <img id="imagen-principal" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80" alt="Atolón Beach Club">
       
       <div class="miniaturas">
-        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=200&q=80" alt="Playa" class="activa" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80')">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=200&q=80" alt="Restaurante" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80')">
-        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=200&q=80" alt="Piscina" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80')">
-        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=200&q=80" alt="Hamacas" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80')">
-        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=200&q=80" alt="Eventos" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80')">
+        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=150&q=80" alt="Playa" class="activa" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80')">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=150&q=80" alt="Restaurante" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80')">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=150&q=80" alt="Piscina" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80')">
+        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=150&q=80" alt="Hamacas" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80')">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=150&q=80" alt="Eventos" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80')">
       </div>
       
       <div class="seccion-titulo">Participantes</div>
@@ -496,7 +487,6 @@
         </div>
       </div>
 
-      <!-- Sección "Qué incluye" corregida a 2 columnas -->
       <div class="incluye-box">
         <h4>Qué incluye</h4>
         <ul>
@@ -516,7 +506,7 @@
       <div class="calendario-grid" id="calendario"></div>
 
       <div class="horarios-section" id="horarios-section">
-        <div class="seccion-titulo" style="margin-top: 25px;">Selecciona el horario de salida</div>
+        <div class="seccion-titulo" style="margin-top: 15px;">Selecciona el horario de salida</div>
         
         <div class="horario-item" onclick="seleccionarHorario(this, '08:30', '15:30')">
           <div class="horario-info">
@@ -583,7 +573,7 @@
         <li><a href="#">Aliados Comerciales</a></li>
         <li><a href="#">PQRs</a></li>
       </ul>
-      <div style="margin-top: 30px;">
+      <div style="margin-top: 20px;">
         <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
         <div class="footer-redes">
           <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>

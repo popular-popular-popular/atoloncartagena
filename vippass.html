@@ -364,23 +364,49 @@
     .nav-links { gap: 12px; }
     .nav-links a { font-size: 11px; }
   }
+
   @media (max-width: 600px) {
+    /* Header más pequeño en móvil */
     header { padding: 0 12px; height: 60px; }
     .logo { font-size: 13px; padding: 4px 6px; }
     .logo small { font-size: 5px; }
     .nav-links { display: none; }
     .language-selector { padding: 4px 8px; font-size: 10px; }
     .bandera-colombia { width: 14px; height: 10px; }
-    .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
+
+    /* Restauramos el diseño móvil original */
+    .main-container { margin: 15px auto; padding: 0 12px; }
+    .reserva-layout { padding: 15px; gap: 20px; }
+
+    /* Imagen principal más grande como antes */
+    .col-izquierda img { height: 150px; }
+    .miniaturas img { width: 50px; height: 50px; }
+
+    /* Textos legibles */
+    .participante-info h4 { font-size: 14px; }
+    .participante-info p { font-size: 11px; }
+    .contador button { width: 28px; height: 28px; font-size: 16px; }
+    .contador span { font-size: 14px; }
+
+    /* Paquete */
     .paquete-header { flex-direction: column; gap: 8px; }
-    .paquete-header .precio { text-align: left; }
-    .horario-item { padding: 10px; }
-    .horario-icono { width: 34px; height: 34px; font-size: 18px; }
-    .horario-texto h4 { font-size: 12px; }
-    .miniaturas img { width: 40px; height: 40px; }
+    .paquete-header h1 { font-size: 22px; }
+    .paquete-header .precio { text-align: left; font-size: 20px; }
+
+    /* "Qué incluye" vuelve a 1 columna en móvil */
     .incluye-box ul { grid-template-columns: 1fr; }
-    .reserva-layout { padding: 15px; }
-    .col-izquierda img { height: 120px; }
+
+    /* Horarios más grandes en móvil */
+    .horario-item { padding: 14px; }
+    .horario-icono { width: 44px; height: 44px; font-size: 24px; }
+    .horario-texto h4 { font-size: 15px; }
+    .horario-texto p { font-size: 11px; }
+
+    /* Botón más grande en móvil */
+    .btn-reservar { padding: 16px; font-size: 15px; }
+
+    /* Footer en una columna */
+    .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
   }
 </style>
 </head>

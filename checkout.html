@@ -214,7 +214,7 @@
     pointer-events: none;
   }
   .telefono-wrapper input {
-    padding-left: 55px; /* Espacio para el prefijo */
+    padding-left: 55px;
   }
 
   /* Sección de cambios de fecha */
@@ -387,7 +387,7 @@
 
 <div class="main-container">
   
-  <!-- Botón volver (se actualiza dinámicamente) -->
+  <!-- Botón volver -->
   <a href="motor-reserva.html" class="volver-btn" id="btn-volver">← Volver</a>
 
   <h1>Tus datos</h1>
@@ -506,23 +506,14 @@
   if (reservaJSON) {
     const reserva = JSON.parse(reservaJSON);
 
-    // Mostrar paquete
     document.getElementById('resumen-paquete').textContent = reserva.paquete;
-
-    // Mostrar fecha
     document.getElementById('resumen-fecha').textContent = '📅 ' + reserva.fecha;
-
-    // Mostrar horario
     document.getElementById('resumen-horario').textContent = '⛵ Salida ' + reserva.horarioSalida;
-
-    // Mostrar número de personas
     const textoPersonas = reserva.totalPersonas === 1 ? '1 persona' : reserva.totalPersonas + ' personas';
     document.getElementById('resumen-personas').textContent = '👥 ' + textoPersonas;
-
-    // Mostrar total
     document.getElementById('resumen-total').textContent = '$' + reserva.total.toLocaleString('es-CO');
 
-    // Actualizar el botón "Volver" según el paquete
+    // Botón volver según paquete
     const btnVolver = document.getElementById('btn-volver');
     if (reserva.paquete === 'VIP Pass') btnVolver.href = 'vippass.html';
     else if (reserva.paquete === 'Exclusive Pass') btnVolver.href = 'exclusivepass.html';
@@ -530,14 +521,13 @@
     else if (reserva.paquete === 'After Island') btnVolver.href = 'afterisland.html';
 
   } else {
-    // Si no hay datos, redirigir al motor de reservas
     window.location.href = 'motor-reserva.html';
   }
 
   // =========================
   // CONTADOR DE TIEMPO
   // =========================
-  let tiempoRestante = 14 * 60 + 39; // 14 minutos y 39 segundos
+  let tiempoRestante = 14 * 60 + 39;
   const contadorElement = document.getElementById('contador');
 
   function actualizarContador() {
@@ -557,17 +547,23 @@
   actualizarContador();
 
   // =========================
-  // ENVÍO DEL FORMULARIO
+  // ENVÍO DEL FORMULARIO → REDIRIGIR A PAGO.HTML
   // =========================
   document.getElementById('checkoutForm').addEventListener('submit', function(evento) {
     evento.preventDefault();
 
-    const nombre = document.getElementById('nombre').value;
-    const correo = document.getElementById('correo').value;
-    const telefono = document.getElementById('telefono').value;
-    const notas = document.getElementById('notas').value;
+    const nombre = document.getElementById('nombre').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const notas = document.getElementById('notas').value.trim();
 
-    // Guardar datos del cliente
+    // Validación básica
+    if (!nombre || !correo || !telefono) {
+      alert('⚠️ Por favor completa todos los campos obligatorios.');
+      return;
+    }
+
+    // Guardar datos del cliente en sessionStorage
     const datosCliente = {
       nombre: nombre,
       correo: correo,
@@ -577,10 +573,8 @@
 
     sessionStorage.setItem('datosCliente', JSON.stringify(datosCliente));
 
-    alert(`✅ Datos guardados\n\nNombre: ${nombre}\nCorreo: ${correo}\nTeléfono: +57 ${telefono}\nNotas: ${notas || 'Ninguna'}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
-
-    // Aquí podrías redirigir a la pasarela de pago real
-    // window.location.href = 'pago.html';
+    // Redirigir a la página de pago
+    window.location.href = 'pago.html';
   });
 </script>
 

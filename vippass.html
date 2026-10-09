@@ -192,7 +192,6 @@
     display: block; font-size: 9px; color: #888; font-weight: normal;
   }
 
-  /* NUEVO: Subtítulo de ubicación */
   .subtitulo-ubicacion {
     font-size: 10px;
     color: #888;
@@ -483,7 +482,6 @@
 
     <!-- Columna Derecha: Paquete, Calendario y Horarios -->
     <div class="col-derecha">
-      <!-- NUEVO: Subtítulo de ubicación -->
       <div class="subtitulo-ubicacion">ATOLON BEACH CLUB · ISLA TIERRA BOMBA</div>
       
       <div class="paquete-header">
@@ -714,9 +712,32 @@
     renderizarCalendario();
   }
 
+  // =========================
+  // GUARDAR DATOS Y REDIRIGIR
+  // =========================
   function confirmarReserva() {
+    // Calcular el total
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
-    alert(`✅ Reserva preparada\n\nPaquete: VIP Pass\nFecha: ${fechaSeleccionada}\nHorario: Salida ${horarioSeleccionado.salida} - Regreso ${horarioSeleccionado.regreso}\nAdultos: ${cantidades.adultos}\nNiños: ${cantidades.ninos}\nInfantes: ${cantidades.infantes}\n\nTotal: $${total.toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
+
+    // Crear el objeto con los datos de la reserva
+    const datosReserva = {
+      paquete: 'VIP Pass',
+      precioUnitario: precios.adultos,
+      total: total,
+      fecha: fechaSeleccionada,
+      horarioSalida: horarioSeleccionado.salida,
+      horarioRegreso: horarioSeleccionado.regreso,
+      adultos: cantidades.adultos,
+      ninos: cantidades.ninos,
+      infantes: cantidades.infantes,
+      totalPersonas: cantidades.adultos + cantidades.ninos + cantidades.infantes
+    };
+
+    // Guardar en sessionStorage
+    sessionStorage.setItem('reservaActual', JSON.stringify(datosReserva));
+
+    // Redirigir a checkout
+    window.location.href = 'checkout.html';
   }
 
   renderizarCalendario();

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selecciona tu experiencia | Atolón Beach Club</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #192542;
+    --gold: #d4b66e;
+    --border: #e4e7ed;
+    --bg-light: #f8f9fa;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--bg-light);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+  /* Header */
+  header {
+    height: 85px;
+    padding: 0 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    box-shadow: 0 2px 10px #0001;
+  }
+  .logo {
+    border: 3px solid var(--navy);
+    padding: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--navy);
+  }
+  .logo small { display: block; font-size: 8px; }
+  .lang-switch { display: flex; gap: 5px; background: #f1f1f1; padding: 5px; border-radius: 8px; font-size: 12px; font-weight: bold; }
+  .lang-switch span { padding: 4px 10px; border-radius: 5px; cursor: pointer; }
+  .lang-switch .active { background: var(--navy); color: white; }
+
+  /* Contenido principal */
+  .main-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  .card h1 {
+    font-size: 26px;
+    margin-bottom: 5px;
+  }
+  .card .subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  /* Lista de experiencias */
+  .experiencia-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 25px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: var(--navy);
+  }
+  .experiencia-item:hover {
+    border-color: var(--navy);
+    box-shadow: 0 5px 15px rgba(25, 37, 66, 0.1);
+    transform: translateY(-2px);
+  }
+  .experiencia-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .experiencia-icono {
+    width: 50px;
+    height: 50px;
+    background: #f4f7f9;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .experiencia-texto h3 {
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+  .experiencia-texto p {
+    font-size: 13px;
+    color: #666;
+  }
+  .experiencia-precio {
+    text-align: right;
+  }
+  .experiencia-precio .precio {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0047ab;
+  }
+  .experiencia-precio .unidad {
+    font-size: 11px;
+    color: #888;
+  }
+
+  @media (max-width: 600px) {
+    .card { padding: 25px 20px; }
+    .card h1 { font-size: 22px; }
+    .experiencia-item { padding: 15px; }
+    .experiencia-icono { width: 40px; height: 40px; font-size: 20px; }
+    .experiencia-texto h3 { font-size: 15px; }
+    .experiencia-texto p { font-size: 12px; }
+    .experiencia-precio .precio { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
+  <div class="lang-switch">
+    <span class="active">ES</span>
+    <span>EN</span>
+  </div>
+</header>
+
+<div class="main-container">
+  <div class="card">
+    <h1>Selecciona tu experiencia</h1>
+    <p class="subtitle">Atolon Beach Club — Isla Tierra Bomba, Cartagena</p>
+
+    <!-- Opción 1: VIP Pass -->
+    <a href="checkout.html?paquete=VIP%20Pass" class="experiencia-item">
+      <div class="experiencia-info">
+        <div class="experiencia-icono">🌴</div>
+        <div class="experiencia-texto">
+          <h3>VIP Pass</h3>
+          <p>Acceso full day</p>
+        </div>
+      </div>
+      <div class="experiencia-precio">
+        <div class="precio">$320.000</div>
+        <div class="unidad">por persona</div>
+      </div>
+    </a>
+
+    <!-- Opción 2: Exclusive Pass -->
+    <a href="checkout.html?paquete=Exclusive%20Pass" class="experiencia-item">
+      <div class="experiencia-info">
+        <div class="experiencia-icono">⭐</div>
+        <div class="experiencia-texto">
+          <h3>Exclusive Pass</h3>
+          <p>Experiencia premium con pool cabana</p>
+        </div>
+      </div>
+      <div class="experiencia-precio">
+        <div class="precio">$590.000</div>
+        <div class="unidad">por persona</div>
+      </div>
+    </a>
+
+    <!-- Opción 3: Atolón Experience -->
+    <a href="checkout.html?paquete=Atol%C3%B3n%20Experience" class="experiencia-item">
+      <div class="experiencia-info">
+        <div class="experiencia-icono">🛥️</div>
+        <div class="experiencia-texto">
+          <h3>Atolon Experience</h3>
+          <p>Máximo lujo 100% consumible</p>
+        </div>
+      </div>
+      <div class="experiencia-precio">
+        <div class="precio">$1.100.000</div>
+        <div class="unidad">por persona</div>
+      </div>
+    </a>
+
+    <!-- Opción 4: After Island -->
+    <a href="checkout.html?paquete=After%20Island" class="experiencia-item">
+      <div class="experiencia-info">
+        <div class="experiencia-icono">🌙</div>
+        <div class="experiencia-texto">
+          <h3>After Island</h3>
+          <p>Llega en tu propia embarcación</p>
+        </div>
+      </div>
+      <div class="experiencia-precio">
+        <div class="precio">$170.000</div>
+        <div class="unidad">por persona</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+</body>
+</html>

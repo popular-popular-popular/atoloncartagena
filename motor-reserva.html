@@ -8,7 +8,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --navy: #192542;
-    --gold: #d4b66e;
+    --blue: #8bd0e6;
     --border: #e4e7ed;
     --bg-light: #f8f9fa;
   }
@@ -17,8 +17,13 @@
     background: var(--bg-light);
     color: var(--navy);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
-  /* Header */
+
+  /* =========================
+     HEADER / BANNER
+  ========================== */
   header {
     height: 85px;
     padding: 0 7%;
@@ -27,6 +32,9 @@
     align-items: center;
     background: white;
     box-shadow: 0 2px 10px #0001;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
   .logo {
     border: 3px solid var(--navy);
@@ -39,15 +47,31 @@
     color: var(--navy);
   }
   .logo small { display: block; font-size: 8px; }
-  .lang-switch { display: flex; gap: 5px; background: #f1f1f1; padding: 5px; border-radius: 8px; font-size: 12px; font-weight: bold; }
-  .lang-switch span { padding: 4px 10px; border-radius: 5px; cursor: pointer; }
-  .lang-switch .active { background: var(--navy); color: white; }
 
-  /* Contenido principal */
+  /* Selector de idioma (bandera) */
+  .language-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--navy);
+    cursor: pointer;
+  }
+
+  /* =========================
+     CONTENIDO PRINCIPAL
+  ========================== */
   .main-container {
+    flex: 1;
     max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
+    width: 100%;
   }
   .card {
     background: white;
@@ -65,7 +89,9 @@
     margin-bottom: 30px;
   }
 
-  /* Lista de experiencias */
+  /* =========================
+     LISTA DE EXPERIENCIAS
+  ========================== */
   .experiencia-item {
     display: flex;
     align-items: center;
@@ -120,7 +146,118 @@
     color: #888;
   }
 
+  /* =========================
+     FOOTER AZUL
+  ========================== */
+  .footer-principal {
+    background: var(--navy);
+    color: white;
+    padding: 60px 6% 20px;
+    margin-top: 60px;
+  }
+  .footer-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-logo-seccion {
+    text-align: center;
+  }
+  .footer-logo-seccion img {
+    width: 120px;
+    margin-bottom: 15px;
+  }
+  .footer-logo-seccion p {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+  .footer-columna h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: var(--blue);
+  }
+  .footer-columna ul {
+    list-style: none;
+  }
+  .footer-columna ul li {
+    margin-bottom: 12px;
+  }
+  .footer-columna ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+  }
+  .footer-columna ul li a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  .footer-columna p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+  }
+  .btn-escribenos {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    color: var(--navy);
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: .3s;
+    margin-top: 10px;
+  }
+  .btn-escribenos:hover {
+    background: #f0f0f0;
+  }
+  .footer-redes {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .footer-redes a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .footer-redes a:hover {
+    opacity: 1;
+  }
+  .footer-copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  /* =========================
+     RESPONSIVE
+  ========================== */
+  @media (max-width: 900px) {
+    .footer-contenido {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   @media (max-width: 600px) {
+    header { padding: 0 15px; height: 75px; }
+    .logo { font-size: 16px; padding: 6px; }
+    .logo small { font-size: 7px; }
+    .language-selector { padding: 5px 10px; font-size: 11px; }
+
     .card { padding: 25px 20px; }
     .card h1 { font-size: 22px; }
     .experiencia-item { padding: 15px; }
@@ -128,19 +265,30 @@
     .experiencia-texto h3 { font-size: 15px; }
     .experiencia-texto p { font-size: 12px; }
     .experiencia-precio .precio { font-size: 16px; }
+
+    .footer-contenido {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
 <body>
 
+<!-- =========================
+     HEADER / BANNER
+========================== -->
 <header>
   <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
-  <div class="lang-switch">
-    <span class="active">ES</span>
-    <span>EN</span>
+  <div class="language-selector">
+    <span>🇨🇴</span>
+    <span>ES</span>
+    <span>⌃</span>
   </div>
 </header>
 
+<!-- =========================
+     CONTENIDO PRINCIPAL
+========================== -->
 <div class="main-container">
   <div class="card">
     <h1>Selecciona tu experiencia</h1>
@@ -208,6 +356,63 @@
 
   </div>
 </div>
+
+<!-- =========================
+     FOOTER AZUL
+========================== -->
+<footer class="footer-principal">
+  <div class="footer-contenido">
+    
+    <div class="footer-logo-seccion">
+      <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
+      <p>Tierra Bomba, Cartagena</p>
+    </div>
+
+    <div class="footer-columna">
+      <h4>Contacto</h4>
+      <p>+57 300 3194 215</p>
+      <p>info@atolonbeachclub.com</p>
+      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">
+        ✉️ Escríbenos
+      </a>
+    </div>
+
+    <div class="footer-columna">
+      <h4>Links Útiles</h4>
+      <ul>
+        <li><a href="#">Pasadías</a></li>
+        <li><a href="#">Eventos</a></li>
+        <li><a href="#">Galería</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-columna">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Políticas de cancelación</a></li>
+        <li><a href="#">Políticas de privacidad</a></li>
+        <li><a href="#">Aliados Comerciales</a></li>
+        <li><a href="#">PQRs</a></li>
+      </ul>
+      
+      <div style="margin-top: 30px;">
+        <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
+        <div class="footer-redes">
+          <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>
+          <a href="https://www.instagram.com/atoloncartagena/" target="_blank">📷</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-copyright">
+    <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
+  </div>
+</footer>
 
 </body>
 </html>

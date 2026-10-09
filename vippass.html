@@ -273,6 +273,72 @@
     cursor: default;
   }
 
+  /* =========================
+     NUEVA SECCIÓN: HORARIOS DE SALIDA
+  ========================== */
+  .horarios-section {
+    margin-top: 25px;
+    display: none; /* Se muestra cuando se selecciona una fecha */
+  }
+  .horarios-section.visible {
+    display: block;
+  }
+  .horario-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+  }
+  .horario-item:hover {
+    border-color: var(--navy);
+    box-shadow: 0 4px 12px rgba(25, 37, 66, 0.08);
+  }
+  .horario-item.seleccionado {
+    border-color: #0047ab;
+    background: #f0f6ff;
+    box-shadow: 0 4px 12px rgba(0, 71, 171, 0.15);
+  }
+  .horario-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .horario-icono {
+    font-size: 28px;
+    background: #f4f7f9;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .horario-texto h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .horario-texto p {
+    font-size: 12px;
+    color: #777;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .horario-texto p span {
+    color: #f39c12;
+  }
+  .horario-disponible {
+    font-size: 13px;
+    color: #2ecc71;
+    font-weight: bold;
+  }
+
   /* Botón Reservar */
   .btn-reservar {
     width: 100%;
@@ -364,6 +430,9 @@
     .footer-contenido { grid-template-columns: 1fr; }
     .paquete-header { flex-direction: column; gap: 10px; }
     .paquete-header .precio { text-align: left; }
+    .horario-item { padding: 15px; }
+    .horario-icono { width: 40px; height: 40px; font-size: 22px; }
+    .horario-texto h4 { font-size: 14px; }
   }
 </style>
 </head>
@@ -447,7 +516,7 @@
       </div>
     </div>
 
-    <!-- Columna Derecha: Paquete y Calendario -->
+    <!-- Columna Derecha: Paquete, Calendario y Horarios -->
     <div class="col-derecha">
       <div class="paquete-header">
         <h1>🌴 VIP Pass</h1>
@@ -475,6 +544,37 @@
       </div>
       <div class="calendario-grid" id="calendario">
         <!-- Se genera con JS -->
+      </div>
+
+      <!-- NUEVA SECCIÓN: Horarios de salida -->
+      <div class="horarios-section" id="horarios-section">
+        <div class="seccion-titulo" style="margin-top: 25px;">Selecciona el horario de salida</div>
+        
+        <!-- Opción 1: Salida 08:30 -->
+        <div class="horario-item" onclick="seleccionarHorario(this, '08:30', '15:30')">
+          <div class="horario-info">
+            <div class="horario-icono">⛵</div>
+            <div class="horario-texto">
+              <h4>Salida 08:30</h4>
+              <p>🕒 Salida: 08:30 →</p>
+              <p>🔄 Regreso: 15:30</p>
+            </div>
+          </div>
+          <div class="horario-disponible">Disponible</div>
+        </div>
+
+        <!-- Opción 2: Salida 10:00 -->
+        <div class="horario-item" onclick="seleccionarHorario(this, '10:00', '16:30')">
+          <div class="horario-info">
+            <div class="horario-icono">⛵</div>
+            <div class="horario-texto">
+              <h4>Salida 10:00</h4>
+              <p>🕒 Salida: 10:00 →</p>
+              <p>🔄 Regreso: 16:30</p>
+            </div>
+          </div>
+          <div class="horario-disponible">Disponible</div>
+        </div>
       </div>
 
       <button class="btn-reservar" id="btn-reservar" disabled onclick="confirmarReserva()">
@@ -549,6 +649,7 @@
   };
 
   let fechaSeleccionada = null;
+  let horarioSeleccionado = null;
 
   // Cambiar cantidad
   function cambiarCantidad(tipo, delta) {
@@ -563,7 +664,6 @@
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
     document.getElementById('total-pagar').textContent = '$' + total.toLocaleString('es-CO');
 
-    // Actualizar línea de adultos
     const lineaAdultos = document.getElementById('linea-adultos');
     if (cantidades.adultos > 0) {
       lineaAdultos.style.display = 'flex';
@@ -572,7 +672,6 @@
       lineaAdultos.style.display = 'none';
     }
 
-    // Actualizar línea de niños
     const lineaNinos = document.getElementById('linea-ninos');
     if (cantidades.ninos > 0) {
       lineaNinos.style.display = 'flex';
@@ -590,13 +689,12 @@
     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     document.getElementById('mes-titulo').textContent = meses[mesActual] + ' ' + anioActual;
 
-    const primerDia = new Date(anioActual, mesActual, 1).getDay(); // 0 = Domingo
+    const primerDia = new Date(anioActual, mesActual, 1).getDay();
     const diasEnMes = new Date(anioActual, mesActual + 1, 0).getDate();
 
     const calendario = document.getElementById('calendario');
     calendario.innerHTML = '';
 
-    // Días de la semana (empezando en Lunes)
     const diasSemana = ['LU', 'MA', 'MI', 'JU', 'VI', 'SA', 'DO'];
     diasSemana.forEach(d => {
       const div = document.createElement('div');
@@ -605,17 +703,14 @@
       calendario.appendChild(div);
     });
 
-    // Ajustar el primer día (0=Domingo, 1=Lunes...)
     let offset = (primerDia === 0) ? 6 : primerDia - 1;
 
-    // Espacios vacíos
     for (let i = 0; i < offset; i++) {
       const div = document.createElement('div');
       div.className = 'dia vacio';
       calendario.appendChild(div);
     }
 
-    // Días del mes
     for (let d = 1; d <= diasEnMes; d++) {
       const div = document.createElement('div');
       div.className = 'dia';
@@ -626,16 +721,44 @@
   }
 
   function seleccionarFecha(dia, elemento) {
-    // Quitar selección anterior
     document.querySelectorAll('.dia').forEach(d => d.classList.remove('seleccionado'));
     elemento.classList.add('seleccionado');
 
     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     fechaSeleccionada = `${dia} de ${meses[mesActual]} de ${anioActual}`;
 
-    // Habilitar botón
-    document.getElementById('btn-reservar').disabled = false;
-    document.getElementById('nota-fecha').textContent = 'Fecha seleccionada: ' + fechaSeleccionada;
+    // Mostrar la sección de horarios
+    document.getElementById('horarios-section').classList.add('visible');
+
+    // Resetear horario seleccionado al cambiar fecha
+    horarioSeleccionado = null;
+    document.querySelectorAll('.horario-item').forEach(h => h.classList.remove('seleccionado'));
+
+    // Actualizar botón y nota
+    actualizarBotonReserva();
+  }
+
+  function seleccionarHorario(elemento, salida, regreso) {
+    document.querySelectorAll('.horario-item').forEach(h => h.classList.remove('seleccionado'));
+    elemento.classList.add('seleccionado');
+    horarioSeleccionado = { salida, regreso };
+    actualizarBotonReserva();
+  }
+
+  function actualizarBotonReserva() {
+    const btn = document.getElementById('btn-reservar');
+    const nota = document.getElementById('nota-fecha');
+
+    if (fechaSeleccionada && horarioSeleccionado) {
+      btn.disabled = false;
+      nota.textContent = `✅ ${fechaSeleccionada} · Salida ${horarioSeleccionado.salida}`;
+    } else if (fechaSeleccionada && !horarioSeleccionado) {
+      btn.disabled = true;
+      nota.textContent = 'Selecciona un horario de salida';
+    } else {
+      btn.disabled = true;
+      nota.textContent = 'Selecciona una fecha para continuar';
+    }
   }
 
   function cambiarMes(delta) {
@@ -648,7 +771,7 @@
   // Confirmar reserva
   function confirmarReserva() {
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
-    alert(`✅ Reserva preparada\n\nPaquete: VIP Pass\nFecha: ${fechaSeleccionada}\nAdultos: ${cantidades.adultos}\nNiños: ${cantidades.ninos}\nInfantes: ${cantidades.infantes}\n\nTotal: $${total.toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
+    alert(`✅ Reserva preparada\n\nPaquete: VIP Pass\nFecha: ${fechaSeleccionada}\nHorario: Salida ${horarioSeleccionado.salida} - Regreso ${horarioSeleccionado.regreso}\nAdultos: ${cantidades.adultos}\nNiños: ${cantidades.ninos}\nInfantes: ${cantidades.infantes}\n\nTotal: $${total.toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
   }
 
   // Inicializar

@@ -27,7 +27,7 @@
   ========================== */
   header {
     height: 85px;
-    padding: 0 7%;
+    padding: 0 6%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,28 +38,41 @@
     z-index: 10;
   }
   .logo {
-    border: 3px solid var(--navy);
-    padding: 8px;
-    font-size: 20px;
+    border: 2px solid var(--navy);
+    padding: 6px 10px;
+    font-size: 18px;
     font-weight: bold;
     letter-spacing: 3px;
     text-align: center;
     text-decoration: none;
     color: var(--navy);
+    line-height: 1.1;
   }
-  .logo small { display: block; font-size: 8px; }
+  .logo small { display: block; font-size: 7px; letter-spacing: 2px; }
+
+  /* Selector de idioma (bandera) */
   .language-selector {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: white;
-    padding: 8px 15px;
+    padding: 7px 12px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     color: var(--navy);
     cursor: pointer;
+  }
+
+  /* Bandera de Colombia como imagen SVG */
+  .bandera-colombia {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   /* =========================
@@ -457,9 +470,10 @@
   }
   @media (max-width: 600px) {
     header { padding: 0 15px; height: 75px; }
-    .logo { font-size: 16px; padding: 6px; }
-    .logo small { font-size: 7px; }
+    .logo { font-size: 16px; padding: 5px 8px; }
+    .logo small { font-size: 6px; }
     .language-selector { padding: 5px 10px; font-size: 11px; }
+    .bandera-colombia { width: 16px; height: 12px; }
     .footer-contenido { grid-template-columns: 1fr; }
     .paquete-header { flex-direction: column; gap: 10px; }
     .paquete-header .precio { text-align: left; }
@@ -475,7 +489,7 @@
 <header>
   <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
   <div class="language-selector">
-    <span>🇨🇴</span>
+    <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
     <span>ES</span>
     <span>⌃</span>
   </div>
@@ -683,13 +697,8 @@
   // GALERÍA DE IMÁGENES
   // =========================
   function cambiarImagen(miniatura, nuevaSrc) {
-    // Cambiar la imagen principal
     document.getElementById('imagen-principal').src = nuevaSrc;
-    
-    // Quitar la clase 'activa' de todas las miniaturas
     document.querySelectorAll('.miniaturas img').forEach(img => img.classList.remove('activa'));
-    
-    // Añadir la clase 'activa' a la miniatura clickeada
     miniatura.classList.add('activa');
   }
 
@@ -711,7 +720,6 @@
   let fechaSeleccionada = null;
   let horarioSeleccionado = null;
 
-  // Cambiar cantidad
   function cambiarCantidad(tipo, delta) {
     cantidades[tipo] += delta;
     if (cantidades[tipo] < 0) cantidades[tipo] = 0;
@@ -719,7 +727,6 @@
     actualizarResumen();
   }
 
-  // Actualizar resumen de pago
   function actualizarResumen() {
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
     document.getElementById('total-pagar').textContent = '$' + total.toLocaleString('es-CO');
@@ -744,7 +751,7 @@
   // =========================
   // CALENDARIO
   // =========================
-  let mesActual = 9; // Octubre (0-indexado)
+  let mesActual = 9;
   let anioActual = 2026;
 
   function renderizarCalendario() {
@@ -827,9 +834,6 @@
     renderizarCalendario();
   }
 
-  // =========================
-  // CONFIRMAR RESERVA
-  // =========================
   function confirmarReserva() {
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
     alert(`✅ Reserva preparada\n\nPaquete: VIP Pass\nFecha: ${fechaSeleccionada}\nHorario: Salida ${horarioSeleccionado.salida} - Regreso ${horarioSeleccionado.regreso}\nAdultos: ${cantidades.adultos}\nNiños: ${cantidades.ninos}\nInfantes: ${cantidades.infantes}\n\nTotal: $${total.toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);

@@ -65,6 +65,27 @@ nav a {
 }
 
 /* =========================
+   SELECTOR DE IDIOMA (BANDERA)
+========================== */
+.language-selector {
+  position: fixed;
+  top: 100px; /* Debajo del header */
+  right: 20px;
+  background: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--navy);
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* =========================
    HERO CON VIDEO DE FONDO
 ========================== */
 .hero {
@@ -298,10 +319,12 @@ nav a {
   align-items: center;
 }
 
-.icono-servicio img {
+.icono-servicio img,
+.icono-servicio svg {
   width: 60px;
-  height: auto;
+  height: 60px;
   margin-bottom: 15px;
+  object-fit: contain;
 }
 
 .icono-servicio h3 {
@@ -376,6 +399,10 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   transition: .3s;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
 }
 
 .btn-reservar-outline:hover {
@@ -727,6 +754,13 @@ nav a {
   .footer-contenido {
     grid-template-columns: 1fr;
   }
+  
+  .language-selector {
+    top: 85px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
 }
 </style>
 </head>
@@ -743,9 +777,15 @@ nav a {
     <a href="#experiencias">PASADÍAS⌄</a>
     <a href="#eventos">EVENTOS</a>
     <a href="#galeria">GALERÍA</a>
-    <span>🇨🇴 ES⌃</span>
   </nav>
 </header>
+
+<!-- Selector de Idioma Flotante (Bandera de Colombia) -->
+<div class="language-selector">
+  <span>🇨🇴</span>
+  <span>ES</span>
+  <span>⌃</span>
+</div>
 
 <!-- =========================
      HERO CON VIDEO DE FONDO
@@ -916,17 +956,27 @@ nav a {
 ========================== -->
 <section class="seccion-iconos">
   <div class="icono-servicio">
-    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e683ac571cca8e9541f60e.webp" alt="High-End Daypass">
+    <!-- Icono SVG de Cabaña (Reemplaza la imagen rota) -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"></path>
+    </svg>
     <h3>High-End Daypass</h3>
     <p>A solo 20 minutos de Cartagena</p>
   </div>
   <div class="icono-servicio">
-    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e68456c56ad27908403229.webp" alt="Transporte marítimo">
+    <!-- Icono SVG de Lancha -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 20h20M4 20l2-8h12l2 8M12 4v8M8 12l4-8 4 8"></path>
+    </svg>
     <h3>Transporte marítimo incluido</h3>
     <p>Lancha deportiva de lujo</p>
   </div>
   <div class="icono-servicio">
-    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e685173ea93d9dd2e4eb22.webp" alt="Pagos en línea">
+    <!-- Icono SVG de Pago -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+      <line x1="2" y1="10" x2="22" y2="10"></line>
+    </svg>
     <h3>Pagos en línea</h3>
     <p>100% Seguros procesados por Stripe</p>
   </div>
@@ -945,7 +995,7 @@ nav a {
       <li><strong>Reserva online</strong> fácil y seguro.</li>
       <li><strong>Opciones de pasadía</strong> para pareja, amigos o grupos.</li>
     </ul>
-    <a href="#reservar" class="btn-reservar-outline" onclick="abrirFormulario()">Reservar Pasadía</a>
+    <button class="btn-reservar-outline" onclick="abrirFormulario()">Reservar Pasadía</button>
   </div>
   <div class="seccion-playa-imagen">
     <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69fca7497285562721776aaa.webp" alt="Vista aérea de playa">

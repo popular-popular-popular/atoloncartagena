@@ -12,6 +12,7 @@
     --border: #e4e7ed;
     --bg-light: #f8f9fa;
     --green: #25d366;
+    --gold: #d4b66e;
   }
   body {
     font-family: Arial, sans-serif;
@@ -85,6 +86,7 @@
     text-align: center;
   }
 
+  /* Tarjeta de resumen */
   .card-pago {
     background: white;
     border-radius: 16px;
@@ -120,6 +122,7 @@
     line-height: 1.6;
   }
 
+  /* Bloque del monto */
   .monto-bloque {
     background: #f4f7f9;
     border-radius: 12px;
@@ -149,8 +152,11 @@
     color: #666;
     margin-top: 10px;
   }
-  .monto-destino strong { color: var(--navy); }
+  .monto-destino strong {
+    color: var(--navy);
+  }
 
+  /* Info adicional */
   .info-extra {
     background: #fef9e7;
     border: 1px solid #f9e79f;
@@ -168,6 +174,7 @@
     color: #b7950b;
   }
 
+  /* Botón Wompi */
   .btn-wompi {
     width: 100%;
     padding: 18px;
@@ -191,6 +198,7 @@
     box-shadow: 0 10px 25px rgba(108, 63, 197, 0.4);
   }
 
+  /* Nota de seguridad */
   .nota-seguridad {
     font-size: 11px;
     color: #888;
@@ -201,6 +209,7 @@
     margin-top: 15px;
   }
 
+  /* Botón volver */
   .btn-volver {
     display: inline-flex;
     align-items: center;
@@ -214,6 +223,7 @@
   }
   .btn-volver:hover { text-decoration: underline; }
 
+  /* WhatsApp flotante */
   .whatsapp-float {
     position: fixed;
     bottom: 20px;
@@ -232,10 +242,12 @@
     transition: transform 0.2s;
     z-index: 100;
   }
-  .whatsapp-float:hover { transform: scale(1.1); }
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+  }
 
   /* =========================
-     FOOTER
+     FOOTER AZUL
   ========================== */
   .footer-principal {
     background: var(--navy);
@@ -304,6 +316,9 @@
     opacity: 0.7;
   }
 
+  /* =========================
+     RESPONSIVE
+  ========================== */
   @media (max-width: 900px) {
     .footer-contenido { grid-template-columns: 1fr 1fr; gap: 20px; }
   }
@@ -327,6 +342,7 @@
 
 <header>
   <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
+
   <div class="language-selector">
     <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
     <span>ES</span>
@@ -335,11 +351,17 @@
 </header>
 
 <div class="main-container">
+  
   <div class="card-pago">
+    
+    <!-- Icono -->
     <div class="icono-pago">💳</div>
+
+    <!-- Título -->
     <h1>Este es el valor a pagar por su reserva</h1>
     <p class="subtitulo">Serás redirigido a la plataforma de pago <strong>Wompi</strong> para terminar tu reserva.</p>
 
+    <!-- Monto -->
     <div class="monto-bloque">
       <div class="monto-label">Total a pagar</div>
       <div class="monto-valor" id="monto-total">$0</div>
@@ -348,20 +370,28 @@
       </div>
     </div>
 
+    <!-- Info extra -->
     <div class="info-extra">
       <strong>⚠️ Importante</strong>
       Asegúrate de pagar el valor exacto mostrado. La plataforma de pago Wompi procesará tu transacción de forma segura.
     </div>
 
+    <!-- Botón Wompi -->
     <button class="btn-wompi" onclick="irAWompi()">
       🔒 Pagar con Wompi →
     </button>
 
+    <!-- Nota de seguridad -->
     <p class="nota-seguridad">🔒 Pago seguro procesado por Wompi</p>
+
+    <!-- Botón volver -->
     <a href="pago.html" class="btn-volver">← Volver a métodos de pago</a>
+
   </div>
+
 </div>
 
+<!-- WhatsApp flotante -->
 <a href="https://wa.me/+573003194215" target="_blank" class="whatsapp-float">💬</a>
 
 <footer class="footer-principal">
@@ -410,6 +440,9 @@
 </footer>
 
 <script>
+  // =========================
+  // LEER DATOS DEL PAGO
+  // =========================
   const totalFinal = sessionStorage.getItem('totalFinal');
   const reservaJSON = sessionStorage.getItem('reservaActual');
 
@@ -418,30 +451,15 @@
   }
 
   const reserva = JSON.parse(reservaJSON);
+
+  // Mostrar el monto total
   document.getElementById('monto-total').textContent = '$' + Number(totalFinal).toLocaleString('es-CO');
 
-  // ============================================================
-  // CAMBIO CLAVE: Generar URL Dinámica del Checkout Web de Wompi
-  // ============================================================
-  // Reemplaza el link estático por esta URL firmada.
-  // Debes obtener "firmaIntegridad" desde tu backend por seguridad.
-  // ============================================================
+  // =========================
+  // REDIRIGIR A WOMPI
+  // =========================
   function irAWompi() {
-    // 1. Datos de tu comercio Wompi
-    const publicKey = 'pub_prod_REEMPLAZA_CON_TU_LLAVE_PUBLICA'; 
-    const currency = 'COP';
-    const amountInCents = Number(totalFinal) * 100; 
-    const reference = `ATOLON-${Date.now()}`;
-
-    // 2. La firma DEBE venir de tu servidor backend (nunca la pongas aquí)
-    // Por ahora, esto es un placeholder para que veas la estructura.
-    const firmaIntegridad = 'FIRMA_DE_INTEGRIDAD_DESDE_TU_BACKEND'; 
-
-    // 3. Construir la URL del Checkout Web
-    const wompiUrl = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=${currency}&amount-in-cents=${amountInCents}&reference=${encodeURIComponent(reference)}&signature:integrity=${firmaIntegridad}`;
-
-    // 4. Redirigir
-    window.location.href = wompiUrl;
+    window.location.href = 'https://checkout.wompi.co/l/eXpnVK';
   }
 </script>
 

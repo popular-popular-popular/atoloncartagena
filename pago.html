@@ -754,7 +754,7 @@
   }
 
   // =========================
-  // CONFIRMAR PAGO
+  // CONFIRMAR PAGO → REDIRIGIR A REDIRIGIR-PAGO.HTML
   // =========================
   function confirmarPago() {
     if (!metodoPago) {
@@ -762,11 +762,11 @@
       return;
     }
 
-    const total = sessionStorage.getItem('totalFinal') || reserva.total;
-    alert(`✅ Redirigiendo al pago\n\nPaquete: ${reserva.paquete}\nFecha: ${reserva.fecha}\nHorario: Salida ${reserva.horarioSalida}\nMétodo de pago: ${metodoPago === 'nacional' ? 'Tarjeta Nacional' : 'Tarjeta Internacional'}\n\nTotal: $${Number(total).toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
+    // Guardar método de pago en sessionStorage
+    sessionStorage.setItem('metodoPago', metodoPago);
 
-    // Aquí podrías redirigir a la pasarela de pago real
-    // window.location.href = 'pasarela-pago.html';
+    // Redirigir a la página de resumen y Wompi
+    window.location.href = 'redirigir-pago.html';
   }
 
   // =========================

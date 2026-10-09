@@ -98,7 +98,7 @@ nav a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.45); /* Capa oscura para legibilidad */
+  background: rgba(0, 0, 0, 0.45);
   z-index: 2;
 }
 
@@ -227,43 +227,381 @@ nav a {
   color: white;
 }
 
-.seccion-extra {
+/* =========================
+   NUEVAS SECCIONES (CAPTURAS)
+========================== */
+
+/* Sección WhatsApp */
+.seccion-whatsapp {
   text-align: center;
-  padding: 60px 20px;
+  padding: 60px 20px 40px;
 }
 
-.seccion-extra h2 {
-  font-size: 30px;
+.seccion-whatsapp p {
+  font-style: italic;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.btn-whatsapp-grande {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--navy);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.btn-whatsapp-grande:hover {
+  background: #2a3b5c;
+}
+
+.btn-whatsapp-grande span {
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 3px;
+  opacity: 0.8;
+}
+
+/* Sección Video / Imagen Grande */
+.seccion-video-grande {
+  padding: 20px 6% 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.seccion-video-grande img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Sección Iconos (High-End, Transporte, Pagos) */
+.seccion-iconos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 60px 6%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.icono-servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icono-servicio img {
+  width: 60px;
+  height: auto;
   margin-bottom: 15px;
 }
 
-.seccion-extra p {
-  line-height: 1.8;
+.icono-servicio h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
 }
 
-.galeria {
+.icono-servicio p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Sección Playa / Texto e Imagen */
+.seccion-playa {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  max-width: 1100px;
-  margin: 30px auto 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  padding: 60px 6%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.galeria img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
+.seccion-playa-texto h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
 }
 
-footer {
+.seccion-playa-texto h3 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.seccion-playa-texto p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  color: #444;
+}
+
+.seccion-playa-texto ul {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.seccion-playa-texto ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.seccion-playa-texto ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--navy);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.btn-reservar-outline {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 2px solid var(--navy);
+  border-radius: 30px;
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.btn-reservar-outline:hover {
   background: var(--navy);
   color: white;
-  text-align: center;
-  padding: 35px 20px;
-  line-height: 2;
 }
 
+.seccion-playa-imagen img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Sección 3 Columnas (Espacios, Gastronomía, Música) */
+.seccion-3-columnas {
+  padding: 60px 6%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.seccion-3-columnas h2 {
+  text-align: center;
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.seccion-3-columnas > p {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.grid-3-columnas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.columna-imagen {
+  position: relative;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.columna-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.columna-imagen:hover img {
+  transform: scale(1.05);
+}
+
+.columna-texto {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 25px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  text-align: center;
+}
+
+.columna-texto h3 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+.columna-texto p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Sección Final de Texto e Imagen */
+.seccion-final {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  padding: 60px 6%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.seccion-final-texto h2 {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.seccion-final-texto p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+.seccion-final-imagen img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+/* =========================
+   FOOTER (CAPTURA 4)
+========================== */
+.footer-principal {
+  background: var(--navy);
+  color: white;
+  padding: 60px 6% 20px;
+}
+
+.footer-contenido {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-logo-seccion {
+  text-align: center;
+}
+
+.footer-logo-seccion img {
+  width: 120px;
+  margin-bottom: 15px;
+}
+
+.footer-logo-seccion p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.footer-columna h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: var(--blue);
+}
+
+.footer-columna ul {
+  list-style: none;
+}
+
+.footer-columna ul li {
+  margin-bottom: 12px;
+}
+
+.footer-columna ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+.footer-columna ul li a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-columna p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 15px;
+}
+
+.btn-escribenos {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: var(--navy);
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: .3s;
+  margin-top: 10px;
+}
+
+.btn-escribenos:hover {
+  background: #f0f0f0;
+}
+
+.footer-redes {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.footer-redes a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.footer-redes a:hover {
+  opacity: 1;
+}
+
+.footer-copyright {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* =========================
+   BOTONES FLOTANTES Y FORMULARIO
+========================== */
 .boton-flotante {
   position: fixed;
   left: 22px;
@@ -321,6 +659,9 @@ footer {
   cursor: pointer;
 }
 
+/* =========================
+   RESPONSIVE
+========================== */
 @media (max-width: 900px) {
   .tarjetas {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -328,6 +669,24 @@ footer {
 
   .experience {
     grid-column: 1 / -1;
+  }
+
+  .seccion-iconos {
+    grid-template-columns: 1fr;
+  }
+
+  .seccion-playa,
+  .seccion-final {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .grid-3-columnas {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-contenido {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -364,6 +723,10 @@ footer {
   .galeria {
     grid-template-columns: 1fr;
   }
+
+  .footer-contenido {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -388,16 +751,13 @@ footer {
      HERO CON VIDEO DE FONDO
 ========================== -->
 <section class="hero" id="inicio">
-  <!-- Video de fondo -->
   <video class="hero-video" autoplay loop muted playsinline>
     <source src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69f2219efc17decc45e992f1.mp4" type="video/mp4">
     Tu navegador no soporta videos HTML5.
   </video>
   
-  <!-- Capa oscura para legibilidad -->
   <div class="hero-overlay"></div>
   
-  <!-- Contenido de texto -->
   <div class="hero-content">
     <p>Bienvenidos al mejor</p>
     <h1>Beach Club de Cartagena</h1>
@@ -406,6 +766,9 @@ footer {
   </div>
 </section>
 
+<!-- =========================
+     EXPERIENCIAS ATOLÓN
+========================== -->
 <section class="experiencias" id="experiencias">
   <h2 class="titulo">Experiencias Atolón</h2>
 
@@ -530,27 +893,170 @@ footer {
   </div>
 </section>
 
-<section class="seccion-extra" id="eventos">
-  <h2>Eventos Atolón</h2>
-  <p>Vive momentos especiales frente al mar Caribe.<br>
-  Disfruta de experiencias únicas, música y diversión.</p>
+<!-- =========================
+     SECCIÓN WHATSAPP (CAPTURA 1)
+========================== -->
+<section class="seccion-whatsapp">
+  <p>¿Tienes dudas? Hablemos por WhatsApp</p>
+  <a href="https://wa.me/+573003194215" target="_blank" class="btn-whatsapp-grande">
+    WhatsApp 📱
+    <span>Atolón Beach Club</span>
+  </a>
 </section>
 
-<section class="seccion-extra" id="galeria">
-  <h2>Galería</h2>
-  <p>Descubre nuestro ambiente tropical.</p>
+<!-- =========================
+     SECCIÓN IMAGEN GRANDE (CAPTURA 1)
+========================== -->
+<section class="seccion-video-grande">
+  <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e683ac571cca8e9541f60e.webp" alt="Atolón Beach Club Vista">
+</section>
 
-  <div class="galeria">
-    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80" alt="Playa">
-    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Piscina">
-    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Restaurante">
+<!-- =========================
+     SECCIÓN ICONOS (CAPTURA 2)
+========================== -->
+<section class="seccion-iconos">
+  <div class="icono-servicio">
+    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e683ac571cca8e9541f60e.webp" alt="High-End Daypass">
+    <h3>High-End Daypass</h3>
+    <p>A solo 20 minutos de Cartagena</p>
+  </div>
+  <div class="icono-servicio">
+    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e68456c56ad27908403229.webp" alt="Transporte marítimo">
+    <h3>Transporte marítimo incluido</h3>
+    <p>Lancha deportiva de lujo</p>
+  </div>
+  <div class="icono-servicio">
+    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e685173ea93d9dd2e4eb22.webp" alt="Pagos en línea">
+    <h3>Pagos en línea</h3>
+    <p>100% Seguros procesados por Stripe</p>
   </div>
 </section>
 
-<footer>
-  <h2>ATOLON BEACH CLUB</h2>
-  <p>Cartagena de Indias, Colombia</p>
-  <p>Proyecto académico de diseño web · 2026</p>
+<!-- =========================
+     SECCIÓN PLAYA (CAPTURA 2)
+========================== -->
+<section class="seccion-playa">
+  <div class="seccion-playa-texto">
+    <h2>Beach Club en Tierra Bomba</h2>
+    <h3>Pasadía de lujo cerca de Cartagena</h3>
+    <p>Playa privada, servicio exclusivo y una experiencia high-end para desconectar sin irte lejos.</p>
+    <ul>
+      <li><strong>Traslado en lancha:</strong> menos tiempo, más mar.</li>
+      <li><strong>Reserva online</strong> fácil y seguro.</li>
+      <li><strong>Opciones de pasadía</strong> para pareja, amigos o grupos.</li>
+    </ul>
+    <a href="#reservar" class="btn-reservar-outline" onclick="abrirFormulario()">Reservar Pasadía</a>
+  </div>
+  <div class="seccion-playa-imagen">
+    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69fca7497285562721776aaa.webp" alt="Vista aérea de playa">
+  </div>
+</section>
+
+<!-- =========================
+     SECCIÓN 3 COLUMNAS (CAPTURA 3)
+========================== -->
+<section class="seccion-3-columnas">
+  <h2>Diseñado para vivir el mar con estándar high-end</h2>
+  <p>Un <strong>beach club</strong> donde cada espacio está pensado para que el plan sea simple: <em>llegar, instalarte, comer bien y quedarte el tiempo que quieras.</em></p>
+  
+  <div class="grid-3-columnas">
+    <div class="columna-imagen">
+      <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" alt="Espacios">
+      <div class="columna-texto">
+        <h3>Espacios</h3>
+        <p>Playa + zonas de descanso + piscina.</p>
+      </div>
+    </div>
+    <div class="columna-imagen">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Gastronomía">
+      <div class="columna-texto">
+        <h3>Gastronomía</h3>
+        <p>Carta curada para un día completo.</p>
+      </div>
+    </div>
+    <div class="columna-imagen">
+      <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" alt="Música">
+      <div class="columna-texto">
+        <h3>Música</h3>
+        <p>Eventos a otro nivel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+     SECCIÓN FINAL (CAPTURA 3)
+========================== -->
+<section class="seccion-final">
+  <div class="seccion-final-texto">
+    <h2>El mar, la isla y un buen brindis</h2>
+    <p>Nuestra cocina celebra el Caribe con platos que resaltan lo mejor del mar y la tradición costeña, en <strong>un ambiente perfecto para desconectar</strong>. <em>Completa la experiencia con cocteles tropicales y refrescantes.</em></p>
+    <a href="#" class="btn-reservar-outline">Conoce nuestra carta</a>
+  </div>
+  <div class="seccion-final-imagen">
+    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt="Plato de comida">
+  </div>
+</section>
+
+<!-- =========================
+     FOOTER (CAPTURA 4)
+========================== -->
+<footer class="footer-principal">
+  <div class="footer-contenido">
+    
+    <!-- Columna Logo -->
+    <div class="footer-logo-seccion">
+      <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
+      <p>Tierra Bomba, Cartagena</p>
+    </div>
+
+    <!-- Columna Contacto -->
+    <div class="footer-columna">
+      <h4>Contacto</h4>
+      <p>+57 300 3194 215</p>
+      <p>info@atolonbeachclub.com</p>
+      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">
+        ✉️ Escríbenos
+      </a>
+    </div>
+
+    <!-- Columna Links Útiles -->
+    <div class="footer-columna">
+      <h4>Links Útiles</h4>
+      <ul>
+        <li><a href="#">Pasadías</a></li>
+        <li><a href="#">Eventos</a></li>
+        <li><a href="#">Galería</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna Legal y Redes -->
+    <div class="footer-columna">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Políticas de cancelación</a></li>
+        <li><a href="#">Políticas de privacidad</a></li>
+        <li><a href="#">Aliados Comerciales</a></li>
+        <li><a href="#">PQRs</a></li>
+      </ul>
+      
+      <div style="margin-top: 30px;">
+        <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
+        <div class="footer-redes">
+          <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>
+          <a href="https://www.instagram.com/atoloncartagena/" target="_blank">📷</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-copyright">
+    <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
+  </div>
 </footer>
 
 <button class="boton-flotante" onclick="abrirFormulario()">

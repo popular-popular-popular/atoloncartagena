@@ -61,7 +61,7 @@ nav {
 nav a {
   text-decoration: none;
   color: var(--navy);
-  font-size: 13px;
+  font-size: 12px; /* Reducido de 13px a 12px */
 }
 
 /* =========================
@@ -70,16 +70,26 @@ nav a {
 .language-selector {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: white;
-  padding: 8px 15px;
+  padding: 7px 12px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  font-size: 14px;
+  font-size: 13px; /* Reducido de 14px a 13px */
   font-weight: bold;
   color: var(--navy);
   cursor: pointer;
   margin-left: 20px;
+}
+
+/* Bandera de Colombia como imagen SVG (visible en PC y móvil) */
+.bandera-colombia {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* =========================
@@ -735,6 +745,11 @@ nav a {
     font-size: 11px;
     margin-left: 10px;
   }
+
+  .bandera-colombia {
+    width: 16px;
+    height: 12px;
+  }
 }
 </style>
 </head>
@@ -753,7 +768,8 @@ nav a {
     <a href="#galeria">GALERÍA</a>
     
     <div class="language-selector">
-      <span>🇨🇴</span>
+      <!-- Bandera de Colombia como imagen SVG (visible en PC y móvil) -->
+      <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
       <span>ES</span>
       <span>⌃</span>
     </div>

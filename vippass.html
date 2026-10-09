@@ -83,13 +83,44 @@
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   }
 
-  /* Columna Izquierda */
+  /* =========================
+     COLUMNA IZQUIERDA
+  ========================== */
   .col-izquierda img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 12px;
+    margin-bottom: 15px;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Galería de miniaturas */
+  .miniaturas {
+    display: flex;
+    gap: 8px;
     margin-bottom: 25px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  .miniaturas img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .miniaturas img:hover {
+    opacity: 1;
+  }
+  .miniaturas img.activa {
+    opacity: 1;
+    border-color: var(--navy);
   }
 
   .seccion-titulo {
@@ -168,7 +199,9 @@
     margin-top: 10px;
   }
 
-  /* Columna Derecha */
+  /* =========================
+     COLUMNA DERECHA
+  ========================== */
   .col-derecha .paquete-header {
     display: flex;
     justify-content: space-between;
@@ -274,11 +307,11 @@
   }
 
   /* =========================
-     NUEVA SECCIÓN: HORARIOS DE SALIDA
+     SECCIÓN HORARIOS DE SALIDA
   ========================== */
   .horarios-section {
     margin-top: 25px;
-    display: none; /* Se muestra cuando se selecciona una fecha */
+    display: none;
   }
   .horarios-section.visible {
     display: block;
@@ -433,6 +466,7 @@
     .horario-item { padding: 15px; }
     .horario-icono { width: 40px; height: 40px; font-size: 22px; }
     .horario-texto h4 { font-size: 14px; }
+    .miniaturas img { width: 50px; height: 50px; }
   }
 </style>
 </head>
@@ -452,7 +486,17 @@
     
     <!-- Columna Izquierda: Participantes y Resumen -->
     <div class="col-izquierda">
-      <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69fca7497285562721776aaa.webp" alt="Atolón Beach Club">
+      <!-- Imagen principal -->
+      <img id="imagen-principal" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" alt="Atolón Beach Club">
+      
+      <!-- Galería de miniaturas -->
+      <div class="miniaturas">
+        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=200&q=80" alt="Playa" class="activa" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80')">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=200&q=80" alt="Restaurante" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80')">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=200&q=80" alt="Piscina" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80')">
+        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=200&q=80" alt="Hamacas" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80')">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=200&q=80" alt="Eventos" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80')">
+      </div>
       
       <div class="seccion-titulo">Participantes</div>
 
@@ -546,7 +590,7 @@
         <!-- Se genera con JS -->
       </div>
 
-      <!-- NUEVA SECCIÓN: Horarios de salida -->
+      <!-- Sección Horarios de salida -->
       <div class="horarios-section" id="horarios-section">
         <div class="seccion-titulo" style="margin-top: 25px;">Selecciona el horario de salida</div>
         
@@ -635,7 +679,23 @@
 </footer>
 
 <script>
-  // Precios
+  // =========================
+  // GALERÍA DE IMÁGENES
+  // =========================
+  function cambiarImagen(miniatura, nuevaSrc) {
+    // Cambiar la imagen principal
+    document.getElementById('imagen-principal').src = nuevaSrc;
+    
+    // Quitar la clase 'activa' de todas las miniaturas
+    document.querySelectorAll('.miniaturas img').forEach(img => img.classList.remove('activa'));
+    
+    // Añadir la clase 'activa' a la miniatura clickeada
+    miniatura.classList.add('activa');
+  }
+
+  // =========================
+  // PRECIOS Y CANTIDADES
+  // =========================
   const precios = {
     adultos: 320000,
     ninos: 240000,
@@ -681,7 +741,9 @@
     }
   }
 
-  // Calendario
+  // =========================
+  // CALENDARIO
+  // =========================
   let mesActual = 9; // Octubre (0-indexado)
   let anioActual = 2026;
 
@@ -727,14 +789,11 @@
     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     fechaSeleccionada = `${dia} de ${meses[mesActual]} de ${anioActual}`;
 
-    // Mostrar la sección de horarios
     document.getElementById('horarios-section').classList.add('visible');
 
-    // Resetear horario seleccionado al cambiar fecha
     horarioSeleccionado = null;
     document.querySelectorAll('.horario-item').forEach(h => h.classList.remove('seleccionado'));
 
-    // Actualizar botón y nota
     actualizarBotonReserva();
   }
 
@@ -768,7 +827,9 @@
     renderizarCalendario();
   }
 
-  // Confirmar reserva
+  // =========================
+  // CONFIRMAR RESERVA
+  // =========================
   function confirmarReserva() {
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
     alert(`✅ Reserva preparada\n\nPaquete: VIP Pass\nFecha: ${fechaSeleccionada}\nHorario: Salida ${horarioSeleccionado.salida} - Regreso ${horarioSeleccionado.regreso}\nAdultos: ${cantidades.adultos}\nNiños: ${cantidades.ninos}\nInfantes: ${cantidades.infantes}\n\nTotal: $${total.toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);

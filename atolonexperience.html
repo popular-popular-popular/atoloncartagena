@@ -655,9 +655,27 @@
     renderizarCalendario();
   }
 
+  // =========================
+  // GUARDAR DATOS Y REDIRIGIR
+  // =========================
   function confirmarReserva() {
     const total = cantidades.adultos * precios.adultos;
-    alert(`✅ Reserva preparada\n\nPaquete: Atolon Experience\nFecha: ${fechaSeleccionada}\nHorario: Salida ${horarioSeleccionado.salida} - Regreso ${horarioSeleccionado.regreso}\nAdultos: ${cantidades.adultos}\n\nTotal: $${total.toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
+
+    const datosReserva = {
+      paquete: 'Atolon Experience',
+      precioUnitario: precios.adultos,
+      total: total,
+      fecha: fechaSeleccionada,
+      horarioSalida: horarioSeleccionado.salida,
+      horarioRegreso: horarioSeleccionado.regreso,
+      adultos: cantidades.adultos,
+      ninos: 0,
+      infantes: 0,
+      totalPersonas: cantidades.adultos
+    };
+
+    sessionStorage.setItem('reservaActual', JSON.stringify(datosReserva));
+    window.location.href = 'checkout.html';
   }
 
   renderizarCalendario();

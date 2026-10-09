@@ -199,23 +199,22 @@
     color: #aaa;
   }
 
-  /* Teléfono con prefijo */
-  .telefono-input {
+  /* Teléfono con prefijo DENTRO del input */
+  .telefono-wrapper {
+    position: relative;
     display: flex;
-    gap: 8px;
+    align-items: center;
   }
-  .telefono-prefijo {
-    width: 80px;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
+  .telefono-wrapper .prefijo {
+    position: absolute;
+    left: 14px;
     font-size: 14px;
     color: var(--navy);
-    background: white;
-    text-align: center;
+    font-weight: 500;
+    pointer-events: none;
   }
-  .telefono-numero {
-    flex: 1;
+  .telefono-wrapper input {
+    padding-left: 55px; /* Espacio para el prefijo */
   }
 
   /* Sección de cambios de fecha */
@@ -388,8 +387,8 @@
 
 <div class="main-container">
   
-  <!-- Botón volver -->
-  <a href="vippass.html" class="volver-btn">← Volver</a>
+  <!-- Botón volver (se actualiza dinámicamente) -->
+  <a href="motor-reserva.html" class="volver-btn" id="btn-volver">← Volver</a>
 
   <h1>Tus datos</h1>
 
@@ -401,17 +400,17 @@
     <div class="aviso">Los cupos de esta salida son limitados</div>
   </div>
 
-  <!-- Resumen de la reserva -->
+  <!-- Resumen de la reserva (dinámico) -->
   <div class="resumen-reserva">
     <div class="resumen-info">
-      <h3>VIP Pass</h3>
+      <h3 id="resumen-paquete">Cargando...</h3>
       <div class="resumen-detalles">
-        <span>📅 12 Octubre 2026</span>
-        <span>⛵ Salida 08:30</span>
-        <span>👥 1 persona</span>
+        <span id="resumen-fecha">📅 ...</span>
+        <span id="resumen-horario">⛵ ...</span>
+        <span id="resumen-personas">👥 ...</span>
       </div>
     </div>
-    <div class="resumen-precio">$320.000</div>
+    <div class="resumen-precio" id="resumen-total">$0</div>
   </div>
 
   <!-- Formulario -->
@@ -428,9 +427,9 @@
 
     <div class="form-group">
       <label for="telefono">Teléfono / WhatsApp</label>
-      <div class="telefono-input">
-        <input type="text" class="telefono-prefijo" value="+ 57" readonly>
-        <input type="tel" id="telefono" class="telefono-numero" placeholder="300 000 0000" required>
+      <div class="telefono-wrapper">
+        <span class="prefijo">+ 57</span>
+        <input type="tel" id="telefono" placeholder="300 000 0000" required>
       </div>
     </div>
 
@@ -500,6 +499,42 @@
 
 <script>
   // =========================
+  // LEER DATOS DE LA RESERVA
+  // =========================
+  const reservaJSON = sessionStorage.getItem('reservaActual');
+
+  if (reservaJSON) {
+    const reserva = JSON.parse(reservaJSON);
+
+    // Mostrar paquete
+    document.getElementById('resumen-paquete').textContent = reserva.paquete;
+
+    // Mostrar fecha
+    document.getElementById('resumen-fecha').textContent = '📅 ' + reserva.fecha;
+
+    // Mostrar horario
+    document.getElementById('resumen-horario').textContent = '⛵ Salida ' + reserva.horarioSalida;
+
+    // Mostrar número de personas
+    const textoPersonas = reserva.totalPersonas === 1 ? '1 persona' : reserva.totalPersonas + ' personas';
+    document.getElementById('resumen-personas').textContent = '👥 ' + textoPersonas;
+
+    // Mostrar total
+    document.getElementById('resumen-total').textContent = '$' + reserva.total.toLocaleString('es-CO');
+
+    // Actualizar el botón "Volver" según el paquete
+    const btnVolver = document.getElementById('btn-volver');
+    if (reserva.paquete === 'VIP Pass') btnVolver.href = 'vippass.html';
+    else if (reserva.paquete === 'Exclusive Pass') btnVolver.href = 'exclusivepass.html';
+    else if (reserva.paquete === 'Atolon Experience') btnVolver.href = 'atolonexperience.html';
+    else if (reserva.paquete === 'After Island') btnVolver.href = 'afterisland.html';
+
+  } else {
+    // Si no hay datos, redirigir al motor de reservas
+    window.location.href = 'motor-reserva.html';
+  }
+
+  // =========================
   // CONTADOR DE TIEMPO
   // =========================
   let tiempoRestante = 14 * 60 + 39; // 14 minutos y 39 segundos
@@ -531,6 +566,16 @@
     const correo = document.getElementById('correo').value;
     const telefono = document.getElementById('telefono').value;
     const notas = document.getElementById('notas').value;
+
+    // Guardar datos del cliente
+    const datosCliente = {
+      nombre: nombre,
+      correo: correo,
+      telefono: telefono,
+      notas: notas
+    };
+
+    sessionStorage.setItem('datosCliente', JSON.stringify(datosCliente));
 
     alert(`✅ Datos guardados\n\nNombre: ${nombre}\nCorreo: ${correo}\nTeléfono: +57 ${telefono}\nNotas: ${notas || 'Ninguna'}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
 

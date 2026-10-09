@@ -50,7 +50,27 @@
   }
   .logo small { display: block; font-size: 7px; letter-spacing: 2px; }
 
-  /* Selector de idioma (bandera) */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover {
+    color: #0047ab;
+  }
+
   .language-selector {
     display: flex;
     align-items: center;
@@ -64,8 +84,6 @@
     color: var(--navy);
     cursor: pointer;
   }
-
-  /* Bandera de Colombia como imagen SVG */
   .bandera-colombia {
     width: 20px;
     height: 14px;
@@ -108,7 +126,6 @@
     transition: opacity 0.3s ease;
   }
 
-  /* Galería de miniaturas */
   .miniaturas {
     display: flex;
     gap: 8px;
@@ -128,13 +145,8 @@
     margin-bottom: 0;
     flex-shrink: 0;
   }
-  .miniaturas img:hover {
-    opacity: 1;
-  }
-  .miniaturas img.activa {
-    opacity: 1;
-    border-color: var(--navy);
-  }
+  .miniaturas img:hover { opacity: 1; }
+  .miniaturas img.activa { opacity: 1; border-color: var(--navy); }
 
   .seccion-titulo {
     font-size: 14px;
@@ -152,43 +164,18 @@
     padding: 15px 0;
     border-bottom: 1px solid var(--border);
   }
-  .participante-info h4 {
-    font-size: 15px;
-    margin-bottom: 3px;
-  }
-  .participante-info p {
-    font-size: 12px;
-    color: #777;
-  }
-  .contador {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .participante-info h4 { font-size: 15px; margin-bottom: 3px; }
+  .participante-info p { font-size: 12px; color: #777; }
+  .contador { display: flex; align-items: center; gap: 12px; }
   .contador button {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: white;
-    font-size: 18px;
-    color: var(--navy);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid var(--border); background: white;
+    font-size: 18px; color: var(--navy); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
     transition: 0.2s;
   }
-  .contador button:hover {
-    background: var(--navy);
-    color: white;
-  }
-  .contador span {
-    font-size: 16px;
-    font-weight: bold;
-    min-width: 20px;
-    text-align: center;
-  }
+  .contador button:hover { background: var(--navy); color: white; }
+  .contador span { font-size: 16px; font-weight: bold; min-width: 20px; text-align: center; }
 
   .resumen-box {
     background: #f4f7f9;
@@ -197,268 +184,163 @@
     margin-top: 25px;
   }
   .resumen-linea {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin-bottom: 10px;
-    color: #555;
+    display: flex; justify-content: space-between;
+    font-size: 14px; margin-bottom: 10px; color: #555;
   }
   .resumen-linea.total {
-    font-weight: bold;
-    font-size: 18px;
-    color: var(--navy);
-    border-top: 1px solid var(--border);
-    padding-top: 15px;
-    margin-top: 10px;
+    font-weight: bold; font-size: 18px; color: var(--navy);
+    border-top: 1px solid var(--border); padding-top: 15px; margin-top: 10px;
   }
 
   /* =========================
      COLUMNA DERECHA
   ========================== */
   .col-derecha .paquete-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 20px;
   }
-  .paquete-header h1 {
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .paquete-header h1 { font-size: 24px; display: flex; align-items: center; gap: 10px; }
   .paquete-header .precio {
-    text-align: right;
-    color: #0047ab;
-    font-size: 22px;
-    font-weight: bold;
+    text-align: right; color: #0047ab;
+    font-size: 22px; font-weight: bold;
   }
   .paquete-header .precio small {
-    display: block;
-    font-size: 11px;
-    color: #888;
-    font-weight: normal;
+    display: block; font-size: 11px; color: #888; font-weight: normal;
   }
 
   .incluye-box {
-    background: #f4f7f9;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 25px;
+    background: #f4f7f9; border-radius: 12px;
+    padding: 20px; margin-bottom: 25px;
   }
   .incluye-box h4 {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-    color: #555;
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 12px; color: #555;
   }
-  .incluye-box ul {
-    list-style: none;
-  }
+  .incluye-box ul { list-style: none; }
   .incluye-box ul li {
-    font-size: 14px;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 14px; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
   }
   .incluye-box ul li::before {
-    content: "✓";
-    color: #2ecc71;
-    font-weight: bold;
+    content: "✓"; color: #2ecc71; font-weight: bold;
   }
 
   /* Calendario */
   .calendario-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 15px;
   }
-  .calendario-header h4 {
-    font-size: 16px;
-  }
+  .calendario-header h4 { font-size: 16px; }
   .calendario-header button {
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    color: var(--navy);
+    background: none; border: 1px solid var(--border);
+    border-radius: 50%; width: 30px; height: 30px;
+    cursor: pointer; color: var(--navy);
   }
   .calendario-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    text-align: center;
+    display: grid; grid-template-columns: repeat(7, 1fr);
+    gap: 5px; text-align: center;
   }
   .calendario-grid .dia-semana {
-    font-size: 11px;
-    font-weight: bold;
-    color: #888;
-    padding: 5px 0;
+    font-size: 11px; font-weight: bold; color: #888; padding: 5px 0;
   }
   .calendario-grid .dia {
-    padding: 10px 0;
-    font-size: 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s;
+    padding: 10px 0; font-size: 14px; border-radius: 8px;
+    cursor: pointer; transition: 0.2s;
   }
-  .calendario-grid .dia:hover {
-    background: #eaf2f8;
-  }
+  .calendario-grid .dia:hover { background: #eaf2f8; }
   .calendario-grid .dia.seleccionado {
-    background: var(--navy);
-    color: white;
-    font-weight: bold;
+    background: var(--navy); color: white; font-weight: bold;
   }
-  .calendario-grid .dia.vacio {
-    cursor: default;
-  }
+  .calendario-grid .dia.vacio { cursor: default; }
 
-  /* =========================
-     SECCIÓN HORARIOS DE SALIDA
-  ========================== */
+  /* Horarios */
   .horarios-section {
-    margin-top: 25px;
-    display: none;
+    margin-top: 25px; display: none;
   }
-  .horarios-section.visible {
-    display: block;
-  }
+  .horarios-section.visible { display: block; }
   .horario-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 20px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background: white;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 20px; border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 12px; cursor: pointer;
+    transition: all 0.2s ease; background: white;
   }
   .horario-item:hover {
-    border-color: var(--navy);
-    box-shadow: 0 4px 12px rgba(25, 37, 66, 0.08);
+    border-color: var(--navy); box-shadow: 0 4px 12px rgba(25, 37, 66, 0.08);
   }
   .horario-item.seleccionado {
-    border-color: #0047ab;
-    background: #f0f6ff;
+    border-color: #0047ab; background: #f0f6ff;
     box-shadow: 0 4px 12px rgba(0, 71, 171, 0.15);
   }
-  .horario-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+  .horario-info { display: flex; align-items: center; gap: 15px; }
   .horario-icono {
-    font-size: 28px;
-    background: #f4f7f9;
-    border-radius: 10px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 28px; background: #f4f7f9; border-radius: 10px;
+    width: 50px; height: 50px; display: flex;
+    align-items: center; justify-content: center;
   }
-  .horario-texto h4 {
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
+  .horario-texto h4 { font-size: 16px; margin-bottom: 5px; }
   .horario-texto p {
-    font-size: 12px;
-    color: #777;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 12px; color: #777;
+    display: flex; align-items: center; gap: 5px;
   }
-  .horario-texto p span {
-    color: #f39c12;
-  }
-  .horario-disponible {
-    font-size: 13px;
-    color: #2ecc71;
-    font-weight: bold;
-  }
+  .horario-texto p span { color: #f39c12; }
+  .horario-disponible { font-size: 13px; color: #2ecc71; font-weight: bold; }
 
   /* Botón Reservar */
   .btn-reservar {
-    width: 100%;
-    padding: 18px;
-    margin-top: 25px;
-    border: none;
-    border-radius: 12px;
-    background: var(--navy);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    width: 100%; padding: 18px; margin-top: 25px;
+    border: none; border-radius: 12px; background: var(--navy);
+    color: white; font-size: 16px; font-weight: bold;
+    cursor: pointer; transition: 0.3s;
   }
-  .btn-reservar:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-  .btn-reservar:not(:disabled):hover {
-    background: #2a3b5c;
-  }
+  .btn-reservar:disabled { background: #ccc; cursor: not-allowed; }
+  .btn-reservar:not(:disabled):hover { background: #2a3b5c; }
   .nota-fecha {
-    text-align: center;
-    font-size: 12px;
-    color: #888;
-    margin-top: 10px;
+    text-align: center; font-size: 12px; color: #888; margin-top: 10px;
   }
 
   /* =========================
      FOOTER AZUL
   ========================== */
   .footer-principal {
-    background: var(--navy);
-    color: white;
-    padding: 60px 6% 20px;
-    margin-top: 60px;
+    background: var(--navy); color: white;
+    padding: 60px 6% 20px; margin-top: 60px;
   }
   .footer-contenido {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 40px;
-    margin-bottom: 40px;
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px; margin-bottom: 40px;
   }
   .footer-logo-seccion { text-align: center; }
   .footer-logo-seccion img { width: 120px; margin-bottom: 15px; }
   .footer-logo-seccion p { font-size: 14px; opacity: 0.8; }
   .footer-columna h4 {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    color: var(--blue);
+    font-size: 14px; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 20px; color: var(--blue);
   }
   .footer-columna ul { list-style: none; }
   .footer-columna ul li { margin-bottom: 12px; }
   .footer-columna ul li a {
-    color: white; text-decoration: none; font-size: 14px; opacity: 0.9; transition: opacity 0.3s;
+    color: white; text-decoration: none; font-size: 14px;
+    opacity: 0.9; transition: opacity 0.3s;
   }
   .footer-columna ul li a:hover { opacity: 1; text-decoration: underline; }
   .footer-columna p { font-size: 14px; opacity: 0.9; margin-bottom: 15px; }
   .btn-escribenos {
     display: inline-flex; align-items: center; gap: 8px;
     background: white; color: var(--navy); padding: 12px 25px;
-    border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px;
-    transition: .3s; margin-top: 10px;
+    border-radius: 8px; text-decoration: none; font-weight: bold;
+    font-size: 14px; transition: .3s; margin-top: 10px;
   }
   .btn-escribenos:hover { background: #f0f0f0; }
   .footer-redes { display: flex; gap: 15px; margin-top: 20px; }
-  .footer-redes a { color: white; font-size: 20px; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+  .footer-redes a {
+    color: white; font-size: 20px; text-decoration: none;
+    opacity: 0.8; transition: opacity 0.3s;
+  }
   .footer-redes a:hover { opacity: 1; }
   .footer-copyright {
-    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 12px; opacity: 0.7;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px; text-align: center; font-size: 12px; opacity: 0.7;
   }
 
   /* =========================
@@ -467,11 +349,14 @@
   @media (max-width: 900px) {
     .reserva-layout { grid-template-columns: 1fr; gap: 30px; padding: 25px; }
     .footer-contenido { grid-template-columns: 1fr 1fr; }
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 11px; }
   }
   @media (max-width: 600px) {
     header { padding: 0 15px; height: 75px; }
     .logo { font-size: 16px; padding: 5px 8px; }
     .logo small { font-size: 6px; }
+    .nav-links { display: none; }
     .language-selector { padding: 5px 10px; font-size: 11px; }
     .bandera-colombia { width: 16px; height: 12px; }
     .footer-contenido { grid-template-columns: 1fr; }
@@ -488,10 +373,19 @@
 
 <header>
   <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
-  <div class="language-selector">
-    <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
-    <span>ES</span>
-    <span>⌃</span>
+
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#">PASADÍAS</a>
+      <a href="#">EVENTOS</a>
+      <a href="#">GALERÍA</a>
+    </div>
+
+    <div class="language-selector">
+      <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
+      <span>ES</span>
+      <span>⌃</span>
+    </div>
   </div>
 </header>
 
@@ -500,10 +394,8 @@
     
     <!-- Columna Izquierda: Participantes y Resumen -->
     <div class="col-izquierda">
-      <!-- Imagen principal -->
       <img id="imagen-principal" src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" alt="Atolón Beach Club">
       
-      <!-- Galería de miniaturas -->
       <div class="miniaturas">
         <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=200&q=80" alt="Playa" class="activa" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80')">
         <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=200&q=80" alt="Restaurante" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80')">
@@ -514,7 +406,6 @@
       
       <div class="seccion-titulo">Participantes</div>
 
-      <!-- Adultos -->
       <div class="participante-item">
         <div class="participante-info">
           <h4>Adultos</h4>
@@ -527,7 +418,6 @@
         </div>
       </div>
 
-      <!-- Niños -->
       <div class="participante-item">
         <div class="participante-info">
           <h4>Niños</h4>
@@ -540,7 +430,6 @@
         </div>
       </div>
 
-      <!-- Infantes -->
       <div class="participante-item" style="border-bottom: none;">
         <div class="participante-info">
           <h4>Infantes</h4>
@@ -553,7 +442,6 @@
         </div>
       </div>
 
-      <!-- Resumen -->
       <div class="resumen-box">
         <div class="resumen-linea">
           <span>VIP Pass</span>
@@ -600,15 +488,11 @@
         <h4 id="mes-titulo">Octubre 2026</h4>
         <button onclick="cambiarMes(1)">›</button>
       </div>
-      <div class="calendario-grid" id="calendario">
-        <!-- Se genera con JS -->
-      </div>
+      <div class="calendario-grid" id="calendario"></div>
 
-      <!-- Sección Horarios de salida -->
       <div class="horarios-section" id="horarios-section">
         <div class="seccion-titulo" style="margin-top: 25px;">Selecciona el horario de salida</div>
         
-        <!-- Opción 1: Salida 08:30 -->
         <div class="horario-item" onclick="seleccionarHorario(this, '08:30', '15:30')">
           <div class="horario-info">
             <div class="horario-icono">⛵</div>
@@ -621,7 +505,6 @@
           <div class="horario-disponible">Disponible</div>
         </div>
 
-        <!-- Opción 2: Salida 10:00 -->
         <div class="horario-item" onclick="seleccionarHorario(this, '10:00', '16:30')">
           <div class="horario-info">
             <div class="horario-icono">⛵</div>
@@ -644,9 +527,6 @@
   </div>
 </div>
 
-<!-- =========================
-     FOOTER AZUL
-========================== -->
 <footer class="footer-principal">
   <div class="footer-contenido">
     <div class="footer-logo-seccion">
@@ -693,30 +573,14 @@
 </footer>
 
 <script>
-  // =========================
-  // GALERÍA DE IMÁGENES
-  // =========================
   function cambiarImagen(miniatura, nuevaSrc) {
     document.getElementById('imagen-principal').src = nuevaSrc;
     document.querySelectorAll('.miniaturas img').forEach(img => img.classList.remove('activa'));
     miniatura.classList.add('activa');
   }
 
-  // =========================
-  // PRECIOS Y CANTIDADES
-  // =========================
-  const precios = {
-    adultos: 320000,
-    ninos: 240000,
-    infantes: 0
-  };
-
-  let cantidades = {
-    adultos: 1,
-    ninos: 0,
-    infantes: 0
-  };
-
+  const precios = { adultos: 320000, ninos: 240000, infantes: 0 };
+  let cantidades = { adultos: 1, ninos: 0, infantes: 0 };
   let fechaSeleccionada = null;
   let horarioSeleccionado = null;
 
@@ -748,9 +612,6 @@
     }
   }
 
-  // =========================
-  // CALENDARIO
-  // =========================
   let mesActual = 9;
   let anioActual = 2026;
 
@@ -760,7 +621,6 @@
 
     const primerDia = new Date(anioActual, mesActual, 1).getDay();
     const diasEnMes = new Date(anioActual, mesActual + 1, 0).getDate();
-
     const calendario = document.getElementById('calendario');
     calendario.innerHTML = '';
 
@@ -797,10 +657,8 @@
     fechaSeleccionada = `${dia} de ${meses[mesActual]} de ${anioActual}`;
 
     document.getElementById('horarios-section').classList.add('visible');
-
     horarioSeleccionado = null;
     document.querySelectorAll('.horario-item').forEach(h => h.classList.remove('seleccionado'));
-
     actualizarBotonReserva();
   }
 
@@ -839,7 +697,6 @@
     alert(`✅ Reserva preparada\n\nPaquete: VIP Pass\nFecha: ${fechaSeleccionada}\nHorario: Salida ${horarioSeleccionado.salida} - Regreso ${horarioSeleccionado.regreso}\nAdultos: ${cantidades.adultos}\nNiños: ${cantidades.ninos}\nInfantes: ${cantidades.infantes}\n\nTotal: $${total.toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
   }
 
-  // Inicializar
   renderizarCalendario();
   actualizarResumen();
 </script>

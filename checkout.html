@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tus datos | Atolón Beach Club</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #192542;
+    --blue: #8bd0e6;
+    --border: #e4e7ed;
+    --bg-light: #f8f9fa;
+    --gold: #d4b66e;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--bg-light);
+    color: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+  }
+
+  /* =========================
+     HEADER
+  ========================== */
+  header {
+    height: 70px;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    box-shadow: 0 2px 8px #0001;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo {
+    border: 2px solid var(--navy);
+    padding: 4px 8px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .logo small { display: block; font-size: 6px; letter-spacing: 1.5px; }
+
+  .language-selector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--navy);
+    cursor: pointer;
+  }
+  .bandera-colombia {
+    width: 18px;
+    height: 12px;
+    object-fit: cover;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* =========================
+     CONTENIDO PRINCIPAL
+  ========================== */
+  .main-container {
+    flex: 1;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .volver-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #0047ab;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+  .volver-btn:hover { text-decoration: underline; }
+
+  h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  /* Banner de tiempo */
+  .tiempo-banner {
+    background: #fef9e7;
+    border: 1px solid #f9e79f;
+    border-radius: 8px;
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+  .tiempo-banner .tiempo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b7950b;
+    font-weight: bold;
+  }
+  .tiempo-banner .aviso {
+    color: #7d6608;
+    font-size: 11px;
+  }
+
+  /* Resumen de reserva */
+  .resumen-reserva {
+    background: white;
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .resumen-info h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  .resumen-detalles {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .resumen-detalles span {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .resumen-precio {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0047ab;
+  }
+
+  /* Formulario */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--navy);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #0047ab;
+    box-shadow: 0 0 0 3px rgba(0,71,171,0.08);
+  }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #aaa;
+  }
+
+  /* Teléfono con prefijo */
+  .telefono-input {
+    display: flex;
+    gap: 8px;
+  }
+  .telefono-prefijo {
+    width: 80px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--navy);
+    background: white;
+    text-align: center;
+  }
+  .telefono-numero {
+    flex: 1;
+  }
+
+  /* Sección de cambios de fecha */
+  .cambios-fecha {
+    background: #f4f7f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #555;
+  }
+  .cambios-fecha strong {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  /* Términos */
+  .terminos {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 15px;
+  }
+
+  /* Botón continuar */
+  .btn-continuar {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: var(--navy);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 12px;
+  }
+  .btn-continuar:hover { background: #2a3b5c; }
+
+  /* Nota de seguridad */
+  .nota-seguridad {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  /* =========================
+     FOOTER AZUL
+  ========================== */
+  .footer-principal {
+    background: var(--navy);
+    color: white;
+    padding: 40px 5% 15px;
+    margin-top: 40px;
+  }
+  .footer-contenido {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  .footer-logo-seccion { text-align: center; }
+  .footer-logo-seccion img { width: 100px; margin-bottom: 10px; }
+  .footer-logo-seccion p { font-size: 12px; opacity: 0.8; }
+  .footer-columna h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: var(--blue);
+  }
+  .footer-columna ul { list-style: none; }
+  .footer-columna ul li { margin-bottom: 8px; }
+  .footer-columna ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+  }
+  .footer-columna ul li a:hover { opacity: 1; text-decoration: underline; }
+  .footer-columna p { font-size: 12px; opacity: 0.9; margin-bottom: 10px; }
+  .btn-escribenos {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    color: var(--navy);
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+    transition: .3s;
+    margin-top: 8px;
+  }
+  .btn-escribenos:hover { background: #f0f0f0; }
+  .footer-redes { display: flex; gap: 12px; margin-top: 15px; }
+  .footer-redes a {
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .footer-redes a:hover { opacity: 1; }
+  .footer-copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 15px;
+    text-align: center;
+    font-size: 10px;
+    opacity: 0.7;
+  }
+
+  /* =========================
+     RESPONSIVE
+  ========================== */
+  @media (max-width: 900px) {
+    .footer-contenido { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+  @media (max-width: 600px) {
+    header { padding: 0 12px; height: 60px; }
+    .logo { font-size: 13px; padding: 4px 6px; }
+    .logo small { font-size: 5px; }
+    .language-selector { padding: 4px 8px; font-size: 10px; }
+    .bandera-colombia { width: 14px; height: 10px; }
+
+    .main-container { margin: 15px auto; padding: 0 15px; }
+    h1 { font-size: 20px; }
+
+    .tiempo-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .resumen-reserva {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .resumen-precio { font-size: 16px; }
+
+    .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
+
+  <div class="language-selector">
+    <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
+    <span>ES</span>
+    <span>⌃</span>
+  </div>
+</header>
+
+<div class="main-container">
+  
+  <!-- Botón volver -->
+  <a href="vippass.html" class="volver-btn">← Volver</a>
+
+  <h1>Tus datos</h1>
+
+  <!-- Banner de tiempo -->
+  <div class="tiempo-banner">
+    <div class="tiempo">
+      ⏱️ Completa tu reserva en <span id="contador">14:39</span>
+    </div>
+    <div class="aviso">Los cupos de esta salida son limitados</div>
+  </div>
+
+  <!-- Resumen de la reserva -->
+  <div class="resumen-reserva">
+    <div class="resumen-info">
+      <h3>VIP Pass</h3>
+      <div class="resumen-detalles">
+        <span>📅 12 Octubre 2026</span>
+        <span>⛵ Salida 08:30</span>
+        <span>👥 1 persona</span>
+      </div>
+    </div>
+    <div class="resumen-precio">$320.000</div>
+  </div>
+
+  <!-- Formulario -->
+  <form id="checkoutForm">
+    <div class="form-group">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" placeholder="Juan García" required>
+    </div>
+
+    <div class="form-group">
+      <label for="correo">Correo electrónico</label>
+      <input type="email" id="correo" placeholder="correo@ejemplo.com" required>
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Teléfono / WhatsApp</label>
+      <div class="telefono-input">
+        <input type="text" class="telefono-prefijo" value="+ 57" readonly>
+        <input type="tel" id="telefono" class="telefono-numero" placeholder="300 000 0000" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="notas">Notas / Solicitudes especiales (opcional)</label>
+      <textarea id="notas" placeholder="Ej: Alergias, celebraciones, etc."></textarea>
+    </div>
+
+    <div class="cambios-fecha">
+      <strong>Cambios de fecha</strong>
+      Puedes cambiar la fecha de tu reserva sin costo hasta 24 horas antes de la salida.
+    </div>
+
+    <p class="terminos">Al continuar, acepto los términos y condiciones.</p>
+
+    <button type="submit" class="btn-continuar">Continuar →</button>
+
+    <p class="nota-seguridad">🔒 Pago seguro · Cambio de fecha sin costo hasta 24 h antes</p>
+  </form>
+
+</div>
+
+<footer class="footer-principal">
+  <div class="footer-contenido">
+    <div class="footer-logo-seccion">
+      <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
+      <p>Tierra Bomba, Cartagena</p>
+    </div>
+    <div class="footer-columna">
+      <h4>Contacto</h4>
+      <p>+57 300 3194 215</p>
+      <p>info@atolonbeachclub.com</p>
+      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">✉️ Escríbenos</a>
+    </div>
+    <div class="footer-columna">
+      <h4>Links Útiles</h4>
+      <ul>
+        <li><a href="#">Pasadías</a></li>
+        <li><a href="#">Eventos</a></li>
+        <li><a href="#">Galería</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-columna">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Políticas de cancelación</a></li>
+        <li><a href="#">Políticas de privacidad</a></li>
+        <li><a href="#">Aliados Comerciales</a></li>
+        <li><a href="#">PQRs</a></li>
+      </ul>
+      <div style="margin-top: 20px;">
+        <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
+        <div class="footer-redes">
+          <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>
+          <a href="https://www.instagram.com/atoloncartegena/" target="_blank">📷</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // =========================
+  // CONTADOR DE TIEMPO
+  // =========================
+  let tiempoRestante = 14 * 60 + 39; // 14 minutos y 39 segundos
+  const contadorElement = document.getElementById('contador');
+
+  function actualizarContador() {
+    const minutos = Math.floor(tiempoRestante / 60);
+    const segundos = tiempoRestante % 60;
+    contadorElement.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+    
+    if (tiempoRestante > 0) {
+      tiempoRestante--;
+    } else {
+      clearInterval(intervalo);
+      contadorElement.textContent = '00:00';
+    }
+  }
+
+  const intervalo = setInterval(actualizarContador, 1000);
+  actualizarContador();
+
+  // =========================
+  // ENVÍO DEL FORMULARIO
+  // =========================
+  document.getElementById('checkoutForm').addEventListener('submit', function(evento) {
+    evento.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const correo = document.getElementById('correo').value;
+    const telefono = document.getElementById('telefono').value;
+    const notas = document.getElementById('notas').value;
+
+    alert(`✅ Datos guardados\n\nNombre: ${nombre}\nCorreo: ${correo}\nTeléfono: +57 ${telefono}\nNotas: ${notas || 'Ninguna'}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
+
+    // Aquí podrías redirigir a la pasarela de pago real
+    // window.location.href = 'pago.html';
+  });
+</script>
+
+</body>
+</html>

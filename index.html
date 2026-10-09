@@ -65,24 +65,21 @@ nav a {
 }
 
 /* =========================
-   SELECTOR DE IDIOMA (BANDERA)
+   SELECTOR DE IDIOMA (DENTRO DEL HEADER)
 ========================== */
 .language-selector {
-  position: fixed;
-  top: 100px; /* Debajo del header */
-  right: 20px;
-  background: white;
-  padding: 8px 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   gap: 8px;
+  background: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   font-size: 14px;
   font-weight: bold;
   color: var(--navy);
   cursor: pointer;
-  z-index: 20;
+  margin-left: 20px;
 }
 
 /* =========================
@@ -137,6 +134,9 @@ nav a {
   line-height: 1.7;
 }
 
+/* =========================
+   RESTO DE SECCIONES
+========================== */
 .experiencias {
   padding: 35px 6% 80px;
 }
@@ -249,10 +249,8 @@ nav a {
 }
 
 /* =========================
-   NUEVAS SECCIONES (CAPTURAS)
+   SECCIONES EXTRAS
 ========================== */
-
-/* Sección WhatsApp */
 .seccion-whatsapp {
   text-align: center;
   padding: 60px 20px 40px;
@@ -288,7 +286,6 @@ nav a {
   opacity: 0.8;
 }
 
-/* Sección Video / Imagen Grande */
 .seccion-video-grande {
   padding: 20px 6% 60px;
   max-width: 1200px;
@@ -302,7 +299,6 @@ nav a {
   display: block;
 }
 
-/* Sección Iconos (High-End, Transporte, Pagos) */
 .seccion-iconos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -338,7 +334,6 @@ nav a {
   line-height: 1.5;
 }
 
-/* Sección Playa / Texto e Imagen */
 .seccion-playa {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -417,7 +412,6 @@ nav a {
   display: block;
 }
 
-/* Sección 3 Columnas (Espacios, Gastronomía, Música) */
 .seccion-3-columnas {
   padding: 60px 6%;
   max-width: 1200px;
@@ -484,7 +478,6 @@ nav a {
   opacity: 0.9;
 }
 
-/* Sección Final de Texto e Imagen */
 .seccion-final {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -515,7 +508,7 @@ nav a {
 }
 
 /* =========================
-   FOOTER (CAPTURA 4)
+   FOOTER
 ========================== */
 .footer-principal {
   background: var(--navy);
@@ -717,22 +710,55 @@ nav a {
   }
 }
 
+/* =========================
+   AJUSTES PARA MÓVIL (PANTALLA COMPLETA)
+========================== */
 @media (max-width: 600px) {
   header {
     height: 75px;
-    padding: 0 18px;
+    padding: 0 15px;
   }
 
-  nav {
-    gap: 10px;
+  .logo {
+    font-size: 16px;
+    padding: 6px;
   }
 
+  .logo small {
+    font-size: 7px;
+  }
+
+  /* Ocultar los enlaces del menú para que solo quede el logo y la bandera */
   nav a {
-    font-size: 10px;
+    display: none;
   }
 
+  /* El video ocupa toda la pantalla del móvil */
   .hero {
-    height: 380px;
+    height: 100vh; /* Altura completa de la pantalla */
+    padding: 20px 15px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin: 15px 0;
+  }
+
+  .hero p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Mover el botón flotante para que quede dentro del video */
+  .boton-flotante {
+    position: absolute;
+    left: 20px;
+    bottom: 30px;
+    z-index: 15; /* Por debajo del overlay del video */
+    padding: 15px 20px;
+    font-size: 13px;
+    border-radius: 12px;
   }
 
   .tarjetas {
@@ -747,19 +773,14 @@ nav a {
     font-size: 27px;
   }
 
-  .galeria {
-    grid-template-columns: 1fr;
-  }
-
   .footer-contenido {
     grid-template-columns: 1fr;
   }
   
   .language-selector {
-    top: 85px;
-    right: 10px;
     padding: 5px 10px;
-    font-size: 12px;
+    font-size: 11px;
+    margin-left: 10px;
   }
 }
 </style>
@@ -777,15 +798,14 @@ nav a {
     <a href="#experiencias">PASADÍAS⌄</a>
     <a href="#eventos">EVENTOS</a>
     <a href="#galeria">GALERÍA</a>
+    
+    <div class="language-selector">
+      <span>🇨🇴</span>
+      <span>ES</span>
+      <span>⌃</span>
+    </div>
   </nav>
 </header>
-
-<!-- Selector de Idioma Flotante (Bandera de Colombia) -->
-<div class="language-selector">
-  <span>🇨🇴</span>
-  <span>ES</span>
-  <span>⌃</span>
-</div>
 
 <!-- =========================
      HERO CON VIDEO DE FONDO
@@ -805,6 +825,11 @@ nav a {
     <p><i>Playa privada, servicio exclusivo, música afrobeat y mucho más...</i></p>
   </div>
 </section>
+
+<!-- Botón flotante movido aquí para que quede dentro del video en móvil -->
+<button class="boton-flotante" onclick="abrirFormulario()">
+  RESERVAR PASADÍA ☼
+</button>
 
 <!-- =========================
      EXPERIENCIAS ATOLÓN
@@ -934,7 +959,7 @@ nav a {
 </section>
 
 <!-- =========================
-     SECCIÓN WHATSAPP (CAPTURA 1)
+     SECCIÓN WHATSAPP
 ========================== -->
 <section class="seccion-whatsapp">
   <p>¿Tienes dudas? Hablemos por WhatsApp</p>
@@ -945,18 +970,17 @@ nav a {
 </section>
 
 <!-- =========================
-     SECCIÓN IMAGEN GRANDE (CAPTURA 1)
+     SECCIÓN IMAGEN GRANDE
 ========================== -->
 <section class="seccion-video-grande">
   <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e683ac571cca8e9541f60e.webp" alt="Atolón Beach Club Vista">
 </section>
 
 <!-- =========================
-     SECCIÓN ICONOS (CAPTURA 2)
+     SECCIÓN ICONOS
 ========================== -->
 <section class="seccion-iconos">
   <div class="icono-servicio">
-    <!-- Icono SVG de Cabaña (Reemplaza la imagen rota) -->
     <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"></path>
     </svg>
@@ -964,7 +988,6 @@ nav a {
     <p>A solo 20 minutos de Cartagena</p>
   </div>
   <div class="icono-servicio">
-    <!-- Icono SVG de Lancha -->
     <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M2 20h20M4 20l2-8h12l2 8M12 4v8M8 12l4-8 4 8"></path>
     </svg>
@@ -972,7 +995,6 @@ nav a {
     <p>Lancha deportiva de lujo</p>
   </div>
   <div class="icono-servicio">
-    <!-- Icono SVG de Pago -->
     <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="2" y="5" width="20" height="14" rx="2"></rect>
       <line x1="2" y1="10" x2="22" y2="10"></line>
@@ -983,7 +1005,7 @@ nav a {
 </section>
 
 <!-- =========================
-     SECCIÓN PLAYA (CAPTURA 2)
+     SECCIÓN PLAYA
 ========================== -->
 <section class="seccion-playa">
   <div class="seccion-playa-texto">
@@ -1003,7 +1025,7 @@ nav a {
 </section>
 
 <!-- =========================
-     SECCIÓN 3 COLUMNAS (CAPTURA 3)
+     SECCIÓN 3 COLUMNAS
 ========================== -->
 <section class="seccion-3-columnas">
   <h2>Diseñado para vivir el mar con estándar high-end</h2>
@@ -1035,7 +1057,7 @@ nav a {
 </section>
 
 <!-- =========================
-     SECCIÓN FINAL (CAPTURA 3)
+     SECCIÓN FINAL
 ========================== -->
 <section class="seccion-final">
   <div class="seccion-final-texto">
@@ -1049,18 +1071,16 @@ nav a {
 </section>
 
 <!-- =========================
-     FOOTER (CAPTURA 4)
+     FOOTER
 ========================== -->
 <footer class="footer-principal">
   <div class="footer-contenido">
     
-    <!-- Columna Logo -->
     <div class="footer-logo-seccion">
       <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
       <p>Tierra Bomba, Cartagena</p>
     </div>
 
-    <!-- Columna Contacto -->
     <div class="footer-columna">
       <h4>Contacto</h4>
       <p>+57 300 3194 215</p>
@@ -1070,7 +1090,6 @@ nav a {
       </a>
     </div>
 
-    <!-- Columna Links Útiles -->
     <div class="footer-columna">
       <h4>Links Útiles</h4>
       <ul>
@@ -1083,7 +1102,6 @@ nav a {
       </ul>
     </div>
 
-    <!-- Columna Legal y Redes -->
     <div class="footer-columna">
       <h4>Legal</h4>
       <ul>
@@ -1108,10 +1126,6 @@ nav a {
     <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
   </div>
 </footer>
-
-<button class="boton-flotante" onclick="abrirFormulario()">
-  RESERVAR PASADÍA ☼
-</button>
 
 <div id="formulario">
   <div class="form-contenido">

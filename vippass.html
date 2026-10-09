@@ -22,9 +22,6 @@
     font-size: 13px;
   }
 
-  /* =========================
-     HEADER / BANNER
-  ========================== */
   header {
     height: 70px;
     padding: 0 5%;
@@ -91,9 +88,6 @@
     vertical-align: middle;
   }
 
-  /* =========================
-     CONTENIDO PRINCIPAL
-  ========================== */
   .main-container {
     flex: 1;
     max-width: 1000px;
@@ -112,9 +106,6 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.04);
   }
 
-  /* =========================
-     COLUMNA IZQUIERDA
-  ========================== */
   .col-izquierda img {
     width: 100%;
     height: 150px;
@@ -188,9 +179,6 @@
     border-top: 1px solid var(--border); padding-top: 10px; margin-top: 6px;
   }
 
-  /* =========================
-     COLUMNA DERECHA
-  ========================== */
   .col-derecha .paquete-header {
     display: flex; justify-content: space-between;
     align-items: flex-start; margin-bottom: 15px;
@@ -204,7 +192,16 @@
     display: block; font-size: 9px; color: #888; font-weight: normal;
   }
 
-  /* "Qué incluye" en 2 columnas */
+  /* NUEVO: Subtítulo de ubicación */
+  .subtitulo-ubicacion {
+    font-size: 10px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
   .incluye-box {
     background: #f4f7f9;
     border-radius: 8px;
@@ -238,7 +235,6 @@
     flex-shrink: 0;
   }
 
-  /* Calendario */
   .calendario-header {
     display: flex; justify-content: space-between;
     align-items: center; margin-bottom: 10px;
@@ -266,7 +262,6 @@
   }
   .calendario-grid .dia.vacio { cursor: default; }
 
-  /* Horarios */
   .horarios-section {
     margin-top: 15px; display: none;
   }
@@ -297,7 +292,6 @@
   }
   .horario-disponible { font-size: 11px; color: #2ecc71; font-weight: bold; }
 
-  /* Botón Reservar */
   .btn-reservar {
     width: 100%; padding: 14px; margin-top: 18px;
     border: none; border-radius: 8px; background: var(--navy);
@@ -310,9 +304,6 @@
     text-align: center; font-size: 10px; color: #888; margin-top: 8px;
   }
 
-  /* =========================
-     FOOTER AZUL
-  ========================== */
   .footer-principal {
     background: var(--navy); color: white;
     padding: 40px 5% 15px; margin-top: 40px;
@@ -355,9 +346,6 @@
     padding-top: 15px; text-align: center; font-size: 10px; opacity: 0.7;
   }
 
-  /* =========================
-     RESPONSIVE
-  ========================== */
   @media (max-width: 900px) {
     .reserva-layout { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
     .footer-contenido { grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -366,7 +354,6 @@
   }
 
   @media (max-width: 600px) {
-    /* Header más pequeño en móvil */
     header { padding: 0 12px; height: 60px; }
     .logo { font-size: 13px; padding: 4px 6px; }
     .logo small { font-size: 5px; }
@@ -374,38 +361,30 @@
     .language-selector { padding: 4px 8px; font-size: 10px; }
     .bandera-colombia { width: 14px; height: 10px; }
 
-    /* Restauramos el diseño móvil original */
     .main-container { margin: 15px auto; padding: 0 12px; }
     .reserva-layout { padding: 15px; gap: 20px; }
 
-    /* Imagen principal más grande como antes */
     .col-izquierda img { height: 150px; }
     .miniaturas img { width: 50px; height: 50px; }
 
-    /* Textos legibles */
     .participante-info h4 { font-size: 14px; }
     .participante-info p { font-size: 11px; }
     .contador button { width: 28px; height: 28px; font-size: 16px; }
     .contador span { font-size: 14px; }
 
-    /* Paquete */
     .paquete-header { flex-direction: column; gap: 8px; }
     .paquete-header h1 { font-size: 22px; }
     .paquete-header .precio { text-align: left; font-size: 20px; }
 
-    /* "Qué incluye" vuelve a 1 columna en móvil */
     .incluye-box ul { grid-template-columns: 1fr; }
 
-    /* Horarios más grandes en móvil */
     .horario-item { padding: 14px; }
     .horario-icono { width: 44px; height: 44px; font-size: 24px; }
     .horario-texto h4 { font-size: 15px; }
     .horario-texto p { font-size: 11px; }
 
-    /* Botón más grande en móvil */
     .btn-reservar { padding: 16px; font-size: 15px; }
 
-    /* Footer en una columna */
     .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
   }
 </style>
@@ -442,7 +421,6 @@
         <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=150&q=80" alt="Restaurante" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80')">
         <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=150&q=80" alt="Piscina" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80')">
         <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=150&q=80" alt="Hamacas" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80')">
-        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=150&q=80" alt="Eventos" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80')">
       </div>
       
       <div class="seccion-titulo">Participantes</div>
@@ -505,6 +483,9 @@
 
     <!-- Columna Derecha: Paquete, Calendario y Horarios -->
     <div class="col-derecha">
+      <!-- NUEVO: Subtítulo de ubicación -->
+      <div class="subtitulo-ubicacion">ATOLON BEACH CLUB · ISLA TIERRA BOMBA</div>
+      
       <div class="paquete-header">
         <h1>🌴 VIP Pass</h1>
         <div class="precio">

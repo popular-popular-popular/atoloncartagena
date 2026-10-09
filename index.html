@@ -65,7 +65,7 @@ nav a {
 }
 
 /* =========================
-   SELECTOR DE IDIOMA (DENTRO DEL HEADER)
+   SELECTOR DE IDIOMA
 ========================== */
 .language-selector {
   display: flex;
@@ -620,7 +620,7 @@ nav a {
 }
 
 /* =========================
-   BOTONES FLOTANTES Y FORMULARIO
+   BOTONES FLOTANTES
 ========================== */
 .boton-flotante {
   position: fixed;
@@ -635,48 +635,6 @@ nav a {
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 3px 10px #0004;
-}
-
-#formulario {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: #0009;
-  z-index: 30;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.form-contenido {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 400px;
-}
-
-.form-contenido h2 {
-  margin-bottom: 15px;
-}
-
-.form-contenido label {
-  display: block;
-  margin: 12px 0 5px;
-}
-
-.form-contenido input,
-.form-contenido select {
-  width: 100%;
-  padding: 11px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-}
-
-.form-contenido button {
-  padding: 12px;
-  margin-top: 15px;
-  cursor: pointer;
 }
 
 /* =========================
@@ -728,14 +686,14 @@ nav a {
     font-size: 7px;
   }
 
-  /* Ocultar los enlaces del menú para que solo quede el logo y la bandera */
+  /* Ocultar los enlaces del menú */
   nav a {
     display: none;
   }
 
   /* El video ocupa toda la pantalla del móvil */
   .hero {
-    height: 100vh; /* Altura completa de la pantalla */
+    height: 100vh;
     padding: 20px 15px;
   }
 
@@ -755,7 +713,7 @@ nav a {
     position: absolute;
     left: 20px;
     bottom: 30px;
-    z-index: 15; /* Por debajo del overlay del video */
+    z-index: 15;
     padding: 15px 20px;
     font-size: 13px;
     border-radius: 12px;
@@ -871,7 +829,7 @@ nav a {
         <p>Atolón Kids (3-11)</p>
       </div>
 
-      <a href="#reservar" class="reservar" data-paquete="VIP Pass">Reservar VIP</a>
+      <a href="#" class="reservar" data-paquete="VIP Pass">Reservar VIP</a>
     </article>
 
     <article class="tarjeta exclusive">
@@ -914,7 +872,7 @@ nav a {
         <p>Por Adulto</p>
       </div>
 
-      <a href="#reservar" class="reservar" data-paquete="Exclusive Pass">Reservar Exclusive</a>
+      <a href="#" class="reservar" data-paquete="Exclusive Pass">Reservar Exclusive</a>
     </article>
 
     <article class="tarjeta experience">
@@ -952,7 +910,7 @@ nav a {
         <p>Por persona</p>
       </div>
 
-      <a href="#reservar" class="reservar" data-paquete="Atolón Experience">Reservar Experience</a>
+      <a href="#" class="reservar" data-paquete="Atolón Experience">Reservar Experience</a>
     </article>
 
   </div>
@@ -1127,70 +1085,19 @@ nav a {
   </div>
 </footer>
 
-<div id="formulario">
-  <div class="form-contenido">
-    <button onclick="cerrarFormulario()" style="float:right">✕</button>
-    <h2>Reserva tu pasadía</h2>
-
-    <form id="reservaForm">
-      <label for="paquete">Experiencia</label>
-      <select id="paquete">
-        <option>VIP Pass</option>
-        <option>Exclusive Pass</option>
-        <option>Atolón Experience</option>
-      </select>
-
-      <label for="nombre">Nombre completo</label>
-      <input id="nombre" required placeholder="Tu nombre">
-
-      <label for="fecha">Fecha de visita</label>
-      <input id="fecha" type="date" required>
-
-      <label for="personas">Número de personas</label>
-      <input id="personas" type="number" min="1" value="2" required>
-
-      <button type="submit">Preparar solicitud</button>
-      <p id="mensaje" style="margin-top:12px"></p>
-    </form>
-  </div>
-</div>
-
 <script>
+// Función que redirige a la página del motor de reservas
 function abrirFormulario(paquete = "VIP Pass") {
-  document.getElementById("paquete").value = paquete;
-  document.getElementById("formulario").style.display = "flex";
+  window.location.href = "motor-reserva.html";
 }
 
-function cerrarFormulario() {
-  document.getElementById("formulario").style.display = "none";
-}
-
+// Asignar el evento a todos los botones "Reservar" de las tarjetas
 document.querySelectorAll(".reservar").forEach(boton => {
   boton.addEventListener("click", evento => {
     evento.preventDefault();
     abrirFormulario(boton.dataset.paquete);
   });
 });
-
-document.getElementById("reservaForm").addEventListener("submit", evento => {
-  evento.preventDefault();
-
-  const nombre = document.getElementById("nombre").value;
-  const paquete = document.getElementById("paquete").value;
-
-  document.getElementById("mensaje").textContent =
-    "¡Gracias, " + nombre + "! Tu solicitud de demostración para " +
-    paquete + " está preparada. No se ha enviado una reserva real.";
-});
-
-document.getElementById("formulario").addEventListener("click", evento => {
-  if (evento.target.id === "formulario") cerrarFormulario();
-});
-
-const fecha = document.getElementById("fecha");
-const hoy = new Date();
-fecha.min = new Date(hoy.getTime() - hoy.getTimezoneOffset() * 60000)
-  .toISOString().split("T")[0];
 </script>
 
 </body>

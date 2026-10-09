@@ -113,36 +113,13 @@
   }
 
   /* =========================
-     COLUMNA IZQUIERDA
+     COLUMNA IZQUIERDA (SIN FOTOS)
   ========================== */
-  .col-izquierda img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-
-  .miniaturas {
+  .col-izquierda {
     display: flex;
-    gap: 6px;
-    margin-bottom: 18px;
-    overflow-x: auto;
-    padding-bottom: 3px;
+    flex-direction: column;
+    justify-content: flex-start;
   }
-  .miniaturas img {
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: all 0.2s ease;
-    border: 2px solid transparent;
-    flex-shrink: 0;
-  }
-  .miniaturas img:hover { opacity: 1; }
-  .miniaturas img.activa { opacity: 1; border-color: var(--navy); }
 
   .seccion-titulo {
     font-size: 11px;
@@ -157,7 +134,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--border);
   }
   .participante-info h4 { font-size: 13px; margin-bottom: 2px; }
@@ -376,9 +353,6 @@
     .main-container { margin: 15px auto; padding: 0 12px; }
     .reserva-layout { padding: 15px; gap: 20px; }
 
-    .col-izquierda img { height: 150px; }
-    .miniaturas img { width: 50px; height: 50px; }
-
     .participante-info h4 { font-size: 14px; }
     .participante-info p { font-size: 11px; }
     .contador button { width: 28px; height: 28px; font-size: 16px; }
@@ -424,17 +398,8 @@
 <div class="main-container">
   <div class="reserva-layout">
     
-    <!-- Columna Izquierda: Participantes y Resumen -->
+    <!-- Columna Izquierda: Participantes y Resumen (SIN FOTOS) -->
     <div class="col-izquierda">
-      <img id="imagen-principal" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Atolón Experience">
-      
-      <div class="miniaturas">
-        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=150&q=80" alt="Piscina" class="activa" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80')">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=150&q=80" alt="Restaurante" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80')">
-        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=150&q=80" alt="Playa" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80')">
-        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=150&q=80" alt="Hamacas" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80')">
-      </div>
-      
       <div class="seccion-titulo">Participantes</div>
 
       <div class="participante-item" style="border-bottom: none;">
@@ -577,12 +542,6 @@
 </footer>
 
 <script>
-  function cambiarImagen(miniatura, nuevaSrc) {
-    document.getElementById('imagen-principal').src = nuevaSrc;
-    document.querySelectorAll('.miniaturas img').forEach(img => img.classList.remove('activa'));
-    miniatura.classList.add('activa');
-  }
-
   const precios = { adultos: 1100000 };
   let cantidades = { adultos: 4 }; // Mínimo 4 pax
   let fechaSeleccionada = null;

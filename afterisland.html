@@ -182,6 +182,16 @@
     display: block; font-size: 9px; color: #888; font-weight: normal;
   }
 
+  /* NUEVO: Subtítulo de ubicación */
+  .subtitulo-ubicacion {
+    font-size: 10px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
   /* "Qué incluye" en 2 columnas */
   .incluye-box {
     background: #f4f7f9;
@@ -461,6 +471,9 @@
 
     <!-- Columna Derecha: Paquete, Calendario y Horarios -->
     <div class="col-derecha">
+      <!-- NUEVO: Subtítulo de ubicación -->
+      <div class="subtitulo-ubicacion">ATOLON BEACH CLUB · ISLA TIERRA BOMBA</div>
+
       <div class="paquete-header">
         <h1>🌙 After Island</h1>
         <div class="precio">
@@ -583,9 +596,8 @@
   }
 
   function actualizarResumen() {
-    // El total incluye adultos + niños (precio + consumible)
     const totalAdultos = cantidades.adultos * precios.adultos;
-    const totalNinos = cantidades.ninos * (precios.ninos + 50000); // Precio + consumible
+    const totalNinos = cantidades.ninos * (precios.ninos + 50000);
     const total = totalAdultos + totalNinos;
 
     document.getElementById('total-pagar').textContent = '$' + total.toLocaleString('es-CO');

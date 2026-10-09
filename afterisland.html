@@ -699,12 +699,29 @@
     renderizarCalendario();
   }
 
+  // =========================
+  // GUARDAR DATOS Y REDIRIGIR
+  // =========================
   function confirmarReserva() {
     const totalAdultos = cantidades.adultos * precios.adultos;
     const totalNinos = cantidades.ninos * (precios.ninos + 50000);
     const total = totalAdultos + totalNinos;
 
-    alert(`✅ Reserva preparada\n\nPaquete: After Island\nFecha: ${fechaSeleccionada}\nHorario: Salida ${horarioSeleccionado.salida} - Regreso ${horarioSeleccionado.regreso}\nAdultos: ${cantidades.adultos}\nNiños: ${cantidades.ninos}\nInfantes: ${cantidades.infantes}\n\nTotal: $${total.toLocaleString('es-CO')}\n\n(Esta es una demostración, no se ha procesado ningún pago real)`);
+    const datosReserva = {
+      paquete: 'After Island',
+      precioUnitario: precios.adultos,
+      total: total,
+      fecha: fechaSeleccionada,
+      horarioSalida: horarioSeleccionado.salida,
+      horarioRegreso: horarioSeleccionado.regreso,
+      adultos: cantidades.adultos,
+      ninos: cantidades.ninos,
+      infantes: cantidades.infantes,
+      totalPersonas: cantidades.adultos + cantidades.ninos + cantidades.infantes
+    };
+
+    sessionStorage.setItem('reservaActual', JSON.stringify(datosReserva));
+    window.location.href = 'checkout.html';
   }
 
   renderizarCalendario();

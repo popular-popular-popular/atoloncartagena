@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atolón Beach Club Cartagena</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --navy: #192542;
+  --beige: #d3c7b7;
+  --pink: #e4c3df;
+  --blue: #8bd0e6;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--navy);
+  background: white;
+}
+
+header {
+  height: 85px;
+  padding: 0 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 10px #0001;
+}
+
+.logo {
+  border: 3px solid var(--navy);
+  padding: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.logo small {
+  display: block;
+  font-size: 8px;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--navy);
+  font-size: 13px;
+}
+
+.hero {
+  height: 440px;
+  background:
+    linear-gradient(#0006, #0006),
+    url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  margin: 10px 0;
+}
+
+.hero p {
+  line-height: 1.7;
+}
+
+.experiencias {
+  padding: 35px 6% 80px;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 35px;
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 1450px;
+  margin: auto;
+}
+
+.tarjeta {
+  padding: 40px 30px 30px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: .3s;
+}
+
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px #0002;
+}
+
+.vip { background: var(--beige); }
+.exclusive { background: var(--pink); }
+.experience { background: var(--blue); }
+
+.tarjeta h2 {
+  font: italic 34px Georgia, serif;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.minimo {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  min-height: 28px;
+  margin-bottom: 20px;
+}
+
+.beneficio {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.icono {
+  font-size: 26px;
+}
+
+.beneficio h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.beneficio p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.precio {
+  border-top: 1px solid #19254299;
+  padding-top: 22px;
+  margin-top: 8px;
+  margin-bottom: 22px;
+}
+
+.precio h3 {
+  margin-bottom: 8px;
+}
+
+.valor {
+  font-size: 21px;
+  font-weight: bold;
+  margin: 8px 0 3px;
+}
+
+.precio p {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.reservar {
+  display: block;
+  text-align: center;
+  padding: 14px 10px;
+  border-radius: 18px;
+  background: white;
+  color: var(--navy);
+  text-decoration: none;
+  margin-top: auto;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.reservar:hover {
+  background: var(--navy);
+  color: white;
+}
+
+.seccion-extra {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.seccion-extra h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.seccion-extra p {
+  line-height: 1.8;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 1100px;
+  margin: 30px auto 0;
+}
+
+.galeria img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+footer {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  line-height: 2;
+}
+
+.boton-flotante {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 20;
+  background: var(--navy);
+  color: white;
+  padding: 17px 22px;
+  border: 0;
+  border-radius: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 10px #0004;
+}
+
+#formulario {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #0009;
+  z-index: 30;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.form-contenido {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-contenido h2 {
+  margin-bottom: 15px;
+}
+
+.form-contenido label {
+  display: block;
+  margin: 12px 0 5px;
+}
+
+.form-contenido input,
+.form-contenido select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+
+.form-contenido button {
+  padding: 12px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .tarjetas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .experience {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    height: 75px;
+    padding: 0 18px;
+  }
+
+  nav {
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 10px;
+  }
+
+  .hero {
+    height: 380px;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .experience {
+    grid-column: auto;
+  }
+
+  .titulo {
+    font-size: 27px;
+  }
+
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="#inicio" style="text-decoration:none;color:inherit">
+    ATOLON
+    <small>BEACH CLUB</small>
+  </a>
+
+  <nav>
+    <a href="#experiencias">PASADÍAS⌄</a>
+    <a href="#eventos">EVENTOS</a>
+    <a href="#galeria">GALERÍA</a>
+    <span>🇨🇴 ES⌃</span>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div>
+    <p>Bienvenidos al mejor</p>
+    <h1>Beach Club de Cartagena</h1>
+    <p>El lugar para quienes buscan un day-pass de lujo.</p>
+    <p><i>Playa privada, servicio exclusivo, música afrobeat y mucho más...</i></p>
+  </div>
+</section>
+
+<section class="experiencias" id="experiencias">
+  <h2 class="titulo">Experiencias Atolón</h2>
+
+  <div class="tarjetas">
+
+    <article class="tarjeta vip">
+      <h2>VIP Pass</h2>
+      <p class="minimo">&nbsp;</p>
+
+      <div class="beneficio">
+        <span class="icono">🚤</span>
+        <div><h3>Transporte en lancha deportiva</h3><p>(15-20 min)</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🍸</span>
+        <div><h3>Cocktail de Bienvenida</h3><p>Nuestra mejor selección</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🍽️</span>
+        <div><h3>Almuerzo</h3><p>(Plato principal + postre)</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🏖️</span>
+        <div><h3>Cama en playa</h3><p>Frente al mar</p></div>
+      </div>
+
+      <div class="precio">
+        <h3>Valor</h3>
+        <div class="valor">$320.000 COP</div>
+        <p>Adultos (+11)</p>
+        <div class="valor">$240.000 COP</div>
+        <p>Atolón Kids (3-11)</p>
+      </div>
+
+      <a href="#reservar" class="reservar" data-paquete="VIP Pass">Reservar VIP</a>
+    </article>
+
+    <article class="tarjeta exclusive">
+      <h2>Exclusive Pass</h2>
+      <p class="minimo">Mínimo 2 Pax</p>
+
+      <div class="beneficio">
+        <span class="icono">🚤</span>
+        <div><h3>Transporte en lancha deportiva</h3><p>(15-20 min)</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🍸</span>
+        <div><h3>Cocktail de Bienvenida</h3><p>Nuestra mejor selección</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🍽️</span>
+        <div><h3>Almuerzo Premium</h3><p>Entrada + plato principal + postre</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🏡</span>
+        <div><h3>Cabaña Luxury</h3><p>Junto a la piscina</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🍾</span>
+        <div><h3>Espumoso</h3><p>Botella de vino</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🤵</span>
+        <div><h3>Servicio de mayordomo</h3><p>Personalizado</p></div>
+      </div>
+
+      <div class="precio">
+        <h3>Valor</h3>
+        <div class="valor">$540.000 COP</div>
+        <p>Por Adulto</p>
+      </div>
+
+      <a href="#reservar" class="reservar" data-paquete="Exclusive Pass">Reservar Exclusive</a>
+    </article>
+
+    <article class="tarjeta experience">
+      <h2>Atolón Experience</h2>
+      <p class="minimo">Mínimo 4 Pax</p>
+
+      <div class="beneficio">
+        <span class="icono">🚤</span>
+        <div><h3>Transporte en lancha deportiva</h3><p>(15-20 min)</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🍸</span>
+        <div><h3>Cocktail de Bienvenida</h3><p>Nuestra mejor selección</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🏡</span>
+        <div><h3>Cabaña Luxury</h3><p>Junto a la piscina</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">🤵</span>
+        <div><h3>Servicio de mayordomo</h3><p>Premium</p></div>
+      </div>
+
+      <div class="beneficio">
+        <span class="icono">💰</span>
+        <div><h3>Todo el valor consumible</h3><p>$1.100.000 COP</p></div>
+      </div>
+
+      <div class="precio">
+        <h3>Valor</h3>
+        <div class="valor">$1.100.000 COP</div>
+        <p>Por persona</p>
+      </div>
+
+      <a href="#reservar" class="reservar" data-paquete="Atolón Experience">Reservar Experience</a>
+    </article>
+
+  </div>
+</section>
+
+<section class="seccion-extra" id="eventos">
+  <h2>Eventos Atolón</h2>
+  <p>Vive momentos especiales frente al mar Caribe.<br>
+  Disfruta de experiencias únicas, música y diversión.</p>
+</section>
+
+<section class="seccion-extra" id="galeria">
+  <h2>Galería</h2>
+  <p>Descubre nuestro ambiente tropical.</p>
+
+  <div class="galeria">
+    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80" alt="Playa">
+    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Piscina">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Restaurante">
+  </div>
+</section>
+
+<footer>
+  <h2>ATOLON BEACH CLUB</h2>
+  <p>Cartagena de Indias, Colombia</p>
+  <p>Proyecto académico de diseño web · 2026</p>
+</footer>
+
+<button class="boton-flotante" onclick="abrirFormulario()">
+  RESERVAR PASADÍA ☼
+</button>
+
+<div id="formulario">
+  <div class="form-contenido">
+    <button onclick="cerrarFormulario()" style="float:right">✕</button>
+    <h2>Reserva tu pasadía</h2>
+
+    <form id="reservaForm">
+      <label for="paquete">Experiencia</label>
+      <select id="paquete">
+        <option>VIP Pass</option>
+        <option>Exclusive Pass</option>
+        <option>Atolón Experience</option>
+      </select>
+
+      <label for="nombre">Nombre completo</label>
+      <input id="nombre" required placeholder="Tu nombre">
+
+      <label for="fecha">Fecha de visita</label>
+      <input id="fecha" type="date" required>
+
+      <label for="personas">Número de personas</label>
+      <input id="personas" type="number" min="1" value="2" required>
+
+      <button type="submit">Preparar solicitud</button>
+      <p id="mensaje" style="margin-top:12px"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+function abrirFormulario(paquete = "VIP Pass") {
+  document.getElementById("paquete").value = paquete;
+  document.getElementById("formulario").style.display = "flex";
+}
+
+function cerrarFormulario() {
+  document.getElementById("formulario").style.display = "none";
+}
+
+document.querySelectorAll(".reservar").forEach(boton => {
+  boton.addEventListener("click", evento => {
+    evento.preventDefault();
+    abrirFormulario(boton.dataset.paquete);
+  });
+});
+
+document.getElementById("reservaForm").addEventListener("submit", evento => {
+  evento.preventDefault();
+
+  const nombre = document.getElementById("nombre").value;
+  const paquete = document.getElementById("paquete").value;
+
+  document.getElementById("mensaje").textContent =
+    "¡Gracias, " + nombre + "! Tu solicitud de demostración para " +
+    paquete + " está preparada. No se ha enviado una reserva real.";
+});
+
+document.getElementById("formulario").addEventListener("click", evento => {
+  if (evento.target.id === "formulario") cerrarFormulario();
+});
+
+const fecha = document.getElementById("fecha");
+const hoy = new Date();
+fecha.min = new Date(hoy.getTime() - hoy.getTimezoneOffset() * 60000)
+  .toISOString().split("T")[0];
+</script>
+
+</body>
+</html>

@@ -48,8 +48,9 @@
   }
   .logo small { display: block; font-size: 8px; }
 
-  /* Selector de idioma (bandera) */
+  /* Selector de idioma */
   .language-selector {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -61,16 +62,55 @@
     font-weight: bold;
     color: var(--navy);
     cursor: pointer;
+    user-select: none;
   }
-
-  /* Bandera de Colombia como imagen SVG (visible en PC y móvil) */
-  .bandera-colombia {
+  .language-selector .bandera {
     width: 20px;
     height: 14px;
     object-fit: cover;
     border-radius: 2px;
     display: inline-block;
     vertical-align: middle;
+  }
+  .language-selector .arrow {
+    font-size: 10px;
+    margin-left: 4px;
+    transition: transform 0.2s;
+  }
+  .language-selector.open .arrow { transform: rotate(180deg); }
+  .language-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; right: 0; margin-top: 6px;
+    background: white; border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    min-width: 180px; padding: 6px 0;
+    z-index: 100; overflow: hidden;
+  }
+  .language-selector.open .language-dropdown { display: block; }
+  .language-dropdown li {
+    list-style: none; padding: 10px 16px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .language-dropdown li:hover { background: #f0f4f8; }
+  .language-dropdown li img {
+    width: 22px; height: 15px; object-fit: cover; border-radius: 2px;
+  }
+  .language-dropdown li.active { background: #eaf2f8; font-weight: bold; }
+
+  /* =========================
+     LOGO CENTRAL (entre header y contenido)
+  ========================== */
+  .logo-central {
+    text-align: center;
+    padding: 30px 20px 20px;
+  }
+  .logo-central img {
+    width: 130px;
+    height: auto;
+    display: inline-block;
   }
 
   /* =========================
@@ -79,7 +119,7 @@
   .main-container {
     flex: 1;
     max-width: 900px;
-    margin: 40px auto;
+    margin: 0 auto 40px;
     padding: 0 20px;
     width: 100%;
   }
@@ -173,17 +213,9 @@
     gap: 40px;
     margin-bottom: 40px;
   }
-  .footer-logo-seccion {
-    text-align: center;
-  }
-  .footer-logo-seccion img {
-    width: 120px;
-    margin-bottom: 15px;
-  }
-  .footer-logo-seccion p {
-    font-size: 14px;
-    opacity: 0.8;
-  }
+  .footer-logo-seccion { text-align: center; }
+  .footer-logo-seccion img { width: 120px; margin-bottom: 15px; }
+  .footer-logo-seccion p { font-size: 14px; opacity: 0.8; }
   .footer-columna h4 {
     font-size: 14px;
     text-transform: uppercase;
@@ -191,12 +223,8 @@
     margin-bottom: 20px;
     color: var(--blue);
   }
-  .footer-columna ul {
-    list-style: none;
-  }
-  .footer-columna ul li {
-    margin-bottom: 12px;
-  }
+  .footer-columna ul { list-style: none; }
+  .footer-columna ul li { margin-bottom: 12px; }
   .footer-columna ul li a {
     color: white;
     text-decoration: none;
@@ -204,15 +232,8 @@
     opacity: 0.9;
     transition: opacity 0.3s;
   }
-  .footer-columna ul li a:hover {
-    opacity: 1;
-    text-decoration: underline;
-  }
-  .footer-columna p {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 15px;
-  }
+  .footer-columna ul li a:hover { opacity: 1; text-decoration: underline; }
+  .footer-columna p { font-size: 14px; opacity: 0.9; margin-bottom: 15px; }
   .btn-escribenos {
     display: inline-flex;
     align-items: center;
@@ -227,14 +248,8 @@
     transition: .3s;
     margin-top: 10px;
   }
-  .btn-escribenos:hover {
-    background: #f0f0f0;
-  }
-  .footer-redes {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-  }
+  .btn-escribenos:hover { background: #f0f0f0; }
+  .footer-redes { display: flex; gap: 15px; margin-top: 20px; }
   .footer-redes a {
     color: white;
     font-size: 20px;
@@ -242,9 +257,7 @@
     opacity: 0.8;
     transition: opacity 0.3s;
   }
-  .footer-redes a:hover {
-    opacity: 1;
-  }
+  .footer-redes a:hover { opacity: 1; }
   .footer-copyright {
     border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 20px;
@@ -257,9 +270,7 @@
      RESPONSIVE
   ========================== */
   @media (max-width: 900px) {
-    .footer-contenido {
-      grid-template-columns: 1fr 1fr;
-    }
+    .footer-contenido { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 600px) {
@@ -267,7 +278,10 @@
     .logo { font-size: 16px; padding: 6px; }
     .logo small { font-size: 7px; }
     .language-selector { padding: 5px 10px; font-size: 11px; }
-    .bandera-colombia { width: 16px; height: 12px; }
+    .language-selector .bandera { width: 16px; height: 12px; }
+
+    .logo-central { padding: 20px 15px 15px; }
+    .logo-central img { width: 100px; }
 
     .card { padding: 25px 20px; }
     .card h1 { font-size: 22px; }
@@ -277,34 +291,50 @@
     .experiencia-texto p { font-size: 12px; }
     .experiencia-precio .precio { font-size: 16px; }
 
-    .footer-contenido {
-      grid-template-columns: 1fr;
-    }
+    .footer-contenido { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- =========================
-     HEADER / BANNER
-========================== -->
+<!-- HEADER -->
 <header>
   <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
-  <div class="language-selector">
-    <!-- Bandera de Colombia como imagen SVG -->
-    <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
-    <span>ES</span>
-    <span>⌃</span>
+  
+  <div class="language-selector" id="languageSelector" onclick="toggleLanguageDropdown(event)">
+    <img class="bandera" id="banderaActual" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera">
+    <span id="idiomaActual">ES</span>
+    <span class="arrow">⌄</span>
+    <ul class="language-dropdown" id="languageDropdown">
+      <li data-lang="en" data-flag="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="English"> English
+      </li>
+      <li data-lang="pt" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Portuguese"> Portuguese
+      </li>
+      <li data-lang="fr" data-flag="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" alt="French"> French
+      </li>
+      <li data-lang="it" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg" alt="Italian"> Italian
+      </li>
+      <li data-lang="es" data-flag="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" class="active">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Español"> ES
+      </li>
+    </ul>
   </div>
 </header>
 
-<!-- =========================
-     CONTENIDO PRINCIPAL
-========================== -->
+<!-- LOGO CENTRAL (entre header y contenido) -->
+<div class="logo-central">
+  <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Beach Club">
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
 <div class="main-container">
   <div class="card">
-    <h1>Selecciona tu experiencia</h1>
-    <p class="subtitle">Atolon Beach Club — Isla Tierra Bomba, Cartagena</p>
+    <h1 data-i18n="titulo">Selecciona tu experiencia</h1>
+    <p class="subtitle" data-i18n="subtitulo">Atolon Beach Club — Isla Tierra Bomba, Cartagena</p>
 
     <!-- Opción 1: VIP Pass -->
     <a href="vippass.html" class="experiencia-item">
@@ -312,12 +342,12 @@
         <div class="experiencia-icono">🌴</div>
         <div class="experiencia-texto">
           <h3>VIP Pass</h3>
-          <p>Acceso full day</p>
+          <p data-i18n="vip_desc">Acceso full day</p>
         </div>
       </div>
       <div class="experiencia-precio">
         <div class="precio">$320.000</div>
-        <div class="unidad">por persona</div>
+        <div class="unidad" data-i18n="por_persona">por persona</div>
       </div>
     </a>
 
@@ -327,12 +357,12 @@
         <div class="experiencia-icono">⭐</div>
         <div class="experiencia-texto">
           <h3>Exclusive Pass</h3>
-          <p>Experiencia premium con pool cabana</p>
+          <p data-i18n="exclusive_desc">Experiencia premium con pool cabana</p>
         </div>
       </div>
       <div class="experiencia-precio">
         <div class="precio">$590.000</div>
-        <div class="unidad">por persona</div>
+        <div class="unidad" data-i18n="por_persona">por persona</div>
       </div>
     </a>
 
@@ -342,12 +372,12 @@
         <div class="experiencia-icono">🛥️</div>
         <div class="experiencia-texto">
           <h3>Atolon Experience</h3>
-          <p>Máximo lujo 100% consumible</p>
+          <p data-i18n="experience_desc">Máximo lujo 100% consumible</p>
         </div>
       </div>
       <div class="experiencia-precio">
         <div class="precio">$1.100.000</div>
-        <div class="unidad">por persona</div>
+        <div class="unidad" data-i18n="por_persona">por persona</div>
       </div>
     </a>
 
@@ -357,61 +387,59 @@
         <div class="experiencia-icono">🌙</div>
         <div class="experiencia-texto">
           <h3>After Island</h3>
-          <p>Llega en tu propia embarcación</p>
+          <p data-i18n="after_desc">Llega en tu propia embarcación</p>
         </div>
       </div>
       <div class="experiencia-precio">
         <div class="precio">$170.000</div>
-        <div class="unidad">por persona</div>
+        <div class="unidad" data-i18n="por_persona">por persona</div>
       </div>
     </a>
 
   </div>
 </div>
 
-<!-- =========================
-     FOOTER AZUL
-========================== -->
+<!-- FOOTER -->
 <footer class="footer-principal">
   <div class="footer-contenido">
     
     <div class="footer-logo-seccion">
       <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
-      <p>Tierra Bomba, Cartagena</p>
+      <p data-i18n="footer_ubicacion">Tierra Bomba, Cartagena</p>
     </div>
 
     <div class="footer-columna">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <p>+57 300 3194 215</p>
       <p>info@atolonbeachclub.com</p>
       <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">
-        ✉️ Escríbenos
+        ✉️ <span data-i18n="footer_escribenos">Escríbenos</span>
       </a>
     </div>
 
     <div class="footer-columna">
-      <h4>Links Útiles</h4>
+      <h4 data-i18n="footer_links">Links Útiles</h4>
       <ul>
-        <li><a href="#">Pasadías</a></li>
-        <li><a href="#">Eventos</a></li>
-        <li><a href="#">Galería</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#" data-i18n="footer_pasadias">Pasadías</a></li>
+        <li><a href="#" data-i18n="footer_eventos">Eventos</a></li>
+        <li><a href="#" data-i18n="footer_galeria">Galería</a></li>
+        <li><a href="#" data-i18n="footer_nosotros">Nosotros</a></li>
+        <li><a href="#" data-i18n="footer_contacto_link">Contacto</a></li>
+        <li><a href="#" data-i18n="footer_blog">Blog</a></li>
       </ul>
     </div>
 
     <div class="footer-columna">
-      <h4>Legal</h4>
+      <h4 data-i18n="footer_legal">Legal</h4>
       <ul>
-        <li><a href="#">Políticas de cancelación</a></li>
-        <li><a href="#">Políticas de privacidad</a></li>
-        <li><a href="#">Aliados Comerciales</a></li>
-        <li><a href="#">PQRs</a></li>
+        <li><a href="#" data-i18n="footer_cancelacion">Políticas de cancelación</a></li>
+        <li><a href="#" data-i18n="footer_privacidad">Políticas de privacidad</a></li>
+        <li><a href="#" data-i18n="footer_aliados">Aliados Comerciales</a></li>
+        <li><a href="#" data-i18n="footer_pqrs">PQRs</a></li>
       </ul>
       
       <div style="margin-top: 30px;">
-        <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
+        <p><em data-i18n="footer_horarios">Los horarios de transporte están sujetos a clima y operación</em></p>
         <div class="footer-redes">
           <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>
           <a href="https://www.instagram.com/atoloncartegena/" target="_blank">📷</a>
@@ -422,9 +450,202 @@
   </div>
 
   <div class="footer-copyright">
-    <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
+    <p data-i18n="footer_copyright">Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
   </div>
 </footer>
+
+<script>
+// =========================
+// DICCIONARIO DE TRADUCCIONES
+// =========================
+const translations = {
+  es: {
+    titulo: "Selecciona tu experiencia",
+    subtitulo: "Atolon Beach Club — Isla Tierra Bomba, Cartagena",
+    vip_desc: "Acceso full day",
+    exclusive_desc: "Experiencia premium con pool cabana",
+    experience_desc: "Máximo lujo 100% consumible",
+    after_desc: "Llega en tu propia embarcación",
+    por_persona: "por persona",
+    footer_ubicacion: "Tierra Bomba, Cartagena",
+    footer_contacto: "Contacto",
+    footer_escribenos: "Escríbenos",
+    footer_links: "Links Útiles",
+    footer_pasadias: "Pasadías",
+    footer_eventos: "Eventos",
+    footer_galeria: "Galería",
+    footer_nosotros: "Nosotros",
+    footer_contacto_link: "Contacto",
+    footer_blog: "Blog",
+    footer_legal: "Legal",
+    footer_cancelacion: "Políticas de cancelación",
+    footer_privacidad: "Políticas de privacidad",
+    footer_aliados: "Aliados Comerciales",
+    footer_pqrs: "PQRs",
+    footer_horarios: "Los horarios de transporte están sujetos a clima y operación",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  },
+  en: {
+    titulo: "Select your experience",
+    subtitulo: "Atolon Beach Club — Tierra Bomba Island, Cartagena",
+    vip_desc: "Full day access",
+    exclusive_desc: "Premium experience with pool cabana",
+    experience_desc: "Maximum luxury 100% consumable",
+    after_desc: "Arrive on your own boat",
+    por_persona: "per person",
+    footer_ubicacion: "Tierra Bomba, Cartagena",
+    footer_contacto: "Contact",
+    footer_escribenos: "Write to us",
+    footer_links: "Useful Links",
+    footer_pasadias: "Day Passes",
+    footer_eventos: "Events",
+    footer_galeria: "Gallery",
+    footer_nosotros: "About us",
+    footer_contacto_link: "Contact",
+    footer_blog: "Blog",
+    footer_legal: "Legal",
+    footer_cancelacion: "Cancellation policies",
+    footer_privacidad: "Privacy policies",
+    footer_aliados: "Commercial partners",
+    footer_pqrs: "PQRs",
+    footer_horarios: "Transportation schedules are subject to weather and operation",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  },
+  pt: {
+    titulo: "Selecione sua experiência",
+    subtitulo: "Atolon Beach Club — Ilha Tierra Bomba, Cartagena",
+    vip_desc: "Acesso full day",
+    exclusive_desc: "Experiência premium com pool cabana",
+    experience_desc: "Luxo máximo 100% consumível",
+    after_desc: "Chegue na sua própria embarcação",
+    por_persona: "por pessoa",
+    footer_ubicacion: "Tierra Bomba, Cartagena",
+    footer_contacto: "Contato",
+    footer_escribenos: "Escreva-nos",
+    footer_links: "Links Úteis",
+    footer_pasadias: "Day Passes",
+    footer_eventos: "Eventos",
+    footer_galeria: "Galeria",
+    footer_nosotros: "Sobre nós",
+    footer_contacto_link: "Contato",
+    footer_blog: "Blog",
+    footer_legal: "Legal",
+    footer_cancelacion: "Políticas de cancelamento",
+    footer_privacidad: "Políticas de privacidade",
+    footer_aliados: "Parceiros comerciais",
+    footer_pqrs: "PQRs",
+    footer_horarios: "Os horários de transporte estão sujeitos ao clima e à operação",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  },
+  fr: {
+    titulo: "Sélectionnez votre expérience",
+    subtitulo: "Atolon Beach Club — Île Tierra Bomba, Carthagène",
+    vip_desc: "Accès full day",
+    exclusive_desc: "Expérience premium avec pool cabana",
+    experience_desc: "Luxe maximal 100% consommable",
+    after_desc: "Arrivez sur votre propre bateau",
+    por_persona: "par personne",
+    footer_ubicacion: "Tierra Bomba, Carthagène",
+    footer_contacto: "Contact",
+    footer_escribenos: "Écrivez-nous",
+    footer_links: "Liens utiles",
+    footer_pasadias: "Day Pass",
+    footer_eventos: "Événements",
+    footer_galeria: "Galerie",
+    footer_nosotros: "À propos",
+    footer_contacto_link: "Contact",
+    footer_blog: "Blog",
+    footer_legal: "Mentions légales",
+    footer_cancelacion: "Politiques d'annulation",
+    footer_privacidad: "Politiques de confidentialité",
+    footer_aliados: "Partenaires commerciaux",
+    footer_pqrs: "PQRs",
+    footer_horarios: "Les horaires de transport sont soumis à la météo et à l'exploitation",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  },
+  it: {
+    titulo: "Seleziona la tua esperienza",
+    subtitulo: "Atolon Beach Club — Isola Tierra Bomba, Cartagena",
+    vip_desc: "Accesso full day",
+    exclusive_desc: "Esperienza premium con pool cabana",
+    experience_desc: "Lusso massimo 100% consumabile",
+    after_desc: "Arriva con la tua imbarcazione",
+    por_persona: "a persona",
+    footer_ubicacion: "Tierra Bomba, Cartagena",
+    footer_contacto: "Contatto",
+    footer_escribenos: "Scrivici",
+    footer_links: "Link utili",
+    footer_pasadias: "Day Pass",
+    footer_eventos: "Eventi",
+    footer_galeria: "Galleria",
+    footer_nosotros: "Chi siamo",
+    footer_contacto_link: "Contatto",
+    footer_blog: "Blog",
+    footer_legal: "Legale",
+    footer_cancelacion: "Politiche di cancellazione",
+    footer_privacidad: "Politiche sulla privacy",
+    footer_aliados: "Partner commerciali",
+    footer_pqrs: "PQRs",
+    footer_horarios: "Gli orari di trasporto sono soggetti a meteo e operatività",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  }
+};
+
+let idiomaActual = localStorage.getItem('idioma') || 'es';
+
+// =========================
+// APLICAR TRADUCCIONES
+// =========================
+function aplicarTraducciones(lang) {
+  idiomaActual = lang;
+  localStorage.setItem('idioma', lang);
+  const dict = translations[lang] || translations.es;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  const flagMap = {
+    es: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg',
+    en: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg',
+    pt: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg',
+    fr: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg',
+    it: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg'
+  };
+  document.getElementById('banderaActual').src = flagMap[lang] || flagMap.es;
+  document.getElementById('idiomaActual').textContent = lang.toUpperCase();
+
+  document.querySelectorAll('#languageDropdown li').forEach(li => {
+    li.classList.toggle('active', li.dataset.lang === lang);
+  });
+}
+
+// =========================
+// SELECTOR DE IDIOMA
+// =========================
+function toggleLanguageDropdown(event) {
+  event.stopPropagation();
+  document.getElementById('languageSelector').classList.toggle('open');
+}
+
+document.querySelectorAll('#languageDropdown li').forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.stopPropagation();
+    aplicarTraducciones(this.dataset.lang);
+    document.getElementById('languageSelector').classList.remove('open');
+  });
+});
+
+document.addEventListener('click', function() {
+  document.getElementById('languageSelector').classList.remove('open');
+});
+
+// =========================
+// INICIALIZAR
+// =========================
+aplicarTraducciones(idiomaActual);
+</script>
 
 </body>
 </html>

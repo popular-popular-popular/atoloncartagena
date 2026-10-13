@@ -376,11 +376,15 @@
     margin-top: 12px; line-height: 1.4;
   }
 
-  /* Aviso cambios de fecha */
+  /* Aviso cambios de fecha (oculto hasta elegir fecha + horario) */
   .aviso-cambios {
     background: #f4f7f9; border-radius: 8px;
     padding: 14px 16px; margin-bottom: 15px;
-    display: flex; align-items: flex-start; gap: 10px;
+    display: none;
+    align-items: flex-start; gap: 10px;
+  }
+  .aviso-cambios.visible {
+    display: flex;
   }
   .aviso-cambios .check-icon {
     font-size: 18px; color: #2ecc71; flex-shrink: 0;
@@ -393,7 +397,7 @@
     font-size: 12px; color: var(--navy); line-height: 1.4;
   }
 
-  /* Itinerario (oculto por defecto) */
+  /* Itinerario (oculto hasta elegir fecha + horario) */
   .itinerario-box {
     background: #f4f7f9; border-radius: 8px;
     padding: 16px; margin-bottom: 15px;
@@ -785,16 +789,16 @@
         </div>
       </div>
 
-      <!-- Aviso de cambios de fecha (siempre visible) -->
-      <div class="aviso-cambios">
+      <!-- Aviso de cambios de fecha (oculto hasta elegir fecha + horario) -->
+      <div class="aviso-cambios" id="avisoCambios">
         <div class="check-icon">✅</div>
         <div class="aviso-texto">
           <h4 data-i18n="cambios_fecha">CAMBIOS DE FECHA</h4>
-          <p data-i18n="cambios_fecha_desc">Puedes cambiar la fecha sin costo hasta el <strong>vie, 16 de oct, 8:30 a. m.</strong> (24 horas antes de tu salida).</p>
+          <p id="avisoCambiosTexto" data-i18n="cambios_fecha_desc">Puedes cambiar la fecha sin costo hasta el <strong>vie, 16 de oct, 8:30 a. m.</strong> (24 horas antes de tu salida).</p>
         </div>
       </div>
 
-      <!-- Itinerario (oculto hasta que elija fecha + horario) -->
+      <!-- Itinerario (oculto hasta elegir fecha + horario) -->
       <div class="itinerario-box" id="itinerarioBox">
         <div class="itinerario-header" onclick="toggleItinerario()">
           <h4 data-i18n="itinerario_titulo">📅 Itinerario de tu día</h4>
@@ -1148,6 +1152,7 @@
     actualizarResumen();
     actualizarBotonReserva();
     renderizarItinerario();
+    renderizarAvisoCambios();
   }
 
   // =========================
@@ -1284,6 +1289,7 @@
     document.querySelectorAll('.horario-item').forEach(h => h.classList.remove('seleccionado'));
     actualizarBotonReserva();
     renderizarItinerario();
+    renderizarAvisoCambios();
   }
 
   function seleccionarHorario(elemento, salida, regreso) {
@@ -1292,6 +1298,7 @@
     horarioSeleccionado = { salida, regreso };
     actualizarBotonReserva();
     renderizarItinerario();
+    renderizarAvisoCambios();
   }
 
   function actualizarBotonReserva() {
@@ -1327,7 +1334,6 @@
     const contenedor = document.getElementById('itinerarioContenido');
     const titulo = document.querySelector('#itinerarioBox .itinerario-header h4');
 
-    // Si NO hay fecha + horario → ocultar itinerario
     if (!fechaSeleccionada || !horarioSeleccionado) {
       box.classList.remove('visible');
       contenedor.innerHTML = '';
@@ -1335,20 +1341,17 @@
       return;
     }
 
-    // Mostrar itinerario
     box.classList.add('visible');
 
     const salida = horarioSeleccionado.salida;
     const regreso = horarioSeleccionado.regreso;
 
-    // Hora de llegada al muelle = 30 min antes de la salida
     const [hSalida, mSalida] = salida.split(':').map(Number);
     let hLlegada = hSalida;
     let mLlegada = mSalida - 30;
     if (mLlegada < 0) { mLlegada += 60; hLlegada -= 1; }
     const horaLlegada = `${String(hLlegada).padStart(2,'0')}:${String(mLlegada).padStart(2,'0')}`;
 
-    // Formatear horas según idioma
     const formatoHora = (h) => {
       const [hh, mm] = h.split(':').map(Number);
       if (idiomaActual === 'en') {
@@ -1364,10 +1367,8 @@
       return `${h12}:${String(mm).padStart(2,'0')} ${ampm}`;
     };
 
-    // Título con rango horario
     titulo.textContent = `${dict.itinerario_titulo} · ${formatoHora(salida)} – ${formatoHora(regreso)}`;
 
-    // Contenido del itinerario
     contenedor.innerHTML = `
       <div class="itinerario-item">
         <div class="itinerario-hora">${formatoHora(horaLlegada)}</div>
@@ -1393,6 +1394,82 @@
         </div>
       </div>
     `;
+  }
+
+  // =========================
+  // AVISO DE CAMBIOS DE FECHA (dinámico)
+  // =========================
+  function renderizarAvisoCambios() {
+    const dict = translations[idiomaActual] || translations.es;
+    const aviso = document.getElementById('avisoCambios');
+    const texto = document.getElementById('avisoCambiosTexto');
+
+    if (!fechaSeleccionada || !horarioSeleccionado) {
+      aviso.classList.remove('visible');
+      texto.innerHTML = dict.cambios_fecha_desc;
+      return;
+    }
+
+    aviso.classList.add('visible');
+
+    // Parsear la fecha de salida
+    const meses = mesesPorIdioma[idiomaActual] || mesesPorIdioma.es;
+    const diaSalida = parseInt(fechaSeleccionada.split(' ')[0]);
+    const mesSalida = mesActual;
+    const anioSalida = anioActual;
+
+    const fechaSalida = new Date(anioSalida, mesSalida, diaSalida);
+    const [hSalida, mSalida] = horarioSeleccionado.salida.split(':').map(Number);
+    fechaSalida.setHours(hSalida, mSalida, 0, 0);
+
+    const fechaLimite = new Date(fechaSalida.getTime() - 24 * 60 * 60 * 1000);
+
+    const diasSemanaCorto = {
+      es: ['dom','lun','mar','mié','jue','vie','sáb'],
+      en: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+      pt: ['dom','seg','ter','qua','qui','sex','sáb'],
+      fr: ['dim','lun','mar','mer','jeu','ven','sam'],
+      it: ['dom','lun','mar','mer','gio','ven','sab']
+    };
+    const mesesCorto = {
+      es: ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],
+      en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      pt: ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'],
+      fr: ['janv','févr','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'],
+      it: ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic']
+    };
+
+    const ds = diasSemanaCorto[idiomaActual] || diasSemanaCorto.es;
+    const ms = mesesCorto[idiomaActual] || mesesCorto.es;
+
+    const diaSemana = ds[fechaLimite.getDay()];
+    const dia = fechaLimite.getDate();
+    const mes = ms[fechaLimite.getMonth()];
+    const hh = fechaLimite.getHours();
+    const mm = String(fechaLimite.getMinutes()).padStart(2, '0');
+
+    let horaFormateada;
+    if (idiomaActual === 'en') {
+      const ampm = hh >= 12 ? 'p.m.' : 'a.m.';
+      const h12 = hh % 12 || 12;
+      horaFormateada = `${h12}:${mm} ${ampm}`;
+    } else if (idiomaActual === 'fr' || idiomaActual === 'it') {
+      horaFormateada = `${hh}h${mm}`;
+    } else {
+      const ampm = hh >= 12 ? 'p. m.' : 'a. m.';
+      const h12 = hh % 12 || 12;
+      horaFormateada = `${h12}:${mm} ${ampm}`;
+    }
+
+    const textos = {
+      es: `Puedes cambiar la fecha sin costo hasta el <strong>${diaSemana}, ${dia} de ${mes}, ${horaFormateada}</strong> (24 horas antes de tu salida).`,
+      en: `You can change the date at no cost until <strong>${diaSemana}, ${mes} ${dia}, ${horaFormateada}</strong> (24 hours before your departure).`,
+      pt: `Você pode alterar a data sem custo até <strong>${diaSemana}, ${dia} de ${mes}, ${horaFormateada}</strong> (24 horas antes da sua saída).`,
+      fr: `Vous pouvez changer la date sans frais jusqu'au <strong>${diaSemana} ${dia} ${mes}, ${horaFormateada}</strong> (24 heures avant votre départ).`,
+      it: `Puoi cambiare la data senza costi fino a <strong>${diaSemana} ${dia} ${mes}, ${horaFormateada}</strong> (24 ore prima della partenza).`
+    };
+
+    texto.innerHTML = textos[idiomaActual] || textos.es;
   }
 
   // =========================
@@ -1464,6 +1541,7 @@
   renderizarCalendario();
   actualizarResumen();
   renderizarItinerario();
+  renderizarAvisoCambios();
 </script>
 
 </body>

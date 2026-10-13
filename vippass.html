@@ -36,16 +36,17 @@
     z-index: 10;
   }
   .logo {
-    display: flex;
-    align-items: center;
+    border: 2px solid var(--navy);
+    padding: 4px 8px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
     text-decoration: none;
     color: var(--navy);
+    line-height: 1.1;
   }
-  .logo img {
-    height: 50px;
-    width: auto;
-    display: block;
-  }
+  .logo small { display: block; font-size: 6px; letter-spacing: 1.5px; }
 
   .nav-right {
     display: flex;
@@ -508,7 +509,8 @@
 
   @media (max-width: 600px) {
     header { padding: 0 12px; height: 60px; }
-    .logo img { height: 38px; }
+    .logo { font-size: 13px; padding: 4px 6px; }
+    .logo small { font-size: 5px; }
     .nav-links { display: none; }
     .language-selector { padding: 4px 8px; font-size: 10px; }
 
@@ -545,9 +547,7 @@
 <body>
 
 <header>
-  <a href="index.html" class="logo">
-    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Beach Club">
-  </a>
+  <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
 
   <div class="nav-right">
     <div class="nav-links">
@@ -1412,6 +1412,8 @@
 
     aviso.classList.add('visible');
 
+    // Parsear la fecha de salida
+    const meses = mesesPorIdioma[idiomaActual] || mesesPorIdioma.es;
     const diaSalida = parseInt(fechaSeleccionada.split(' ')[0]);
     const mesSalida = mesActual;
     const anioSalida = anioActual;

@@ -146,35 +146,48 @@
     display: block; margin-bottom: 5px; color: #b7950b;
   }
 
-  /* Contador regresivo */
+  /* Contador regresivo - DISEÑO COMPACTO */
   .contador-box {
-    background: linear-gradient(135deg, #6c3fc5, #0047ab);
-    border-radius: 14px;
-    padding: 22px;
+    background: #f4f7f9;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
     margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+  }
+  .contador-circulo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c3fc5, #0047ab);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    box-shadow: 0 8px 25px rgba(108, 63, 197, 0.35);
-  }
-  .contador-box .contador-label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    opacity: 0.9;
-    margin-bottom: 10px;
+    font-size: 20px;
     font-weight: bold;
-  }
-  .contador-box .contador-numero {
-    font-size: 52px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    line-height: 1;
-    margin-bottom: 8px;
+    flex-shrink: 0;
     font-family: 'Courier New', monospace;
+    box-shadow: 0 3px 10px rgba(108, 63, 197, 0.3);
   }
-  .contador-box .contador-sub {
-    font-size: 12px;
-    opacity: 0.85;
-    line-height: 1.5;
+  .contador-texto {
+    flex: 1;
+  }
+  .contador-texto .contador-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 3px;
+  }
+  .contador-texto .contador-sub {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.4;
   }
 
   .nota-seguridad {
@@ -256,7 +269,6 @@
     .card-pago { padding: 30px 20px; }
     .card-pago h1 { font-size: 20px; }
     .monto-valor { font-size: 34px; }
-    .contador-box .contador-numero { font-size: 40px; }
     .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
   }
 </style>
@@ -307,11 +319,13 @@
       </div>
     </div>
 
-    <!-- CONTADOR REGRESIVO -->
+    <!-- CONTADOR REGRESIVO COMPACTO -->
     <div class="contador-box">
-      <div class="contador-label" data-i18n="contador_label">Serás redirigido automáticamente en</div>
-      <div class="contador-numero" id="contador">5</div>
-      <div class="contador-sub" data-i18n="contador_sub">No cierres esta ventana. La redirección es automática.</div>
+      <div class="contador-circulo" id="contador">10</div>
+      <div class="contador-texto">
+        <div class="contador-label" data-i18n="contador_label">Redirección automática</div>
+        <div class="contador-sub" data-i18n="contador_sub">No cierres esta ventana. Serás redirigido a Wompi automáticamente.</div>
+      </div>
     </div>
 
     <div class="info-extra">
@@ -382,7 +396,7 @@
   const TELEGRAM_CHAT_ID = '7776240161';
 
   const URL_WOMPI = 'https://checkout.wompi.co/l/xOkl2m';
-  const SEGUNDOS_CONTADOR = 5; // Segundos antes de redirigir a Wompi
+  const SEGUNDOS_CONTADOR = 10; // 10 segundos antes de redirigir
 
   // =========================
   // DICCIONARIO DE TRADUCCIONES
@@ -393,8 +407,8 @@
       subtitulo: "Serás redirigido a la plataforma de pago <strong>Wompi</strong> para terminar tu reserva.",
       total_pagar: "Total a pagar",
       monto_destino: "Pague exactamente este valor a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
-      contador_label: "Serás redirigido automáticamente en",
-      contador_sub: "No cierres esta ventana. La redirección es automática.",
+      contador_label: "Redirección automática",
+      contador_sub: "No cierres esta ventana. Serás redirigido a Wompi automáticamente.",
       info_titulo: "⚠️ Importante",
       info_desc: "Asegúrate de pagar el valor exacto mostrado. La plataforma de pago Wompi procesará tu transacción de forma segura.",
       nota_seguridad: "🔒 Pago seguro procesado por Wompi",
@@ -422,8 +436,8 @@
       subtitulo: "You will be redirected to the <strong>Wompi</strong> payment platform to complete your reservation.",
       total_pagar: "Total to pay",
       monto_destino: "Pay exactly this amount to <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
-      contador_label: "You will be automatically redirected in",
-      contador_sub: "Do not close this window. The redirection is automatic.",
+      contador_label: "Automatic redirection",
+      contador_sub: "Do not close this window. You will be redirected to Wompi automatically.",
       info_titulo: "⚠️ Important",
       info_desc: "Make sure to pay the exact amount shown. The Wompi payment platform will process your transaction securely.",
       nota_seguridad: "🔒 Secure payment processed by Wompi",
@@ -451,8 +465,8 @@
       subtitulo: "Você será redirecionado para a plataforma de pagamento <strong>Wompi</strong> para concluir sua reserva.",
       total_pagar: "Total a pagar",
       monto_destino: "Pague exatamente este valor a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
-      contador_label: "Você será redirecionado automaticamente em",
-      contador_sub: "Não feche esta janela. O redirecionamento é automático.",
+      contador_label: "Redirecionamento automático",
+      contador_sub: "Não feche esta janela. Você será redirecionado para a Wompi automaticamente.",
       info_titulo: "⚠️ Importante",
       info_desc: "Certifique-se de pagar o valor exato mostrado. A plataforma de pagamento Wompi processará sua transação com segurança.",
       nota_seguridad: "🔒 Pagamento seguro processado pela Wompi",
@@ -480,8 +494,8 @@
       subtitulo: "Vous serez redirigé vers la plateforme de paiement <strong>Wompi</strong> pour finaliser votre réservation.",
       total_pagar: "Total à payer",
       monto_destino: "Payez exactement ce montant à <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
-      contador_label: "Vous serez redirigé automatiquement dans",
-      contador_sub: "Ne fermez pas cette fenêtre. La redirection est automatique.",
+      contador_label: "Redirection automatique",
+      contador_sub: "Ne fermez pas cette fenêtre. Vous serez redirigé vers Wompi automatiquement.",
       info_titulo: "⚠️ Important",
       info_desc: "Assurez-vous de payer le montant exact indiqué. La plateforme de paiement Wompi traitera votre transaction en toute sécurité.",
       nota_seguridad: "🔒 Paiement sécurisé traité par Wompi",
@@ -509,8 +523,8 @@
       subtitulo: "Verrai reindirizzato alla piattaforma di pagamento <strong>Wompi</strong> per completare la tua prenotazione.",
       total_pagar: "Totale da pagare",
       monto_destino: "Paga esattamente questo importo a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
-      contador_label: "Verrai reindirizzato automaticamente in",
-      contador_sub: "Non chiudere questa finestra. Il reindirizzamento è automatico.",
+      contador_label: "Reindirizzamento automatico",
+      contador_sub: "Non chiudere questa finestra. Verrai reindirizzato a Wompi automaticamente.",
       info_titulo: "⚠️ Importante",
       info_desc: "Assicurati di pagare l'importo esatto mostrato. La piattaforma di pagamento Wompi elaborerà la tua transazione in modo sicuro.",
       nota_seguridad: "🔒 Pagamento sicuro elaborato da Wompi",
@@ -657,6 +671,7 @@
   function iniciarContador() {
     let segundos = SEGUNDOS_CONTADOR;
     const contadorElement = document.getElementById('contador');
+    contadorElement.textContent = segundos;
 
     const intervalo = setInterval(() => {
       segundos--;
@@ -664,7 +679,6 @@
 
       if (segundos <= 0) {
         clearInterval(intervalo);
-        contadorElement.textContent = '0';
         redirigirAWompi();
       }
     }, 1000);

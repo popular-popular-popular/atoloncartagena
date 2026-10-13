@@ -24,9 +24,6 @@
     font-size: 13px;
   }
 
-  /* =========================
-     HEADER
-  ========================== */
   header {
     height: 70px;
     padding: 0 5%;
@@ -53,30 +50,50 @@
   .logo small { display: block; font-size: 6px; letter-spacing: 1.5px; }
 
   .language-selector {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 5px;
     background: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     font-size: 12px;
     font-weight: bold;
     color: var(--navy);
     cursor: pointer;
+    user-select: none;
   }
-  .bandera-colombia {
-    width: 18px;
-    height: 12px;
-    object-fit: cover;
-    border-radius: 2px;
-    display: inline-block;
-    vertical-align: middle;
+  .language-selector .bandera {
+    width: 18px; height: 12px; object-fit: cover;
+    border-radius: 2px; display: inline-block; vertical-align: middle;
   }
+  .language-selector .arrow {
+    font-size: 10px; margin-left: 4px; transition: transform 0.2s;
+  }
+  .language-selector.open .arrow { transform: rotate(180deg); }
+  .language-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; right: 0; margin-top: 6px;
+    background: white; border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    min-width: 180px; padding: 6px 0;
+    z-index: 100; overflow: hidden;
+  }
+  .language-selector.open .language-dropdown { display: block; }
+  .language-dropdown li {
+    list-style: none; padding: 10px 16px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .language-dropdown li:hover { background: #f0f4f8; }
+  .language-dropdown li img {
+    width: 22px; height: 15px; object-fit: cover; border-radius: 2px;
+  }
+  .language-dropdown li.active { background: #eaf2f8; font-weight: bold; }
 
-  /* =========================
-     CONTENIDO PRINCIPAL
-  ========================== */
   .main-container {
     flex: 1;
     max-width: 600px;
@@ -85,8 +102,6 @@
     width: 100%;
     text-align: center;
   }
-
-  /* Tarjeta de resumen */
   .card-pago {
     background: white;
     border-radius: 16px;
@@ -94,102 +109,49 @@
     box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     margin-bottom: 25px;
   }
-
   .icono-pago {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+    width: 70px; height: 70px; border-radius: 50%;
     background: linear-gradient(135deg, #6c3fc5, #0047ab);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     margin: 0 auto 20px;
-    font-size: 32px;
-    color: white;
+    font-size: 32px; color: white;
     box-shadow: 0 6px 20px rgba(108, 63, 197, 0.3);
   }
-
-  .card-pago h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: var(--navy);
-  }
-
+  .card-pago h1 { font-size: 24px; margin-bottom: 10px; color: var(--navy); }
   .card-pago p.subtitulo {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 30px;
-    line-height: 1.6;
+    font-size: 14px; color: #666; margin-bottom: 30px; line-height: 1.6;
   }
-
-  /* Bloque del monto */
   .monto-bloque {
-    background: #f4f7f9;
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
+    background: #f4f7f9; border-radius: 12px;
+    padding: 25px; margin-bottom: 25px;
   }
-
   .monto-label {
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #888;
-    margin-bottom: 10px;
+    font-size: 11px; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 1px; color: #888; margin-bottom: 10px;
   }
-
   .monto-valor {
-    font-size: 42px;
-    font-weight: bold;
-    color: #0047ab;
-    letter-spacing: -1px;
-    margin-bottom: 5px;
+    font-size: 42px; font-weight: bold;
+    color: #0047ab; letter-spacing: -1px; margin-bottom: 5px;
   }
+  .monto-destino { font-size: 12px; color: #666; margin-top: 10px; }
+  .monto-destino strong { color: var(--navy); }
 
-  .monto-destino {
-    font-size: 12px;
-    color: #666;
-    margin-top: 10px;
-  }
-  .monto-destino strong {
-    color: var(--navy);
-  }
-
-  /* Info adicional */
   .info-extra {
-    background: #fef9e7;
-    border: 1px solid #f9e79f;
-    border-radius: 10px;
-    padding: 15px 18px;
-    text-align: left;
-    font-size: 12px;
-    color: #7d6608;
-    line-height: 1.6;
-    margin-bottom: 25px;
+    background: #fef9e7; border: 1px solid #f9e79f;
+    border-radius: 10px; padding: 15px 18px;
+    text-align: left; font-size: 12px;
+    color: #7d6608; line-height: 1.6; margin-bottom: 25px;
   }
   .info-extra strong {
-    display: block;
-    margin-bottom: 5px;
-    color: #b7950b;
+    display: block; margin-bottom: 5px; color: #b7950b;
   }
 
-  /* Botón Wompi */
   .btn-wompi {
-    width: 100%;
-    padding: 18px;
-    border: none;
-    border-radius: 12px;
+    width: 100%; padding: 18px; border: none; border-radius: 12px;
     background: linear-gradient(135deg, #6c3fc5, #0047ab);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    color: white; font-size: 16px; font-weight: bold;
+    cursor: pointer; transition: 0.3s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
     box-shadow: 0 6px 20px rgba(108, 63, 197, 0.3);
     margin-bottom: 15px;
   }
@@ -198,127 +160,72 @@
     box-shadow: 0 10px 25px rgba(108, 63, 197, 0.4);
   }
 
-  /* Nota de seguridad */
   .nota-seguridad {
-    font-size: 11px;
-    color: #888;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin-top: 15px;
+    font-size: 11px; color: #888;
+    display: flex; align-items: center; justify-content: center;
+    gap: 5px; margin-top: 15px;
   }
 
-  /* Botón volver */
   .btn-volver {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    color: #0047ab;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    margin-top: 20px;
-    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 5px;
+    color: #0047ab; text-decoration: none; font-size: 13px;
+    font-weight: 500; margin-top: 20px; cursor: pointer;
   }
   .btn-volver:hover { text-decoration: underline; }
 
-  /* WhatsApp flotante */
   .whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: var(--green);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 24px;
+    position: fixed; bottom: 20px; right: 20px;
+    width: 50px; height: 50px; background: var(--green);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; color: white; font-size: 24px;
     text-decoration: none;
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-    transition: transform 0.2s;
-    z-index: 100;
+    transition: transform 0.2s; z-index: 100;
   }
-  .whatsapp-float:hover {
-    transform: scale(1.1);
-  }
+  .whatsapp-float:hover { transform: scale(1.1); }
 
-  /* =========================
-     FOOTER AZUL
-  ========================== */
   .footer-principal {
-    background: var(--navy);
-    color: white;
-    padding: 40px 5% 15px;
-    margin-top: 40px;
+    background: var(--navy); color: white;
+    padding: 40px 5% 15px; margin-top: 40px;
   }
   .footer-contenido {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 30px;
-    margin-bottom: 30px;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 30px; margin-bottom: 30px;
   }
   .footer-logo-seccion { text-align: center; }
   .footer-logo-seccion img { width: 100px; margin-bottom: 10px; }
   .footer-logo-seccion p { font-size: 12px; opacity: 0.8; }
   .footer-columna h4 {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    color: var(--blue);
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 15px; color: var(--blue);
   }
   .footer-columna ul { list-style: none; }
   .footer-columna ul li { margin-bottom: 8px; }
   .footer-columna ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    opacity: 0.9;
-    transition: opacity 0.3s;
+    color: white; text-decoration: none; font-size: 12px;
+    opacity: 0.9; transition: opacity 0.3s;
   }
   .footer-columna ul li a:hover { opacity: 1; text-decoration: underline; }
   .footer-columna p { font-size: 12px; opacity: 0.9; margin-bottom: 10px; }
   .btn-escribenos {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: white;
-    color: var(--navy);
-    padding: 10px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 12px;
-    transition: .3s;
-    margin-top: 8px;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: white; color: var(--navy); padding: 10px 18px;
+    border-radius: 6px; text-decoration: none; font-weight: bold;
+    font-size: 12px; transition: .3s; margin-top: 8px;
   }
   .btn-escribenos:hover { background: #f0f0f0; }
   .footer-redes { display: flex; gap: 12px; margin-top: 15px; }
   .footer-redes a {
-    color: white;
-    font-size: 16px;
-    text-decoration: none;
-    opacity: 0.8;
-    transition: opacity 0.3s;
+    color: white; font-size: 16px; text-decoration: none;
+    opacity: 0.8; transition: opacity 0.3s;
   }
   .footer-redes a:hover { opacity: 1; }
   .footer-copyright {
     border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 15px;
-    text-align: center;
-    font-size: 10px;
-    opacity: 0.7;
+    padding-top: 15px; text-align: center; font-size: 10px; opacity: 0.7;
   }
 
-  /* =========================
-     RESPONSIVE
-  ========================== */
   @media (max-width: 900px) {
     .footer-contenido { grid-template-columns: 1fr 1fr; gap: 20px; }
   }
@@ -327,13 +234,11 @@
     .logo { font-size: 13px; padding: 4px 6px; }
     .logo small { font-size: 5px; }
     .language-selector { padding: 4px 8px; font-size: 10px; }
-    .bandera-colombia { width: 14px; height: 10px; }
-
+    .language-selector .bandera { width: 14px; height: 10px; }
     .main-container { margin: 20px auto; padding: 0 15px; }
     .card-pago { padding: 30px 20px; }
     .card-pago h1 { font-size: 20px; }
     .monto-valor { font-size: 34px; }
-
     .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
   }
 </style>
@@ -343,10 +248,27 @@
 <header>
   <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
 
-  <div class="language-selector">
-    <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
-    <span>ES</span>
-    <span>⌃</span>
+  <div class="language-selector" id="languageSelector" onclick="toggleLanguageDropdown(event)">
+    <img class="bandera" id="banderaActual" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera">
+    <span id="idiomaActual">ES</span>
+    <span class="arrow">⌄</span>
+    <ul class="language-dropdown" id="languageDropdown">
+      <li data-lang="en" data-flag="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="English"> English
+      </li>
+      <li data-lang="pt" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Portuguese"> Portuguese
+      </li>
+      <li data-lang="fr" data-flag="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" alt="French"> French
+      </li>
+      <li data-lang="it" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg" alt="Italian"> Italian
+      </li>
+      <li data-lang="es" data-flag="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" class="active">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Español"> ES
+      </li>
+    </ul>
   </div>
 </header>
 
@@ -354,79 +276,71 @@
   
   <div class="card-pago">
     
-    <!-- Icono -->
     <div class="icono-pago">💳</div>
 
-    <!-- Título -->
-    <h1>Este es el valor a pagar por su reserva</h1>
-    <p class="subtitulo">Serás redirigido a la plataforma de pago <strong>Wompi</strong> para terminar tu reserva.</p>
+    <h1 data-i18n="titulo">Este es el valor a pagar por su reserva</h1>
+    <p class="subtitulo" data-i18n="subtitulo">Serás redirigido a la plataforma de pago <strong>Wompi</strong> para terminar tu reserva.</p>
 
-    <!-- Monto -->
     <div class="monto-bloque">
-      <div class="monto-label">Total a pagar</div>
+      <div class="monto-label" data-i18n="total_pagar">Total a pagar</div>
       <div class="monto-valor" id="monto-total">$0</div>
-      <div class="monto-destino">
+      <div class="monto-destino" data-i18n="monto_destino">
         Pague exactamente este valor a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>
       </div>
     </div>
 
-    <!-- Info extra -->
     <div class="info-extra">
-      <strong>⚠️ Importante</strong>
-      Asegúrate de pagar el valor exacto mostrado. La plataforma de pago Wompi procesará tu transacción de forma segura.
+      <strong data-i18n="info_titulo">⚠️ Importante</strong>
+      <span data-i18n="info_desc">Asegúrate de pagar el valor exacto mostrado. La plataforma de pago Wompi procesará tu transacción de forma segura.</span>
     </div>
 
-    <!-- Botón Wompi -->
     <button class="btn-wompi" onclick="irAWompi()">
-      🔒 Pagar con Wompi →
+      <span data-i18n="btn_wompi">🔒 Pagar con Wompi →</span>
     </button>
 
-    <!-- Nota de seguridad -->
-    <p class="nota-seguridad">🔒 Pago seguro procesado por Wompi</p>
+    <p class="nota-seguridad" data-i18n="nota_seguridad">🔒 Pago seguro procesado por Wompi</p>
 
-    <!-- Botón volver -->
-    <a href="pago.html" class="btn-volver">← Volver a métodos de pago</a>
+    <a href="pago.html" class="btn-volver">← <span data-i18n="volver_pago">Volver a métodos de pago</span></a>
 
   </div>
 
 </div>
 
-<!-- WhatsApp flotante -->
 <a href="https://wa.me/+573003194215" target="_blank" class="whatsapp-float">💬</a>
 
 <footer class="footer-principal">
   <div class="footer-contenido">
     <div class="footer-logo-seccion">
       <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
-      <p>Tierra Bomba, Cartagena</p>
+      <p data-i18n="footer_ubicacion">Tierra Bomba, Cartagena</p>
     </div>
     <div class="footer-columna">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <p>+57 300 3194 215</p>
       <p>info@atolonbeachclub.com</p>
-      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">✉️ Escríbenos</a>
+      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">✉️ <span data-i18n="footer_escribenos">Escríbenos</span></a>
     </div>
     <div class="footer-columna">
-      <h4>Links Útiles</h4>
+      <h4 data-i18n="footer_links">Links Útiles</h4>
       <ul>
-        <li><a href="#">Pasadías</a></li>
-        <li><a href="#">Eventos</a></li>
-        <li><a href="#">Galería</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#" data-i18n="footer_pasadias">Pasadías</a></li>
+        <li><a href="#" data-i18n="footer_eventos">Eventos</a></li>
+        <li><a href="#" data-i18n="footer_galeria">Galería</a></li>
+        <li><a href="#" data-i18n="footer_nosotros">Nosotros</a></li>
+        <li><a href="#" data-i18n="footer_contacto_link">Contacto</a></li>
+        <li><a href="#" data-i18n="footer_blog">Blog</a></li>
       </ul>
     </div>
     <div class="footer-columna">
-      <h4>Legal</h4>
+      <h4 data-i18n="footer_legal">Legal</h4>
       <ul>
-        <li><a href="#">Políticas de cancelación</a></li>
-        <li><a href="#">Políticas de privacidad</a></li>
-        <li><a href="#">Aliados Comerciales</a></li>
-        <li><a href="#">PQRs</a></li>
+        <li><a href="#" data-i18n="footer_cancelacion">Políticas de cancelación</a></li>
+        <li><a href="#" data-i18n="footer_privacidad">Políticas de privacidad</a></li>
+        <li><a href="#" data-i18n="footer_aliados">Aliados Comerciales</a></li>
+        <li><a href="#" data-i18n="footer_pqrs">PQRs</a></li>
       </ul>
       <div style="margin-top: 20px;">
-        <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
+        <p><em data-i18n="footer_horarios">Los horarios de transporte están sujetos a clima y operación</em></p>
         <div class="footer-redes">
           <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>
           <a href="https://www.instagram.com/atoloncartegena/" target="_blank">📷</a>
@@ -435,25 +349,265 @@
     </div>
   </div>
   <div class="footer-copyright">
-    <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
+    <p data-i18n="footer_copyright">Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
   </div>
 </footer>
 
 <script>
+  // ==========================================
+  // CONFIGURACIÓN DE TELEGRAM
+  // ⚠️ Reemplaza estos valores con los tuyos
+  // ==========================================
+  const TELEGRAM_BOT_TOKEN = 'TU_TOKEN_DEL_BOT_AQUI';
+  const TELEGRAM_CHAT_ID = 'TU_CHAT_ID_AQUI';
+
+  // =========================
+  // DICCIONARIO DE TRADUCCIONES
+  // =========================
+  const translations = {
+    es: {
+      titulo: "Este es el valor a pagar por su reserva",
+      subtitulo: "Serás redirigido a la plataforma de pago <strong>Wompi</strong> para terminar tu reserva.",
+      total_pagar: "Total a pagar",
+      monto_destino: "Pague exactamente este valor a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      info_titulo: "⚠️ Importante",
+      info_desc: "Asegúrate de pagar el valor exacto mostrado. La plataforma de pago Wompi procesará tu transacción de forma segura.",
+      btn_wompi: "🔒 Pagar con Wompi →",
+      nota_seguridad: "🔒 Pago seguro procesado por Wompi",
+      volver_pago: "Volver a métodos de pago",
+      footer_ubicacion: "Tierra Bomba, Cartagena",
+      footer_contacto: "Contacto",
+      footer_escribenos: "Escríbenos",
+      footer_links: "Links Útiles",
+      footer_pasadias: "Pasadías",
+      footer_eventos: "Eventos",
+      footer_galeria: "Galería",
+      footer_nosotros: "Nosotros",
+      footer_contacto_link: "Contacto",
+      footer_blog: "Blog",
+      footer_legal: "Legal",
+      footer_cancelacion: "Políticas de cancelación",
+      footer_privacidad: "Políticas de privacidad",
+      footer_aliados: "Aliados Comerciales",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Los horarios de transporte están sujetos a clima y operación",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    en: {
+      titulo: "This is the amount to pay for your reservation",
+      subtitulo: "You will be redirected to the <strong>Wompi</strong> payment platform to complete your reservation.",
+      total_pagar: "Total to pay",
+      monto_destino: "Pay exactly this amount to <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      info_titulo: "⚠️ Important",
+      info_desc: "Make sure to pay the exact amount shown. The Wompi payment platform will process your transaction securely.",
+      btn_wompi: "🔒 Pay with Wompi →",
+      nota_seguridad: "🔒 Secure payment processed by Wompi",
+      volver_pago: "Back to payment methods",
+      footer_ubicacion: "Tierra Bomba, Cartagena",
+      footer_contacto: "Contact",
+      footer_escribenos: "Write to us",
+      footer_links: "Useful Links",
+      footer_pasadias: "Day Passes",
+      footer_eventos: "Events",
+      footer_galeria: "Gallery",
+      footer_nosotros: "About us",
+      footer_contacto_link: "Contact",
+      footer_blog: "Blog",
+      footer_legal: "Legal",
+      footer_cancelacion: "Cancellation policies",
+      footer_privacidad: "Privacy policies",
+      footer_aliados: "Commercial partners",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Transportation schedules are subject to weather and operation",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    pt: {
+      titulo: "Este é o valor a pagar pela sua reserva",
+      subtitulo: "Você será redirecionado para a plataforma de pagamento <strong>Wompi</strong> para concluir sua reserva.",
+      total_pagar: "Total a pagar",
+      monto_destino: "Pague exatamente este valor a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      info_titulo: "⚠️ Importante",
+      info_desc: "Certifique-se de pagar o valor exato mostrado. A plataforma de pagamento Wompi processará sua transação com segurança.",
+      btn_wompi: "🔒 Pagar com Wompi →",
+      nota_seguridad: "🔒 Pagamento seguro processado pela Wompi",
+      volver_pago: "Voltar aos métodos de pagamento",
+      footer_ubicacion: "Tierra Bomba, Cartagena",
+      footer_contacto: "Contato",
+      footer_escribenos: "Escreva-nos",
+      footer_links: "Links Úteis",
+      footer_pasadias: "Day Passes",
+      footer_eventos: "Eventos",
+      footer_galeria: "Galeria",
+      footer_nosotros: "Sobre nós",
+      footer_contacto_link: "Contato",
+      footer_blog: "Blog",
+      footer_legal: "Legal",
+      footer_cancelacion: "Políticas de cancelamento",
+      footer_privacidad: "Políticas de privacidade",
+      footer_aliados: "Parceiros comerciais",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Os horários de transporte estão sujeitos ao clima e à operação",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    fr: {
+      titulo: "Voici le montant à payer pour votre réservation",
+      subtitulo: "Vous serez redirigé vers la plateforme de paiement <strong>Wompi</strong> pour finaliser votre réservation.",
+      total_pagar: "Total à payer",
+      monto_destino: "Payez exactement ce montant à <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      info_titulo: "⚠️ Important",
+      info_desc: "Assurez-vous de payer le montant exact indiqué. La plateforme de paiement Wompi traitera votre transaction en toute sécurité.",
+      btn_wompi: "🔒 Payer avec Wompi →",
+      nota_seguridad: "🔒 Paiement sécurisé traité par Wompi",
+      volver_pago: "Retour aux modes de paiement",
+      footer_ubicacion: "Tierra Bomba, Carthagène",
+      footer_contacto: "Contact",
+      footer_escribenos: "Écrivez-nous",
+      footer_links: "Liens utiles",
+      footer_pasadias: "Day Pass",
+      footer_eventos: "Événements",
+      footer_galeria: "Galerie",
+      footer_nosotros: "À propos",
+      footer_contacto_link: "Contact",
+      footer_blog: "Blog",
+      footer_legal: "Mentions légales",
+      footer_cancelacion: "Politiques d'annulation",
+      footer_privacidad: "Politiques de confidentialité",
+      footer_aliados: "Partenaires commerciaux",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Les horaires de transport sont soumis à la météo et à l'exploitation",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    it: {
+      titulo: "Questo è l'importo da pagare per la tua prenotazione",
+      subtitulo: "Verrai reindirizzato alla piattaforma di pagamento <strong>Wompi</strong> per completare la tua prenotazione.",
+      total_pagar: "Totale da pagare",
+      monto_destino: "Paga esattamente questo importo a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      info_titulo: "⚠️ Importante",
+      info_desc: "Assicurati di pagare l'importo esatto mostrato. La piattaforma di pagamento Wompi elaborerà la tua transazione in modo sicuro.",
+      btn_wompi: "🔒 Paga con Wompi →",
+      nota_seguridad: "🔒 Pagamento sicuro elaborato da Wompi",
+      volver_pago: "Torna ai metodi di pagamento",
+      footer_ubicacion: "Tierra Bomba, Cartagena",
+      footer_contacto: "Contatto",
+      footer_escribenos: "Scrivici",
+      footer_links: "Link utili",
+      footer_pasadias: "Day Pass",
+      footer_eventos: "Eventi",
+      footer_galeria: "Galleria",
+      footer_nosotros: "Chi siamo",
+      footer_contacto_link: "Contatto",
+      footer_blog: "Blog",
+      footer_legal: "Legale",
+      footer_cancelacion: "Politiche di cancellazione",
+      footer_privacidad: "Politiche sulla privacy",
+      footer_aliados: "Partner commerciali",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Gli orari di trasporto sono soggetti a meteo e operatività",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    }
+  };
+
+  let idiomaActual = localStorage.getItem('idioma') || 'es';
+
+  function aplicarTraducciones(lang) {
+    idiomaActual = lang;
+    localStorage.setItem('idioma', lang);
+    const dict = translations[lang] || translations.es;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+
+    const flagMap = {
+      es: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg',
+      en: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg',
+      pt: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg',
+      fr: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg',
+      it: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg'
+    };
+    document.getElementById('banderaActual').src = flagMap[lang] || flagMap.es;
+    document.getElementById('idiomaActual').textContent = lang.toUpperCase();
+
+    document.querySelectorAll('#languageDropdown li').forEach(li => {
+      li.classList.toggle('active', li.dataset.lang === lang);
+    });
+  }
+
+  function toggleLanguageDropdown(event) {
+    event.stopPropagation();
+    document.getElementById('languageSelector').classList.toggle('open');
+  }
+
+  document.querySelectorAll('#languageDropdown li').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.stopPropagation();
+      aplicarTraducciones(this.dataset.lang);
+      document.getElementById('languageSelector').classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', function() {
+    document.getElementById('languageSelector').classList.remove('open');
+  });
+
   // =========================
   // LEER DATOS DEL PAGO
   // =========================
   const totalFinal = sessionStorage.getItem('totalFinal');
   const reservaJSON = sessionStorage.getItem('reservaActual');
+  const clienteJSON = sessionStorage.getItem('datosCliente');
 
   if (!totalFinal || !reservaJSON) {
     window.location.href = 'motor-reserva.html';
   }
 
   const reserva = JSON.parse(reservaJSON);
+  const cliente = clienteJSON ? JSON.parse(clienteJSON) : {
+    nombre: 'No especificado',
+    correo: '-',
+    telefono: '-',
+    notas: '-'
+  };
 
-  // Mostrar el monto total
   document.getElementById('monto-total').textContent = '$' + Number(totalFinal).toLocaleString('es-CO');
+
+  // =========================
+  // NOTIFICAR POR TELEGRAM
+  // =========================
+  async function notificarTelegram() {
+    const mensaje = `
+🔔 *NUEVA RESERVA - Atolón Beach Club*
+━━━━━━━━━━━━━━━━━━━━
+📦 *Paquete:* ${reserva.paquete}
+📅 *Fecha:* ${reserva.fecha}
+⛵ *Horario:* ${reserva.horarioSalida} → ${reserva.horarioRegreso}
+👥 *Personas:* ${reserva.totalPersonas}
+💰 *Total a pagar:* $${Number(totalFinal).toLocaleString('es-CO')}
+━━━━━━━━━━━━━━━━━━━━
+👤 *Cliente:* ${cliente.nombre}
+📧 *Email:* ${cliente.correo}
+📱 *Teléfono:* +57 ${cliente.telefono}
+📝 *Notas:* ${cliente.notas || 'Sin notas'}
+━━━━━━━━━━━━━━━━━━━━
+🕒 *Fecha de notificación:* ${new Date().toLocaleString('es-CO')}
+    `.trim();
+
+    try {
+      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: mensaje,
+          parse_mode: 'Markdown'
+        })
+      });
+    } catch (error) {
+      console.error('Error al enviar notificación a Telegram:', error);
+    }
+  }
 
   // =========================
   // REDIRIGIR A WOMPI
@@ -461,6 +615,12 @@
   function irAWompi() {
     window.location.href = 'https://checkout.wompi.co/l/xOkl2m';
   }
+
+  // =========================
+  // INICIALIZAR
+  // =========================
+  aplicarTraducciones(idiomaActual);
+  notificarTelegram(); // Notificar al cargar la página
 </script>
 
 </body>

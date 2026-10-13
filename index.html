@@ -45,6 +45,8 @@ header {
   font-weight: bold;
   letter-spacing: 3px;
   text-align: center;
+  text-decoration: none;
+  color: var(--navy);
 }
 
 .logo small {
@@ -61,13 +63,14 @@ nav {
 nav a {
   text-decoration: none;
   color: var(--navy);
-  font-size: 12px; /* Reducido de 13px a 12px */
+  font-size: 12px;
 }
 
 /* =========================
    SELECTOR DE IDIOMA
 ========================== */
 .language-selector {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -75,15 +78,14 @@ nav a {
   padding: 7px 12px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  font-size: 13px; /* Reducido de 14px a 13px */
+  font-size: 13px;
   font-weight: bold;
   color: var(--navy);
   cursor: pointer;
   margin-left: 20px;
+  user-select: none;
 }
-
-/* Bandera de Colombia como imagen SVG (visible en PC y móvil) */
-.bandera-colombia {
+.language-selector .bandera {
   width: 20px;
   height: 14px;
   object-fit: cover;
@@ -91,6 +93,33 @@ nav a {
   display: inline-block;
   vertical-align: middle;
 }
+.language-selector .arrow {
+  font-size: 10px;
+  margin-left: 4px;
+  transition: transform 0.2s;
+}
+.language-selector.open .arrow { transform: rotate(180deg); }
+.language-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%; right: 0; margin-top: 6px;
+  background: white; border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  min-width: 180px; padding: 6px 0;
+  z-index: 100; overflow: hidden;
+}
+.language-selector.open .language-dropdown { display: block; }
+.language-dropdown li {
+  list-style: none; padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: background 0.15s;
+}
+.language-dropdown li:hover { background: #f0f4f8; }
+.language-dropdown li img {
+  width: 22px; height: 15px; object-fit: cover; border-radius: 2px;
+}
+.language-dropdown li.active { background: #eaf2f8; font-weight: bold; }
 
 /* =========================
    HERO CON VIDEO DE FONDO
@@ -201,10 +230,26 @@ nav a {
   grid-template-columns: 38px 1fr;
   gap: 12px;
   margin-bottom: 22px;
+  align-items: flex-start;
 }
 
+/* Iconos SVG originales */
 .icono {
-  font-size: 26px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.icono svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--navy);
+  stroke-width: 1.6;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .beneficio h3 {
@@ -296,6 +341,83 @@ nav a {
   opacity: 0.8;
 }
 
+/* =========================
+   SLIDER
+========================== */
+.slider-section {
+  padding: 20px 6% 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.slider {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: #f4f7f9;
+}
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 500px;
+}
+.slider-slide {
+  min-width: 100%;
+  height: 100%;
+}
+.slider-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.85);
+  border: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+  z-index: 2;
+}
+.slider-btn:hover { background: white; }
+.slider-btn.prev { left: 15px; }
+.slider-btn.next { right: 15px; }
+.slider-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+.slider-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.slider-dots button.active {
+  background: white;
+}
+
+/* =========================
+   SECCIÓN IMAGEN GRANDE (se mantiene para otras imágenes)
+========================== */
 .seccion-video-grande {
   padding: 20px 6% 60px;
   max-width: 1200px;
@@ -676,11 +798,10 @@ nav a {
   .footer-contenido {
     grid-template-columns: 1fr 1fr;
   }
+
+  .slider-track { height: 350px; }
 }
 
-/* =========================
-   AJUSTES PARA MÓVIL
-========================== */
 @media (max-width: 600px) {
   header {
     height: 75px;
@@ -696,7 +817,7 @@ nav a {
     font-size: 7px;
   }
 
-  nav a {
+  nav > a {
     display: none;
   }
 
@@ -746,10 +867,13 @@ nav a {
     margin-left: 10px;
   }
 
-  .bandera-colombia {
+  .language-selector .bandera {
     width: 16px;
     height: 12px;
   }
+
+  .slider-track { height: 250px; }
+  .slider-btn { width: 36px; height: 36px; font-size: 14px; }
 }
 </style>
 </head>
@@ -763,22 +887,36 @@ nav a {
   </a>
 
   <nav>
-    <a href="#experiencias">PASADÍAS⌄</a>
-    <a href="#eventos">EVENTOS</a>
-    <a href="#galeria">GALERÍA</a>
+    <a href="#experiencias" data-i18n="nav_pasadias">PASADÍAS⌄</a>
+    <a href="#eventos" data-i18n="nav_eventos">EVENTOS</a>
+    <a href="#galeria" data-i18n="nav_galeria">GALERÍA</a>
     
-    <div class="language-selector">
-      <!-- Bandera de Colombia como imagen SVG (visible en PC y móvil) -->
-      <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
-      <span>ES</span>
-      <span>⌃</span>
+    <div class="language-selector" id="languageSelector" onclick="toggleLanguageDropdown(event)">
+      <img class="bandera" id="banderaActual" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera">
+      <span id="idiomaActual">ES</span>
+      <span class="arrow">⌄</span>
+      <ul class="language-dropdown" id="languageDropdown">
+        <li data-lang="en" data-flag="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="English"> English
+        </li>
+        <li data-lang="pt" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Portuguese"> Portuguese
+        </li>
+        <li data-lang="fr" data-flag="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" alt="French"> French
+        </li>
+        <li data-lang="it" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg" alt="Italian"> Italian
+        </li>
+        <li data-lang="es" data-flag="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" class="active">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Español"> ES
+        </li>
+      </ul>
     </div>
   </nav>
 </header>
 
-<!-- =========================
-     HERO CON VIDEO DE FONDO
-========================== -->
+<!-- HERO -->
 <section class="hero" id="inicio">
   <video class="hero-video" autoplay loop muted playsinline>
     <source src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69f2219efc17decc45e992f1.mp4" type="video/mp4">
@@ -788,300 +926,379 @@ nav a {
   <div class="hero-overlay"></div>
   
   <div class="hero-content">
-    <p>Bienvenidos al mejor</p>
-    <h1>Beach Club de Cartagena</h1>
-    <p>El lugar para quienes buscan un day-pass de lujo.</p>
-    <p><i>Playa privada, servicio exclusivo, música afrobeat y mucho más...</i></p>
+    <p data-i18n="hero_bienvenidos">Bienvenidos al mejor</p>
+    <h1 data-i18n="hero_titulo">Beach Club de Cartagena</h1>
+    <p data-i18n="hero_subtitulo">El lugar para quienes buscan un day-pass de lujo.</p>
+    <p><i data-i18n="hero_descripcion">Playa privada, servicio exclusivo, música afrobeat y mucho más...</i></p>
   </div>
 </section>
 
-<!-- Botón flotante fijo (siempre visible) -->
-<button class="boton-flotante" onclick="irAMotorReserva()">
+<!-- Botón flotante -->
+<button class="boton-flotante" onclick="irAMotorReserva()" data-i18n="btn_reservar_pasadia">
   RESERVAR PASADÍA ☼
 </button>
 
-<!-- =========================
-     EXPERIENCIAS ATOLÓN
-========================== -->
+<!-- EXPERIENCIAS -->
 <section class="experiencias" id="experiencias">
-  <h2 class="titulo">Experiencias Atolón</h2>
+  <h2 class="titulo" data-i18n="titulo_experiencias">Experiencias Atolón</h2>
 
   <div class="tarjetas">
 
+    <!-- VIP -->
     <article class="tarjeta vip">
       <h2>VIP Pass</h2>
       <p class="minimo">&nbsp;</p>
 
       <div class="beneficio">
-        <span class="icono">🚤</span>
-        <div><h3>Transporte en lancha deportiva</h3><p>(15-20 min)</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M3 17l1.5-6h15L21 17M5 17v3M19 17v3M8 11l-2-6M16 11l2-6M3 17h18"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="vip_b1_titulo">Transporte en lancha deportiva</h3>
+          <p data-i18n="vip_b1_desc">(15-20 min)</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🍸</span>
-        <div><h3>Cocktail de Bienvenida</h3><p>Nuestra mejor selección</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14l-2 8H7L5 3zM7 11v8M17 11v8M9 21h6M4 11h16"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="vip_b2_titulo">Cocktail de Bienvenida</h3>
+          <p data-i18n="vip_b2_desc">Nuestra mejor selección</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🍽️</span>
-        <div><h3>Almuerzo</h3><p>(Plato principal + postre)</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M7 3v8a3 3 0 006 0V3M10 11v8M8 21h4M16 3c-1.5 0-3 1.5-3 3s1.5 3 3 3 3-1.5 3-3-1.5-3-3-3zM16 9v12M14 21h4"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="vip_b3_titulo">Almuerzo</h3>
+          <p data-i18n="vip_b3_desc">(Plato principal + postre)</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🏖️</span>
-        <div><h3>Cama en playa</h3><p>Frente al mar</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M2 18h20M4 18l2-6h12l2 6M12 12V8M8 4h8l-2 4H10L8 4z"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="vip_b4_titulo">Cama en playa</h3>
+          <p data-i18n="vip_b4_desc">Frente al mar</p>
+        </div>
       </div>
 
       <div class="precio">
-        <h3>Valor</h3>
+        <h3 data-i18n="valor_label">Valor</h3>
         <div class="valor">$320.000 COP</div>
-        <p>Adultos (+11)</p>
+        <p data-i18n="vip_precio_adultos">Adultos (+11)</p>
         <div class="valor">$240.000 COP</div>
-        <p>Atolón Kids (3-11)</p>
+        <p data-i18n="vip_precio_kids">Atolón Kids (3-11)</p>
       </div>
 
-      <a href="#" class="reservar" data-paquete="VIP Pass">Reservar VIP</a>
+      <a href="#" class="reservar" data-paquete="VIP Pass" data-i18n="btn_reservar_vip">Reservar VIP</a>
     </article>
 
+    <!-- EXCLUSIVE -->
     <article class="tarjeta exclusive">
       <h2>Exclusive Pass</h2>
-      <p class="minimo">Mínimo 2 Pax</p>
+      <p class="minimo" data-i18n="exclusive_minimo">Mínimo 2 Pax</p>
 
       <div class="beneficio">
-        <span class="icono">🚤</span>
-        <div><h3>Transporte en lancha deportiva</h3><p>(15-20 min)</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M3 17l1.5-6h15L21 17M5 17v3M19 17v3M8 11l-2-6M16 11l2-6M3 17h18"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="exclusive_b1_titulo">Transporte en lancha deportiva</h3>
+          <p data-i18n="exclusive_b1_desc">(15-20 min)</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🍸</span>
-        <div><h3>Cocktail de Bienvenida</h3><p>Nuestra mejor selección</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14l-2 8H7L5 3zM7 11v8M17 11v8M9 21h6M4 11h16"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="exclusive_b2_titulo">Cocktail de Bienvenida</h3>
+          <p data-i18n="exclusive_b2_desc">Nuestra mejor selección</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🍽️</span>
-        <div><h3>Almuerzo Premium</h3><p>Entrada + plato principal + postre</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M7 3v8a3 3 0 006 0V3M10 11v8M8 21h4M16 3c-1.5 0-3 1.5-3 3s1.5 3 3 3 3-1.5 3-3-1.5-3-3-3zM16 9v12M14 21h4"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="exclusive_b3_titulo">Almuerzo Premium</h3>
+          <p data-i18n="exclusive_b3_desc">Entrada + plato principal + postre</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🏡</span>
-        <div><h3>Cabaña Luxury</h3><p>Junto a la piscina</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="exclusive_b4_titulo">Cabaña Luxury</h3>
+          <p data-i18n="exclusive_b4_desc">Junto a la piscina</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🍾</span>
-        <div><h3>Espumoso</h3><p>Botella de vino</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M8 3h8l-1 8a3 3 0 01-6 0L8 3zM12 14v7M8 21h8"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="exclusive_b5_titulo">Espumoso</h3>
+          <p data-i18n="exclusive_b5_desc">Botella de vino</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🤵</span>
-        <div><h3>Servicio de mayordomo</h3><p>Personalizado</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M5 22v-3a5 5 0 015-5h4a5 5 0 015 5v3"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="exclusive_b6_titulo">Servicio de mayordomo</h3>
+          <p data-i18n="exclusive_b6_desc">Personalizado</p>
+        </div>
       </div>
 
       <div class="precio">
-        <h3>Valor</h3>
+        <h3 data-i18n="valor_label">Valor</h3>
         <div class="valor">$540.000 COP</div>
-        <p>Por Adulto</p>
+        <p data-i18n="exclusive_precio_adulto">Por Adulto</p>
       </div>
 
-      <a href="#" class="reservar" data-paquete="Exclusive Pass">Reservar Exclusive</a>
+      <a href="#" class="reservar" data-paquete="Exclusive Pass" data-i18n="btn_reservar_exclusive">Reservar Exclusive</a>
     </article>
 
+    <!-- EXPERIENCE -->
     <article class="tarjeta experience">
       <h2>Atolón Experience</h2>
-      <p class="minimo">Mínimo 4 Pax</p>
+      <p class="minimo" data-i18n="experience_minimo">Mínimo 4 Pax</p>
 
       <div class="beneficio">
-        <span class="icono">🚤</span>
-        <div><h3>Transporte en lancha deportiva</h3><p>(15-20 min)</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M3 17l1.5-6h15L21 17M5 17v3M19 17v3M8 11l-2-6M16 11l2-6M3 17h18"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="experience_b1_titulo">Transporte en lancha deportiva</h3>
+          <p data-i18n="experience_b1_desc">(15-20 min)</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🍸</span>
-        <div><h3>Cocktail de Bienvenida</h3><p>Nuestra mejor selección</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14l-2 8H7L5 3zM7 11v8M17 11v8M9 21h6M4 11h16"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="experience_b2_titulo">Cocktail de Bienvenida</h3>
+          <p data-i18n="experience_b2_desc">Nuestra mejor selección</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🏡</span>
-        <div><h3>Cabaña Luxury</h3><p>Junto a la piscina</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="experience_b3_titulo">Cabaña Luxury</h3>
+          <p data-i18n="experience_b3_desc">Junto a la piscina</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">🤵</span>
-        <div><h3>Servicio de mayordomo</h3><p>Premium</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M5 22v-3a5 5 0 015-5h4a5 5 0 015 5v3"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="experience_b4_titulo">Servicio de mayordomo</h3>
+          <p data-i18n="experience_b4_desc">Premium</p>
+        </div>
       </div>
 
       <div class="beneficio">
-        <span class="icono">💰</span>
-        <div><h3>Todo el valor consumible</h3><p>$1.100.000 COP</p></div>
+        <span class="icono">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>
+        </span>
+        <div>
+          <h3 data-i18n="experience_b5_titulo">Todo el valor consumible</h3>
+          <p>$1.100.000 COP</p>
+        </div>
       </div>
 
       <div class="precio">
-        <h3>Valor</h3>
+        <h3 data-i18n="valor_label">Valor</h3>
         <div class="valor">$1.100.000 COP</div>
-        <p>Por persona</p>
+        <p data-i18n="experience_precio">Por persona</p>
       </div>
 
-      <a href="#" class="reservar" data-paquete="Atolón Experience">Reservar Experience</a>
+      <a href="#" class="reservar" data-paquete="Atolón Experience" data-i18n="btn_reservar_experience">Reservar Experience</a>
     </article>
 
   </div>
 </section>
 
-<!-- =========================
-     SECCIÓN WHATSAPP
-========================== -->
+<!-- WHATSAPP -->
 <section class="seccion-whatsapp">
-  <p>¿Tienes dudas? Hablemos por WhatsApp</p>
+  <p data-i18n="whatsapp_dudas">¿Tienes dudas? Hablemos por WhatsApp</p>
   <a href="https://wa.me/+573003194215" target="_blank" class="btn-whatsapp-grande">
-    WhatsApp 📱
+    <span data-i18n="whatsapp_btn">WhatsApp 📱</span>
     <span>Atolón Beach Club</span>
   </a>
 </section>
 
-<!-- =========================
-     SECCIÓN IMAGEN GRANDE
-========================== -->
+<!-- SLIDER (después del WhatsApp) -->
+<section class="slider-section">
+  <div class="slider" id="slider">
+    <div class="slider-track" id="sliderTrack">
+      <div class="slider-slide">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69fca7493449086cc16e3347.webp" alt="Atolón Beach Club 1">
+      </div>
+      <div class="slider-slide">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69fca749fb9074ae034acf0e.webp" alt="Atolón Beach Club 2">
+      </div>
+    </div>
+    <button class="slider-btn prev" onclick="cambiarSlide(-1)">‹</button>
+    <button class="slider-btn next" onclick="cambiarSlide(1)">›</button>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+</section>
+
+<!-- IMAGEN GRANDE -->
 <section class="seccion-video-grande">
   <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69e683ac571cca8e9541f60e.webp" alt="Atolón Beach Club Vista">
 </section>
 
-<!-- =========================
-     SECCIÓN ICONOS
-========================== -->
+<!-- ICONOS -->
 <section class="seccion-iconos">
   <div class="icono-servicio">
     <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"></path>
     </svg>
-    <h3>High-End Daypass</h3>
-    <p>A solo 20 minutos de Cartagena</p>
+    <h3 data-i18n="icono1_titulo">High-End Daypass</h3>
+    <p data-i18n="icono1_desc">A solo 20 minutos de Cartagena</p>
   </div>
   <div class="icono-servicio">
     <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M2 20h20M4 20l2-8h12l2 8M12 4v8M8 12l4-8 4 8"></path>
     </svg>
-    <h3>Transporte marítimo incluido</h3>
-    <p>Lancha deportiva de lujo</p>
+    <h3 data-i18n="icono2_titulo">Transporte marítimo incluido</h3>
+    <p data-i18n="icono2_desc">Lancha deportiva de lujo</p>
   </div>
   <div class="icono-servicio">
     <svg viewBox="0 0 24 24" fill="none" stroke="#192542" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect x="2" y="5" width="20" height="14" rx="2"></rect>
       <line x1="2" y1="10" x2="22" y2="10"></line>
     </svg>
-    <h3>Pagos en línea</h3>
-    <p>100% Seguros procesados por Stripe</p>
+    <h3 data-i18n="icono3_titulo">Pagos en línea</h3>
+    <p data-i18n="icono3_desc">100% Seguros procesados por Stripe</p>
   </div>
 </section>
 
-<!-- =========================
-     SECCIÓN PLAYA
-========================== -->
+<!-- PLAYA -->
 <section class="seccion-playa">
   <div class="seccion-playa-texto">
-    <h2>Beach Club en Tierra Bomba</h2>
-    <h3>Pasadía de lujo cerca de Cartagena</h3>
-    <p>Playa privada, servicio exclusivo y una experiencia high-end para desconectar sin irte lejos.</p>
+    <h2 data-i18n="playa_titulo">Beach Club en Tierra Bomba</h2>
+    <h3 data-i18n="playa_subtitulo">Pasadía de lujo cerca de Cartagena</h3>
+    <p data-i18n="playa_desc">Playa privada, servicio exclusivo y una experiencia high-end para desconectar sin irte lejos.</p>
     <ul>
-      <li><strong>Traslado en lancha:</strong> menos tiempo, más mar.</li>
-      <li><strong>Reserva online</strong> fácil y seguro.</li>
-      <li><strong>Opciones de pasadía</strong> para pareja, amigos o grupos.</li>
+      <li data-i18n="playa_li1"><strong>Traslado en lancha:</strong> menos tiempo, más mar.</li>
+      <li data-i18n="playa_li2"><strong>Reserva online</strong> fácil y seguro.</li>
+      <li data-i18n="playa_li3"><strong>Opciones de pasadía</strong> para pareja, amigos o grupos.</li>
     </ul>
-    <button class="btn-reservar-outline" onclick="irAMotorReserva()">Reservar Pasadía</button>
+    <button class="btn-reservar-outline" onclick="irAMotorReserva()" data-i18n="btn_reservar_playa">Reservar Pasadía</button>
   </div>
   <div class="seccion-playa-imagen">
     <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69fca7497285562721776aaa.webp" alt="Vista aérea de playa">
   </div>
 </section>
 
-<!-- =========================
-     SECCIÓN 3 COLUMNAS
-========================== -->
+<!-- 3 COLUMNAS -->
 <section class="seccion-3-columnas">
-  <h2>Diseñado para vivir el mar con estándar high-end</h2>
-  <p>Un <strong>beach club</strong> donde cada espacio está pensado para que el plan sea simple: <em>llegar, instalarte, comer bien y quedarte el tiempo que quieras.</em></p>
+  <h2 data-i18n="col3_titulo">Diseñado para vivir el mar con estándar high-end</h2>
+  <p data-i18n="col3_desc">Un <strong>beach club</strong> donde cada espacio está pensado para que el plan sea simple: <em>llegar, instalarte, comer bien y quedarte el tiempo que quieras.</em></p>
   
   <div class="grid-3-columnas">
     <div class="columna-imagen">
       <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" alt="Espacios">
       <div class="columna-texto">
-        <h3>Espacios</h3>
-        <p>Playa + zonas de descanso + piscina.</p>
+        <h3 data-i18n="col1_titulo">Espacios</h3>
+        <p data-i18n="col1_desc">Playa + zonas de descanso + piscina.</p>
       </div>
     </div>
     <div class="columna-imagen">
       <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Gastronomía">
       <div class="columna-texto">
-        <h3>Gastronomía</h3>
-        <p>Carta curada para un día completo.</p>
+        <h3 data-i18n="col2_titulo">Gastronomía</h3>
+        <p data-i18n="col2_desc">Carta curada para un día completo.</p>
       </div>
     </div>
     <div class="columna-imagen">
       <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" alt="Música">
       <div class="columna-texto">
-        <h3>Música</h3>
-        <p>Eventos a otro nivel.</p>
+        <h3 data-i18n="col3_titulo_col">Música</h3>
+        <p data-i18n="col3_desc_col">Eventos a otro nivel.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- =========================
-     SECCIÓN FINAL
-========================== -->
+<!-- FINAL -->
 <section class="seccion-final">
   <div class="seccion-final-texto">
-    <h2>El mar, la isla y un buen brindis</h2>
-    <p>Nuestra cocina celebra el Caribe con platos que resaltan lo mejor del mar y la tradición costeña, en <strong>un ambiente perfecto para desconectar</strong>. <em>Completa la experiencia con cocteles tropicales y refrescantes.</em></p>
-    <a href="#" class="btn-reservar-outline">Conoce nuestra carta</a>
+    <h2 data-i18n="final_titulo">El mar, la isla y un buen brindis</h2>
+    <p data-i18n="final_desc">Nuestra cocina celebra el Caribe con platos que resaltan lo mejor del mar y la tradición costeña, en <strong>un ambiente perfecto para desconectar</strong>. <em>Completa la experiencia con cocteles tropicales y refrescantes.</em></p>
+    <a href="#" class="btn-reservar-outline" data-i18n="btn_carta">Conoce nuestra carta</a>
   </div>
   <div class="seccion-final-imagen">
     <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt="Plato de comida">
   </div>
 </section>
 
-<!-- =========================
-     FOOTER
-========================== -->
+<!-- FOOTER -->
 <footer class="footer-principal">
   <div class="footer-contenido">
     
     <div class="footer-logo-seccion">
       <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
-      <p>Tierra Bomba, Cartagena</p>
+      <p data-i18n="footer_ubicacion">Tierra Bomba, Cartagena</p>
     </div>
 
     <div class="footer-columna">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <p>+57 300 3194 215</p>
       <p>info@atolonbeachclub.com</p>
       <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">
-        ✉️ Escríbenos
+        ✉️ <span data-i18n="footer_escribenos">Escríbenos</span>
       </a>
     </div>
 
     <div class="footer-columna">
-      <h4>Links Útiles</h4>
+      <h4 data-i18n="footer_links">Links Útiles</h4>
       <ul>
-        <li><a href="#">Pasadías</a></li>
-        <li><a href="#">Eventos</a></li>
-        <li><a href="#">Galería</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#" data-i18n="footer_pasadias">Pasadías</a></li>
+        <li><a href="#" data-i18n="footer_eventos">Eventos</a></li>
+        <li><a href="#" data-i18n="footer_galeria">Galería</a></li>
+        <li><a href="#" data-i18n="footer_nosotros">Nosotros</a></li>
+        <li><a href="#" data-i18n="footer_contacto_link">Contacto</a></li>
+        <li><a href="#" data-i18n="footer_blog">Blog</a></li>
       </ul>
     </div>
 
     <div class="footer-columna">
-      <h4>Legal</h4>
+      <h4 data-i18n="footer_legal">Legal</h4>
       <ul>
-        <li><a href="#">Políticas de cancelación</a></li>
-        <li><a href="#">Políticas de privacidad</a></li>
-        <li><a href="#">Aliados Comerciales</a></li>
-        <li><a href="#">PQRs</a></li>
+        <li><a href="#" data-i18n="footer_cancelacion">Políticas de cancelación</a></li>
+        <li><a href="#" data-i18n="footer_privacidad">Políticas de privacidad</a></li>
+        <li><a href="#" data-i18n="footer_aliados">Aliados Comerciales</a></li>
+        <li><a href="#" data-i18n="footer_pqrs">PQRs</a></li>
       </ul>
       
       <div style="margin-top: 30px;">
-        <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
+        <p><em data-i18n="footer_horarios">Los horarios de transporte están sujetos a clima y operación</em></p>
         <div class="footer-redes">
           <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>
           <a href="https://www.instagram.com/atoloncartegena/" target="_blank">📷</a>
@@ -1092,23 +1309,437 @@ nav a {
   </div>
 
   <div class="footer-copyright">
-    <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
+    <p data-i18n="footer_copyright">Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
   </div>
 </footer>
 
 <script>
-// Redirige a la página del motor de reservas
+// =========================
+// DICCIONARIO DE TRADUCCIONES
+// =========================
+const translations = {
+  es: {
+    nav_pasadias: "PASADÍAS⌄", nav_eventos: "EVENTOS", nav_galeria: "GALERÍA",
+    hero_bienvenidos: "Bienvenidos al mejor",
+    hero_titulo: "Beach Club de Cartagena",
+    hero_subtitulo: "El lugar para quienes buscan un day-pass de lujo.",
+    hero_descripcion: "Playa privada, servicio exclusivo, música afrobeat y mucho más...",
+    btn_reservar_pasadia: "RESERVAR PASADÍA ☼",
+    titulo_experiencias: "Experiencias Atolón",
+    valor_label: "Valor",
+    vip_b1_titulo: "Transporte en lancha deportiva", vip_b1_desc: "(15-20 min)",
+    vip_b2_titulo: "Cocktail de Bienvenida", vip_b2_desc: "Nuestra mejor selección",
+    vip_b3_titulo: "Almuerzo", vip_b3_desc: "(Plato principal + postre)",
+    vip_b4_titulo: "Cama en playa", vip_b4_desc: "Frente al mar",
+    vip_precio_adultos: "Adultos (+11)", vip_precio_kids: "Atolón Kids (3-11)",
+    btn_reservar_vip: "Reservar VIP",
+    exclusive_minimo: "Mínimo 2 Pax",
+    exclusive_b1_titulo: "Transporte en lancha deportiva", exclusive_b1_desc: "(15-20 min)",
+    exclusive_b2_titulo: "Cocktail de Bienvenida", exclusive_b2_desc: "Nuestra mejor selección",
+    exclusive_b3_titulo: "Almuerzo Premium", exclusive_b3_desc: "Entrada + plato principal + postre",
+    exclusive_b4_titulo: "Cabaña Luxury", exclusive_b4_desc: "Junto a la piscina",
+    exclusive_b5_titulo: "Espumoso", exclusive_b5_desc: "Botella de vino",
+    exclusive_b6_titulo: "Servicio de mayordomo", exclusive_b6_desc: "Personalizado",
+    exclusive_precio_adulto: "Por Adulto",
+    btn_reservar_exclusive: "Reservar Exclusive",
+    experience_minimo: "Mínimo 4 Pax",
+    experience_b1_titulo: "Transporte en lancha deportiva", experience_b1_desc: "(15-20 min)",
+    experience_b2_titulo: "Cocktail de Bienvenida", experience_b2_desc: "Nuestra mejor selección",
+    experience_b3_titulo: "Cabaña Luxury", experience_b3_desc: "Junto a la piscina",
+    experience_b4_titulo: "Servicio de mayordomo", experience_b4_desc: "Premium",
+    experience_b5_titulo: "Todo el valor consumible",
+    experience_precio: "Por persona",
+    btn_reservar_experience: "Reservar Experience",
+    whatsapp_dudas: "¿Tienes dudas? Hablemos por WhatsApp",
+    whatsapp_btn: "WhatsApp 📱",
+    icono1_titulo: "High-End Daypass", icono1_desc: "A solo 20 minutos de Cartagena",
+    icono2_titulo: "Transporte marítimo incluido", icono2_desc: "Lancha deportiva de lujo",
+    icono3_titulo: "Pagos en línea", icono3_desc: "100% Seguros procesados por Stripe",
+    playa_titulo: "Beach Club en Tierra Bomba",
+    playa_subtitulo: "Pasadía de lujo cerca de Cartagena",
+    playa_desc: "Playa privada, servicio exclusivo y una experiencia high-end para desconectar sin irte lejos.",
+    playa_li1: "<strong>Traslado en lancha:</strong> menos tiempo, más mar.",
+    playa_li2: "<strong>Reserva online</strong> fácil y seguro.",
+    playa_li3: "<strong>Opciones de pasadía</strong> para pareja, amigos o grupos.",
+    btn_reservar_playa: "Reservar Pasadía",
+    col3_titulo: "Diseñado para vivir el mar con estándar high-end",
+    col3_desc: "Un <strong>beach club</strong> donde cada espacio está pensado para que el plan sea simple: <em>llegar, instalarte, comer bien y quedarte el tiempo que quieras.</em>",
+    col1_titulo: "Espacios", col1_desc: "Playa + zonas de descanso + piscina.",
+    col2_titulo: "Gastronomía", col2_desc: "Carta curada para un día completo.",
+    col3_titulo_col: "Música", col3_desc_col: "Eventos a otro nivel.",
+    final_titulo: "El mar, la isla y un buen brindis",
+    final_desc: "Nuestra cocina celebra el Caribe con platos que resaltan lo mejor del mar y la tradición costeña, en <strong>un ambiente perfecto para desconectar</strong>. <em>Completa la experiencia con cocteles tropicales y refrescantes.</em>",
+    btn_carta: "Conoce nuestra carta",
+    footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contacto",
+    footer_escribenos: "Escríbenos", footer_links: "Links Útiles",
+    footer_pasadias: "Pasadías", footer_eventos: "Eventos", footer_galeria: "Galería",
+    footer_nosotros: "Nosotros", footer_contacto_link: "Contacto", footer_blog: "Blog",
+    footer_legal: "Legal", footer_cancelacion: "Políticas de cancelación",
+    footer_privacidad: "Políticas de privacidad", footer_aliados: "Aliados Comerciales",
+    footer_pqrs: "PQRs", footer_horarios: "Los horarios de transporte están sujetos a clima y operación",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  },
+  en: {
+    nav_pasadias: "DAY PASSES⌄", nav_eventos: "EVENTS", nav_galeria: "GALLERY",
+    hero_bienvenidos: "Welcome to the best",
+    hero_titulo: "Beach Club in Cartagena",
+    hero_subtitulo: "The place for those seeking a luxury day-pass.",
+    hero_descripcion: "Private beach, exclusive service, afrobeat music and much more...",
+    btn_reservar_pasadia: "BOOK DAY PASS ☼",
+    titulo_experiencias: "Atolón Experiences",
+    valor_label: "Price",
+    vip_b1_titulo: "Sport boat transportation", vip_b1_desc: "(15-20 min)",
+    vip_b2_titulo: "Welcome cocktail", vip_b2_desc: "Our best selection",
+    vip_b3_titulo: "Lunch", vip_b3_desc: "(Main course + dessert)",
+    vip_b4_titulo: "Beach bed", vip_b4_desc: "Beachfront",
+    vip_precio_adultos: "Adults (+11)", vip_precio_kids: "Atolón Kids (3-11)",
+    btn_reservar_vip: "Book VIP",
+    exclusive_minimo: "Minimum 2 guests",
+    exclusive_b1_titulo: "Sport boat transportation", exclusive_b1_desc: "(15-20 min)",
+    exclusive_b2_titulo: "Welcome cocktail", exclusive_b2_desc: "Our best selection",
+    exclusive_b3_titulo: "Premium lunch", exclusive_b3_desc: "Starter + main course + dessert",
+    exclusive_b4_titulo: "Luxury cabin", exclusive_b4_desc: "Next to the pool",
+    exclusive_b5_titulo: "Sparkling wine", exclusive_b5_desc: "Bottle of wine",
+    exclusive_b6_titulo: "Butler service", exclusive_b6_desc: "Personalized",
+    exclusive_precio_adulto: "Per Adult",
+    btn_reservar_exclusive: "Book Exclusive",
+    experience_minimo: "Minimum 4 guests",
+    experience_b1_titulo: "Sport boat transportation", experience_b1_desc: "(15-20 min)",
+    experience_b2_titulo: "Welcome cocktail", experience_b2_desc: "Our best selection",
+    experience_b3_titulo: "Luxury cabin", experience_b3_desc: "Next to the pool",
+    experience_b4_titulo: "Butler service", experience_b4_desc: "Premium",
+    experience_b5_titulo: "Full consumable value",
+    experience_precio: "Per person",
+    btn_reservar_experience: "Book Experience",
+    whatsapp_dudas: "Any questions? Let's talk on WhatsApp",
+    whatsapp_btn: "WhatsApp 📱",
+    icono1_titulo: "High-End Daypass", icono1_desc: "Just 20 minutes from Cartagena",
+    icono2_titulo: "Sea transportation included", icono2_desc: "Luxury sport boat",
+    icono3_titulo: "Online payments", icono3_desc: "100% Secure processed by Stripe",
+    playa_titulo: "Beach Club in Tierra Bomba",
+    playa_subtitulo: "Luxury day pass near Cartagena",
+    playa_desc: "Private beach, exclusive service and a high-end experience to disconnect without going far.",
+    playa_li1: "<strong>Boat transfer:</strong> less time, more sea.",
+    playa_li2: "<strong>Online booking</strong> easy and secure.",
+    playa_li3: "<strong>Day pass options</strong> for couples, friends or groups.",
+    btn_reservar_playa: "Book Day Pass",
+    col3_titulo: "Designed to experience the sea with a high-end standard",
+    col3_desc: "A <strong>beach club</strong> where every space is designed to make the plan simple: <em>arrive, settle in, eat well and stay as long as you want.</em>",
+    col1_titulo: "Spaces", col1_desc: "Beach + rest areas + pool.",
+    col2_titulo: "Gastronomy", col2_desc: "Curated menu for a full day.",
+    col3_titulo_col: "Music", col3_desc_col: "Events at another level.",
+    final_titulo: "The sea, the island and a good toast",
+    final_desc: "Our cuisine celebrates the Caribbean with dishes that highlight the best of the sea and coastal tradition, in <strong>a perfect atmosphere to disconnect</strong>. <em>Complete the experience with tropical and refreshing cocktails.</em>",
+    btn_carta: "See our menu",
+    footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contact",
+    footer_escribenos: "Write to us", footer_links: "Useful Links",
+    footer_pasadias: "Day Passes", footer_eventos: "Events", footer_galeria: "Gallery",
+    footer_nosotros: "About us", footer_contacto_link: "Contact", footer_blog: "Blog",
+    footer_legal: "Legal", footer_cancelacion: "Cancellation policies",
+    footer_privacidad: "Privacy policies", footer_aliados: "Commercial partners",
+    footer_pqrs: "PQRs", footer_horarios: "Transportation schedules are subject to weather and operation",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  },
+  pt: {
+    nav_pasadias: "DAY PASSES⌄", nav_eventos: "EVENTOS", nav_galeria: "GALERIA",
+    hero_bienvenidos: "Bem-vindos ao melhor",
+    hero_titulo: "Beach Club de Cartagena",
+    hero_subtitulo: "O lugar para quem busca um day-pass de luxo.",
+    hero_descripcion: "Praia privada, serviço exclusivo, música afrobeat e muito mais...",
+    btn_reservar_pasadia: "RESERVAR DAY PASS ☼",
+    titulo_experiencias: "Experiências Atolón",
+    valor_label: "Valor",
+    vip_b1_titulo: "Transporte em lancha esportiva", vip_b1_desc: "(15-20 min)",
+    vip_b2_titulo: "Coquetel de boas-vindas", vip_b2_desc: "Nossa melhor seleção",
+    vip_b3_titulo: "Almoço", vip_b3_desc: "(Prato principal + sobremesa)",
+    vip_b4_titulo: "Cama de praia", vip_b4_desc: "Frente ao mar",
+    vip_precio_adultos: "Adultos (+11)", vip_precio_kids: "Atolón Kids (3-11)",
+    btn_reservar_vip: "Reservar VIP",
+    exclusive_minimo: "Mínimo 2 pessoas",
+    exclusive_b1_titulo: "Transporte em lancha esportiva", exclusive_b1_desc: "(15-20 min)",
+    exclusive_b2_titulo: "Coquetel de boas-vindas", exclusive_b2_desc: "Nossa melhor seleção",
+    exclusive_b3_titulo: "Almoço Premium", exclusive_b3_desc: "Entrada + prato principal + sobremesa",
+    exclusive_b4_titulo: "Cabana de luxo", exclusive_b4_desc: "Ao lado da piscina",
+    exclusive_b5_titulo: "Espumante", exclusive_b5_desc: "Garrafa de vinho",
+    exclusive_b6_titulo: "Serviço de mordomo", exclusive_b6_desc: "Personalizado",
+    exclusive_precio_adulto: "Por adulto",
+    btn_reservar_exclusive: "Reservar Exclusive",
+    experience_minimo: "Mínimo 4 pessoas",
+    experience_b1_titulo: "Transporte em lancha esportiva", experience_b1_desc: "(15-20 min)",
+    experience_b2_titulo: "Coquetel de boas-vindas", experience_b2_desc: "Nossa melhor seleção",
+    experience_b3_titulo: "Cabana de luxo", experience_b3_desc: "Ao lado da piscina",
+    experience_b4_titulo: "Serviço de mordomo", experience_b4_desc: "Premium",
+    experience_b5_titulo: "Todo o valor consumível",
+    experience_precio: "Por pessoa",
+    btn_reservar_experience: "Reservar Experience",
+    whatsapp_dudas: "Alguma dúvida? Vamos conversar no WhatsApp",
+    whatsapp_btn: "WhatsApp 📱",
+    icono1_titulo: "High-End Daypass", icono1_desc: "A apenas 20 minutos de Cartagena",
+    icono2_titulo: "Transporte marítimo incluído", icono2_desc: "Lancha esportiva de luxo",
+    icono3_titulo: "Pagamentos online", icono3_desc: "100% Seguros processados pela Stripe",
+    playa_titulo: "Beach Club em Tierra Bomba",
+    playa_subtitulo: "Passeio de luxo perto de Cartagena",
+    playa_desc: "Praia privada, serviço exclusivo e uma experiência high-end para desconectar sem ir longe.",
+    playa_li1: "<strong>Transfer de lancha:</strong> menos tempo, mais mar.",
+    playa_li2: "<strong>Reserva online</strong> fácil e seguro.",
+    playa_li3: "<strong>Opções de day pass</strong> para casais, amigos ou grupos.",
+    btn_reservar_playa: "Reservar Day Pass",
+    col3_titulo: "Projetado para viver o mar com padrão high-end",
+    col3_desc: "Um <strong>beach club</strong> onde cada espaço foi pensado para que o plano seja simples: <em>chegar, instalar-se, comer bem e ficar o tempo que quiser.</em>",
+    col1_titulo: "Espaços", col1_desc: "Praia + áreas de descanso + piscina.",
+    col2_titulo: "Gastronomia", col2_desc: "Menu curado para um dia completo.",
+    col3_titulo_col: "Música", col3_desc_col: "Eventos em outro nível.",
+    final_titulo: "O mar, a ilha e um bom brinde",
+    final_desc: "Nossa cozinha celebra o Caribe com pratos que destacam o melhor do mar e da tradição costeira, em <strong>um ambiente perfeito para desconectar</strong>. <em>Complete a experiência com coquetéis tropicais e refrescantes.</em>",
+    btn_carta: "Conheça nosso menu",
+    footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contato",
+    footer_escribenos: "Escreva-nos", footer_links: "Links Úteis",
+    footer_pasadias: "Day Passes", footer_eventos: "Eventos", footer_galeria: "Galeria",
+    footer_nosotros: "Sobre nós", footer_contacto_link: "Contato", footer_blog: "Blog",
+    footer_legal: "Legal", footer_cancelacion: "Políticas de cancelamento",
+    footer_privacidad: "Políticas de privacidade", footer_aliados: "Parceiros comerciais",
+    footer_pqrs: "PQRs", footer_horarios: "Os horários de transporte estão sujeitos ao clima e à operação",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  },
+  fr: {
+    nav_pasadias: "DAY PASS⌄", nav_eventos: "ÉVÉNEMENTS", nav_galeria: "GALERIE",
+    hero_bienvenidos: "Bienvenue au meilleur",
+    hero_titulo: "Beach Club de Carthagène",
+    hero_subtitulo: "L'endroit pour ceux qui cherchent un day-pass de luxe.",
+    hero_descripcion: "Plage privée, service exclusif, musique afrobeat et bien plus...",
+    btn_reservar_pasadia: "RÉSERVER DAY PASS ☼",
+    titulo_experiencias: "Expériences Atolón",
+    valor_label: "Prix",
+    vip_b1_titulo: "Transport en bateau sportif", vip_b1_desc: "(15-20 min)",
+    vip_b2_titulo: "Cocktail de bienvenue", vip_b2_desc: "Notre meilleure sélection",
+    vip_b3_titulo: "Déjeuner", vip_b3_desc: "(Plat principal + dessert)",
+    vip_b4_titulo: "Lit de plage", vip_b4_desc: "Face à la mer",
+    vip_precio_adultos: "Adultes (+11)", vip_precio_kids: "Atolón Kids (3-11)",
+    btn_reservar_vip: "Réserver VIP",
+    exclusive_minimo: "Minimum 2 personnes",
+    exclusive_b1_titulo: "Transport en bateau sportif", exclusive_b1_desc: "(15-20 min)",
+    exclusive_b2_titulo: "Cocktail de bienvenue", exclusive_b2_desc: "Notre meilleure sélection",
+    exclusive_b3_titulo: "Déjeuner Premium", exclusive_b3_desc: "Entrée + plat principal + dessert",
+    exclusive_b4_titulo: "Cabane de luxe", exclusive_b4_desc: "Près de la piscine",
+    exclusive_b5_titulo: "Mousseux", exclusive_b5_desc: "Bouteille de vin",
+    exclusive_b6_titulo: "Service de majordome", exclusive_b6_desc: "Personnalisé",
+    exclusive_precio_adulto: "Par adulte",
+    btn_reservar_exclusive: "Réserver Exclusive",
+    experience_minimo: "Minimum 4 personnes",
+    experience_b1_titulo: "Transport en bateau sportif", experience_b1_desc: "(15-20 min)",
+    experience_b2_titulo: "Cocktail de bienvenue", experience_b2_desc: "Notre meilleure sélection",
+    experience_b3_titulo: "Cabane de luxe", experience_b3_desc: "Près de la piscine",
+    experience_b4_titulo: "Service de majordome", experience_b4_desc: "Premium",
+    experience_b5_titulo: "Toute la valeur consommable",
+    experience_precio: "Par personne",
+    btn_reservar_experience: "Réserver Experience",
+    whatsapp_dudas: "Des questions ? Parlons sur WhatsApp",
+    whatsapp_btn: "WhatsApp 📱",
+    icono1_titulo: "High-End Daypass", icono1_desc: "À seulement 20 minutes de Carthagène",
+    icono2_titulo: "Transport maritime inclus", icono2_desc: "Bateau sportif de luxe",
+    icono3_titulo: "Paiements en ligne", icono3_desc: "100% Sécurisés traités par Stripe",
+    playa_titulo: "Beach Club à Tierra Bomba",
+    playa_subtitulo: "Day pass de luxe près de Carthagène",
+    playa_desc: "Plage privée, service exclusif et une expérience haut de gamme pour déconnecter sans aller loin.",
+    playa_li1: "<strong>Transfert en bateau :</strong> moins de temps, plus de mer.",
+    playa_li2: "<strong>Réservation en ligne</strong> facile et sécurisée.",
+    playa_li3: "<strong>Options de day pass</strong> pour couple, amis ou groupes.",
+    btn_reservar_playa: "Réserver Day Pass",
+    col3_titulo: "Conçu pour vivre la mer avec un standard haut de gamme",
+    col3_desc: "Un <strong>beach club</strong> où chaque espace est pensé pour que le plan soit simple : <em>arriver, s'installer, bien manger et rester aussi longtemps que vous le souhaitez.</em>",
+    col1_titulo: "Espaces", col1_desc: "Plage + zones de repos + piscine.",
+    col2_titulo: "Gastronomie", col2_desc: "Carte soignée pour une journée complète.",
+    col3_titulo_col: "Musique", col3_desc_col: "Événements à un autre niveau.",
+    final_titulo: "La mer, l'île et un bon toast",
+    final_desc: "Notre cuisine célèbre les Caraïbes avec des plats qui mettent en valeur le meilleur de la mer et de la tradition côtière, dans <strong>une ambiance parfaite pour déconnecter</strong>. <em>Complétez l'expérience avec des cocktails tropicaux et rafraîchissants.</em>",
+    btn_carta: "Voir notre carte",
+    footer_ubicacion: "Tierra Bomba, Carthagène", footer_contacto: "Contact",
+    footer_escribenos: "Écrivez-nous", footer_links: "Liens utiles",
+    footer_pasadias: "Day Pass", footer_eventos: "Événements", footer_galeria: "Galerie",
+    footer_nosotros: "À propos", footer_contacto_link: "Contact", footer_blog: "Blog",
+    footer_legal: "Mentions légales", footer_cancelacion: "Politiques d'annulation",
+    footer_privacidad: "Politiques de confidentialité", footer_aliados: "Partenaires commerciaux",
+    footer_pqrs: "PQRs", footer_horarios: "Les horaires de transport sont soumis à la météo et à l'exploitation",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  },
+  it: {
+    nav_pasadias: "DAY PASS⌄", nav_eventos: "EVENTI", nav_galeria: "GALLERIA",
+    hero_bienvenidos: "Benvenuti nel miglior",
+    hero_titulo: "Beach Club di Cartagena",
+    hero_subtitulo: "Il posto per chi cerca un day-pass di lusso.",
+    hero_descripcion: "Spiaggia privata, servizio esclusivo, musica afrobeat e molto altro...",
+    btn_reservar_pasadia: "PRENOTA DAY PASS ☼",
+    titulo_experiencias: "Esperienze Atolón",
+    valor_label: "Prezzo",
+    vip_b1_titulo: "Trasporto in barca sportiva", vip_b1_desc: "(15-20 min)",
+    vip_b2_titulo: "Cocktail di benvenuto", vip_b2_desc: "La nostra migliore selezione",
+    vip_b3_titulo: "Pranzo", vip_b3_desc: "(Piatto principale + dessert)",
+    vip_b4_titulo: "Letto da spiaggia", vip_b4_desc: "Fronte mare",
+    vip_precio_adultos: "Adulti (+11)", vip_precio_kids: "Atolón Kids (3-11)",
+    btn_reservar_vip: "Prenota VIP",
+    exclusive_minimo: "Minimo 2 persone",
+    exclusive_b1_titulo: "Trasporto in barca sportiva", exclusive_b1_desc: "(15-20 min)",
+    exclusive_b2_titulo: "Cocktail di benvenuto", exclusive_b2_desc: "La nostra migliore selezione",
+    exclusive_b3_titulo: "Pranzo Premium", exclusive_b3_desc: "Antipasto + piatto principale + dessert",
+    exclusive_b4_titulo: "Cabina di lusso", exclusive_b4_desc: "Accanto alla piscina",
+    exclusive_b5_titulo: "Spumante", exclusive_b5_desc: "Bottiglia di vino",
+    exclusive_b6_titulo: "Servizio maggiordomo", exclusive_b6_desc: "Personalizzato",
+    exclusive_precio_adulto: "Per adulto",
+    btn_reservar_exclusive: "Prenota Exclusive",
+    experience_minimo: "Minimo 4 persone",
+    experience_b1_titulo: "Trasporto in barca sportiva", experience_b1_desc: "(15-20 min)",
+    experience_b2_titulo: "Cocktail di benvenuto", experience_b2_desc: "La nostra migliore selezione",
+    experience_b3_titulo: "Cabina di lusso", experience_b3_desc: "Accanto alla piscina",
+    experience_b4_titulo: "Servizio maggiordomo", experience_b4_desc: "Premium",
+    experience_b5_titulo: "Tutto il valore consumabile",
+    experience_precio: "A persona",
+    btn_reservar_experience: "Prenota Experience",
+    whatsapp_dudas: "Hai domande? Parliamo su WhatsApp",
+    whatsapp_btn: "WhatsApp 📱",
+    icono1_titulo: "High-End Daypass", icono1_desc: "A soli 20 minuti da Cartagena",
+    icono2_titulo: "Trasporto marittimo incluso", icono2_desc: "Barca sportiva di lusso",
+    icono3_titulo: "Pagamenti online", icono3_desc: "100% Sicuri elaborati da Stripe",
+    playa_titulo: "Beach Club a Tierra Bomba",
+    playa_subtitulo: "Day pass di lusso vicino a Cartagena",
+    playa_desc: "Spiaggia privata, servizio esclusivo e un'esperienza high-end per disconnettersi senza andare lontano.",
+    playa_li1: "<strong>Trasferimento in barca:</strong> meno tempo, più mare.",
+    playa_li2: "<strong>Prenotazione online</strong> facile e sicura.",
+    playa_li3: "<strong>Opzioni day pass</strong> per coppie, amici o gruppi.",
+    btn_reservar_playa: "Prenota Day Pass",
+    col3_titulo: "Progettato per vivere il mare con standard high-end",
+    col3_desc: "Un <strong>beach club</strong> dove ogni spazio è pensato per rendere il piano semplice: <em>arrivare, sistemarsi, mangiare bene e restare quanto vuoi.</em>",
+    col1_titulo: "Spazi", col1_desc: "Spiaggia + aree relax + piscina.",
+    col2_titulo: "Gastronomia", col2_desc: "Menu curato per una giornata intera.",
+    col3_titulo_col: "Musica", col3_desc_col: "Eventi a un altro livello.",
+    final_titulo: "Il mare, l'isola e un buon brindisi",
+    final_desc: "La nostra cucina celebra i Caraibi con piatti che esaltano il meglio del mare e della tradizione costiera, in <strong>un'atmosfera perfetta per disconnettersi</strong>. <em>Completa l'esperienza con cocktail tropicali e rinfrescanti.</em>",
+    btn_carta: "Scopri il nostro menu",
+    footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contatto",
+    footer_escribenos: "Scrivici", footer_links: "Link utili",
+    footer_pasadias: "Day Pass", footer_eventos: "Eventi", footer_galeria: "Galleria",
+    footer_nosotros: "Chi siamo", footer_contacto_link: "Contatto", footer_blog: "Blog",
+    footer_legal: "Legale", footer_cancelacion: "Politiche di cancellazione",
+    footer_privacidad: "Politiche sulla privacy", footer_aliados: "Partner commerciali",
+    footer_pqrs: "PQRs", footer_horarios: "Gli orari di trasporto sono soggetti a meteo e operatività",
+    footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+  }
+};
+
+let idiomaActual = localStorage.getItem('idioma') || 'es';
+
+// =========================
+// APLICAR TRADUCCIONES
+// =========================
+function aplicarTraducciones(lang) {
+  idiomaActual = lang;
+  localStorage.setItem('idioma', lang);
+  const dict = translations[lang] || translations.es;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  const flagMap = {
+    es: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg',
+    en: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg',
+    pt: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg',
+    fr: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg',
+    it: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg'
+  };
+  document.getElementById('banderaActual').src = flagMap[lang] || flagMap.es;
+  document.getElementById('idiomaActual').textContent = lang.toUpperCase();
+
+  document.querySelectorAll('#languageDropdown li').forEach(li => {
+    li.classList.toggle('active', li.dataset.lang === lang);
+  });
+}
+
+// =========================
+// SELECTOR DE IDIOMA
+// =========================
+function toggleLanguageDropdown(event) {
+  event.stopPropagation();
+  document.getElementById('languageSelector').classList.toggle('open');
+}
+
+document.querySelectorAll('#languageDropdown li').forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.stopPropagation();
+    aplicarTraducciones(this.dataset.lang);
+    document.getElementById('languageSelector').classList.remove('open');
+  });
+});
+
+document.addEventListener('click', function() {
+  document.getElementById('languageSelector').classList.remove('open');
+});
+
+// =========================
+// REDIRIGIR AL MOTOR DE RESERVA
+// =========================
 function irAMotorReserva() {
   window.location.href = "motor-reserva.html";
 }
 
-// Asignar el evento a todos los botones "Reservar" de las tarjetas
 document.querySelectorAll(".reservar").forEach(boton => {
   boton.addEventListener("click", evento => {
     evento.preventDefault();
     irAMotorReserva();
   });
 });
+
+// =========================
+// SLIDER
+// =========================
+let slideActual = 0;
+const slides = document.querySelectorAll('.slider-slide');
+const track = document.getElementById('sliderTrack');
+const dotsContainer = document.getElementById('sliderDots');
+
+// Crear los dots dinámicamente
+slides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.addEventListener('click', () => irASlide(i));
+  dotsContainer.appendChild(dot);
+});
+
+function actualizarSlider() {
+  track.style.transform = `translateX(-${slideActual * 100}%)`;
+  document.querySelectorAll('#sliderDots button').forEach((dot, i) => {
+    dot.classList.toggle('active', i === slideActual);
+  });
+}
+
+function cambiarSlide(dir) {
+  slideActual += dir;
+  if (slideActual < 0) slideActual = slides.length - 1;
+  if (slideActual >= slides.length) slideActual = 0;
+  actualizarSlider();
+}
+
+function irASlide(i) {
+  slideActual = i;
+  actualizarSlider();
+}
+
+// Autoplay
+let sliderInterval = setInterval(() => cambiarSlide(1), 5000);
+
+// Pausar al pasar el mouse
+document.getElementById('slider').addEventListener('mouseenter', () => {
+  clearInterval(sliderInterval);
+});
+document.getElementById('slider').addEventListener('mouseleave', () => {
+  sliderInterval = setInterval(() => cambiarSlide(1), 5000);
+});
+
+actualizarSlider();
+
+// =========================
+// INICIALIZAR
+// =========================
+aplicarTraducciones(idiomaActual);
 </script>
 
 </body>

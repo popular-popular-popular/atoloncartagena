@@ -6,11 +6,7 @@
 <title>Atolón Beach Club Cartagena</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --navy: #192542;
@@ -48,23 +44,10 @@ header {
   text-decoration: none;
   color: var(--navy);
 }
+.logo small { display: block; font-size: 8px; }
 
-.logo small {
-  display: block;
-  font-size: 8px;
-}
-
-nav {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--navy);
-  font-size: 12px;
-}
+nav { display: flex; gap: 28px; align-items: center; }
+nav a { text-decoration: none; color: var(--navy); font-size: 12px; }
 
 /* =========================
    SELECTOR DE IDIOMA
@@ -86,18 +69,10 @@ nav a {
   user-select: none;
 }
 .language-selector .bandera {
-  width: 20px;
-  height: 14px;
-  object-fit: cover;
-  border-radius: 2px;
-  display: inline-block;
-  vertical-align: middle;
+  width: 20px; height: 14px; object-fit: cover;
+  border-radius: 2px; display: inline-block; vertical-align: middle;
 }
-.language-selector .arrow {
-  font-size: 10px;
-  margin-left: 4px;
-  transition: transform 0.2s;
-}
+.language-selector .arrow { font-size: 10px; margin-left: 4px; transition: transform 0.2s; }
 .language-selector.open .arrow { transform: rotate(180deg); }
 .language-dropdown {
   display: none;
@@ -116,13 +91,11 @@ nav a {
   transition: background 0.15s;
 }
 .language-dropdown li:hover { background: #f0f4f8; }
-.language-dropdown li img {
-  width: 22px; height: 15px; object-fit: cover; border-radius: 2px;
-}
+.language-dropdown li img { width: 22px; height: 15px; object-fit: cover; border-radius: 2px; }
 .language-dropdown li.active { background: #eaf2f8; font-weight: bold; }
 
 /* =========================
-   HERO CON VIDEO DE FONDO
+   HERO CON VIDEO
 ========================== */
 .hero {
   height: 440px;
@@ -135,57 +108,30 @@ nav a {
   color: white;
   padding: 20px;
 }
-
 .hero-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  top: 50%; left: 50%;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto;
   transform: translate(-50%, -50%);
   object-fit: cover;
   z-index: 1;
 }
-
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.45);
   z-index: 2;
 }
-
-.hero-content {
-  position: relative;
-  z-index: 3;
-}
-
-.hero h1 {
-  font-size: clamp(30px, 5vw, 48px);
-  margin: 10px 0;
-}
-
-.hero p {
-  line-height: 1.7;
-}
+.hero-content { position: relative; z-index: 3; }
+.hero h1 { font-size: clamp(30px, 5vw, 48px); margin: 10px 0; }
+.hero p { line-height: 1.7; }
 
 /* =========================
-   RESTO DE SECCIONES
+   TARJETAS
 ========================== */
-.experiencias {
-  padding: 35px 6% 80px;
-}
-
-.titulo {
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 35px;
-}
-
+.experiencias { padding: 35px 6% 80px; }
+.titulo { text-align: center; font-size: 32px; margin-bottom: 35px; }
 .tarjetas {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -193,7 +139,6 @@ nav a {
   max-width: 1450px;
   margin: auto;
 }
-
 .tarjeta {
   padding: 40px 30px 30px;
   border-radius: 16px;
@@ -201,22 +146,15 @@ nav a {
   flex-direction: column;
   transition: .3s;
 }
-
-.tarjeta:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px #0002;
-}
-
+.tarjeta:hover { transform: translateY(-5px); box-shadow: 0 10px 25px #0002; }
 .vip { background: var(--beige); }
 .exclusive { background: var(--pink); }
 .experience { background: var(--blue); }
-
 .tarjeta h2 {
   font: italic 34px Georgia, serif;
   text-align: center;
   margin-bottom: 8px;
 }
-
 .minimo {
   text-align: center;
   font-size: 14px;
@@ -224,7 +162,6 @@ nav a {
   min-height: 28px;
   margin-bottom: 20px;
 }
-
 .beneficio {
   display: grid;
   grid-template-columns: 38px 1fr;
@@ -233,7 +170,9 @@ nav a {
   align-items: flex-start;
 }
 
-/* Iconos SVG originales */
+/* =========================
+   ICONOS ORIGINALES (SVG)
+========================== */
 .icono {
   width: 32px;
   height: 32px;
@@ -241,6 +180,12 @@ nav a {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+.icono img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 .icono svg {
   width: 100%;
@@ -252,16 +197,8 @@ nav a {
   stroke-linejoin: round;
 }
 
-.beneficio h3 {
-  font-size: 15px;
-  margin-bottom: 5px;
-  line-height: 1.4;
-}
-
-.beneficio p {
-  font-size: 13px;
-  line-height: 1.5;
-}
+.beneficio h3 { font-size: 15px; margin-bottom: 5px; line-height: 1.4; }
+.beneficio p { font-size: 13px; line-height: 1.5; }
 
 .precio {
   border-top: 1px solid #19254299;
@@ -269,21 +206,9 @@ nav a {
   margin-top: 8px;
   margin-bottom: 22px;
 }
-
-.precio h3 {
-  margin-bottom: 8px;
-}
-
-.valor {
-  font-size: 21px;
-  font-weight: bold;
-  margin: 8px 0 3px;
-}
-
-.precio p {
-  font-size: 13px;
-  margin-bottom: 6px;
-}
+.precio h3 { margin-bottom: 8px; }
+.valor { font-size: 21px; font-weight: bold; margin: 8px 0 3px; }
+.precio p { font-size: 13px; margin-bottom: 6px; }
 
 .reservar {
   display: block;
@@ -297,26 +222,13 @@ nav a {
   font-weight: bold;
   transition: .3s;
 }
-
-.reservar:hover {
-  background: var(--navy);
-  color: white;
-}
+.reservar:hover { background: var(--navy); color: white; }
 
 /* =========================
-   SECCIONES EXTRAS
+   WHATSAPP
 ========================== */
-.seccion-whatsapp {
-  text-align: center;
-  padding: 60px 20px 40px;
-}
-
-.seccion-whatsapp p {
-  font-style: italic;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
+.seccion-whatsapp { text-align: center; padding: 60px 20px 40px; }
+.seccion-whatsapp p { font-style: italic; font-size: 18px; margin-bottom: 20px; }
 .btn-whatsapp-grande {
   display: inline-flex;
   flex-direction: column;
@@ -329,11 +241,7 @@ nav a {
   font-weight: bold;
   transition: .3s;
 }
-
-.btn-whatsapp-grande:hover {
-  background: #2a3b5c;
-}
-
+.btn-whatsapp-grande:hover { background: #2a3b5c; }
 .btn-whatsapp-grande span {
   font-size: 12px;
   font-weight: normal;
@@ -362,16 +270,8 @@ nav a {
   transition: transform 0.5s ease-in-out;
   height: 500px;
 }
-.slider-slide {
-  min-width: 100%;
-  height: 100%;
-}
-.slider-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+.slider-slide { min-width: 100%; height: 100%; }
+.slider-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .slider-btn {
   position: absolute;
   top: 50%;
@@ -411,19 +311,16 @@ nav a {
   cursor: pointer;
   transition: background 0.2s;
 }
-.slider-dots button.active {
-  background: white;
-}
+.slider-dots button.active { background: white; }
 
 /* =========================
-   SECCIÓN IMAGEN GRANDE (se mantiene para otras imágenes)
+   IMAGEN GRANDE
 ========================== */
 .seccion-video-grande {
   padding: 20px 6% 60px;
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .seccion-video-grande img {
   width: 100%;
   height: auto;
@@ -431,6 +328,9 @@ nav a {
   display: block;
 }
 
+/* =========================
+   ICONOS SERVICIOS
+========================== */
 .seccion-iconos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -440,13 +340,11 @@ nav a {
   margin: 0 auto;
   text-align: center;
 }
-
 .icono-servicio {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .icono-servicio img,
 .icono-servicio svg {
   width: 60px;
@@ -454,18 +352,12 @@ nav a {
   margin-bottom: 15px;
   object-fit: contain;
 }
+.icono-servicio h3 { font-size: 18px; margin-bottom: 8px; }
+.icono-servicio p { font-size: 14px; color: #555; line-height: 1.5; }
 
-.icono-servicio h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
-.icono-servicio p {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.5;
-}
-
+/* =========================
+   PLAYA
+========================== */
 .seccion-playa {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -475,31 +367,10 @@ nav a {
   max-width: 1200px;
   margin: 0 auto;
 }
-
-.seccion-playa-texto h2 {
-  font-size: 34px;
-  margin-bottom: 10px;
-}
-
-.seccion-playa-texto h3 {
-  font-size: 24px;
-  font-weight: normal;
-  margin-bottom: 20px;
-  color: #444;
-}
-
-.seccion-playa-texto p {
-  font-size: 16px;
-  line-height: 1.7;
-  margin-bottom: 25px;
-  color: #444;
-}
-
-.seccion-playa-texto ul {
-  list-style: none;
-  margin-bottom: 30px;
-}
-
+.seccion-playa-texto h2 { font-size: 34px; margin-bottom: 10px; }
+.seccion-playa-texto h3 { font-size: 24px; font-weight: normal; margin-bottom: 20px; color: #444; }
+.seccion-playa-texto p { font-size: 16px; line-height: 1.7; margin-bottom: 25px; color: #444; }
+.seccion-playa-texto ul { list-style: none; margin-bottom: 30px; }
 .seccion-playa-texto ul li {
   position: relative;
   padding-left: 20px;
@@ -507,7 +378,6 @@ nav a {
   font-size: 15px;
   line-height: 1.6;
 }
-
 .seccion-playa-texto ul li::before {
   content: "•";
   position: absolute;
@@ -516,7 +386,6 @@ nav a {
   font-weight: bold;
   font-size: 20px;
 }
-
 .btn-reservar-outline {
   display: inline-block;
   padding: 12px 30px;
@@ -531,12 +400,7 @@ nav a {
   font-family: inherit;
   font-size: 14px;
 }
-
-.btn-reservar-outline:hover {
-  background: var(--navy);
-  color: white;
-}
-
+.btn-reservar-outline:hover { background: var(--navy); color: white; }
 .seccion-playa-imagen img {
   width: 100%;
   height: auto;
@@ -544,18 +408,11 @@ nav a {
   display: block;
 }
 
-.seccion-3-columnas {
-  padding: 60px 6%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.seccion-3-columnas h2 {
-  text-align: center;
-  font-size: 34px;
-  margin-bottom: 15px;
-}
-
+/* =========================
+   3 COLUMNAS
+========================== */
+.seccion-3-columnas { padding: 60px 6%; max-width: 1200px; margin: 0 auto; }
+.seccion-3-columnas h2 { text-align: center; font-size: 34px; margin-bottom: 15px; }
 .seccion-3-columnas > p {
   text-align: center;
   font-size: 16px;
@@ -563,53 +420,39 @@ nav a {
   margin-bottom: 40px;
   line-height: 1.6;
 }
-
 .grid-3-columnas {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
 .columna-imagen {
   position: relative;
   height: 450px;
   overflow: hidden;
   border-radius: 4px;
 }
-
 .columna-imagen img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
-
-.columna-imagen:hover img {
-  transform: scale(1.05);
-}
-
+.columna-imagen:hover img { transform: scale(1.05); }
 .columna-texto {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 0; left: 0;
   width: 100%;
   padding: 30px 25px;
   background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   color: white;
   text-align: center;
 }
+.columna-texto h3 { font-size: 28px; margin-bottom: 8px; font-weight: normal; }
+.columna-texto p { font-size: 14px; opacity: 0.9; }
 
-.columna-texto h3 {
-  font-size: 28px;
-  margin-bottom: 8px;
-  font-weight: normal;
-}
-
-.columna-texto p {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
+/* =========================
+   FINAL
+========================== */
 .seccion-final {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -619,19 +462,8 @@ nav a {
   max-width: 1200px;
   margin: 0 auto;
 }
-
-.seccion-final-texto h2 {
-  font-size: 34px;
-  margin-bottom: 15px;
-}
-
-.seccion-final-texto p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: #444;
-  margin-bottom: 25px;
-}
-
+.seccion-final-texto h2 { font-size: 34px; margin-bottom: 15px; }
+.seccion-final-texto p { font-size: 16px; line-height: 1.7; color: #444; margin-bottom: 25px; }
 .seccion-final-imagen img {
   width: 100%;
   height: auto;
@@ -647,7 +479,6 @@ nav a {
   color: white;
   padding: 60px 6% 20px;
 }
-
 .footer-contenido {
   max-width: 1200px;
   margin: 0 auto;
@@ -656,21 +487,9 @@ nav a {
   gap: 40px;
   margin-bottom: 40px;
 }
-
-.footer-logo-seccion {
-  text-align: center;
-}
-
-.footer-logo-seccion img {
-  width: 120px;
-  margin-bottom: 15px;
-}
-
-.footer-logo-seccion p {
-  font-size: 14px;
-  opacity: 0.8;
-}
-
+.footer-logo-seccion { text-align: center; }
+.footer-logo-seccion img { width: 120px; margin-bottom: 15px; }
+.footer-logo-seccion p { font-size: 14px; opacity: 0.8; }
 .footer-columna h4 {
   font-size: 14px;
   text-transform: uppercase;
@@ -678,15 +497,8 @@ nav a {
   margin-bottom: 20px;
   color: var(--blue);
 }
-
-.footer-columna ul {
-  list-style: none;
-}
-
-.footer-columna ul li {
-  margin-bottom: 12px;
-}
-
+.footer-columna ul { list-style: none; }
+.footer-columna ul li { margin-bottom: 12px; }
 .footer-columna ul li a {
   color: white;
   text-decoration: none;
@@ -694,18 +506,8 @@ nav a {
   opacity: 0.9;
   transition: opacity 0.3s;
 }
-
-.footer-columna ul li a:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-
-.footer-columna p {
-  font-size: 14px;
-  opacity: 0.9;
-  margin-bottom: 15px;
-}
-
+.footer-columna ul li a:hover { opacity: 1; text-decoration: underline; }
+.footer-columna p { font-size: 14px; opacity: 0.9; margin-bottom: 15px; }
 .btn-escribenos {
   display: inline-flex;
   align-items: center;
@@ -720,17 +522,8 @@ nav a {
   transition: .3s;
   margin-top: 10px;
 }
-
-.btn-escribenos:hover {
-  background: #f0f0f0;
-}
-
-.footer-redes {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
+.btn-escribenos:hover { background: #f0f0f0; }
+.footer-redes { display: flex; gap: 15px; margin-top: 20px; }
 .footer-redes a {
   color: white;
   font-size: 20px;
@@ -738,11 +531,7 @@ nav a {
   opacity: 0.8;
   transition: opacity 0.3s;
 }
-
-.footer-redes a:hover {
-  opacity: 1;
-}
-
+.footer-redes a:hover { opacity: 1; }
 .footer-copyright {
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 20px;
@@ -773,70 +562,23 @@ nav a {
    RESPONSIVE
 ========================== */
 @media (max-width: 900px) {
-  .tarjetas {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .experience {
-    grid-column: 1 / -1;
-  }
-
-  .seccion-iconos {
-    grid-template-columns: 1fr;
-  }
-
-  .seccion-playa,
-  .seccion-final {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .grid-3-columnas {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-contenido {
-    grid-template-columns: 1fr 1fr;
-  }
-
+  .tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .experience { grid-column: 1 / -1; }
+  .seccion-iconos { grid-template-columns: 1fr; }
+  .seccion-playa, .seccion-final { grid-template-columns: 1fr; gap: 30px; }
+  .grid-3-columnas { grid-template-columns: 1fr; }
+  .footer-contenido { grid-template-columns: 1fr 1fr; }
   .slider-track { height: 350px; }
 }
 
 @media (max-width: 600px) {
-  header {
-    height: 75px;
-    padding: 0 15px;
-  }
-
-  .logo {
-    font-size: 16px;
-    padding: 6px;
-  }
-
-  .logo small {
-    font-size: 7px;
-  }
-
-  nav > a {
-    display: none;
-  }
-
-  .hero {
-    height: 100vh;
-    padding: 20px 15px;
-  }
-
-  .hero h1 {
-    font-size: 42px;
-    line-height: 1.1;
-    margin: 15px 0;
-  }
-
-  .hero p {
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
+  header { height: 75px; padding: 0 15px; }
+  .logo { font-size: 16px; padding: 6px; }
+  .logo small { font-size: 7px; }
+  nav > a { display: none; }
+  .hero { height: 100vh; padding: 20px 15px; }
+  .hero h1 { font-size: 42px; line-height: 1.1; margin: 15px 0; }
+  .hero p { font-size: 15px; line-height: 1.6; }
   .boton-flotante {
     left: 20px;
     bottom: 30px;
@@ -844,34 +586,12 @@ nav a {
     font-size: 13px;
     border-radius: 12px;
   }
-
-  .tarjetas {
-    grid-template-columns: 1fr;
-  }
-
-  .experience {
-    grid-column: auto;
-  }
-
-  .titulo {
-    font-size: 27px;
-  }
-
-  .footer-contenido {
-    grid-template-columns: 1fr;
-  }
-  
-  .language-selector {
-    padding: 5px 10px;
-    font-size: 11px;
-    margin-left: 10px;
-  }
-
-  .language-selector .bandera {
-    width: 16px;
-    height: 12px;
-  }
-
+  .tarjetas { grid-template-columns: 1fr; }
+  .experience { grid-column: auto; }
+  .titulo { font-size: 27px; }
+  .footer-contenido { grid-template-columns: 1fr; }
+  .language-selector { padding: 5px 10px; font-size: 11px; margin-left: 10px; }
+  .language-selector .bandera { width: 16px; height: 12px; }
   .slider-track { height: 250px; }
   .slider-btn { width: 36px; height: 36px; font-size: 14px; }
 }
@@ -951,7 +671,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M3 17l1.5-6h15L21 17M5 17v3M19 17v3M8 11l-2-6M16 11l2-6M3 17h18"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69657ffebc89824a5911cf9a.svg" alt="Lancha">
         </span>
         <div>
           <h3 data-i18n="vip_b1_titulo">Transporte en lancha deportiva</h3>
@@ -961,7 +681,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M5 3h14l-2 8H7L5 3zM7 11v8M17 11v8M9 21h6M4 11h16"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/6965843dc7683b27feeb0c71.svg" alt="Cocktail">
         </span>
         <div>
           <h3 data-i18n="vip_b2_titulo">Cocktail de Bienvenida</h3>
@@ -971,7 +691,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M7 3v8a3 3 0 006 0V3M10 11v8M8 21h4M16 3c-1.5 0-3 1.5-3 3s1.5 3 3 3 3-1.5 3-3-1.5-3-3-3zM16 9v12M14 21h4"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69658477c6ecf9e85b8b23a6.svg" alt="Almuerzo">
         </span>
         <div>
           <h3 data-i18n="vip_b3_titulo">Almuerzo</h3>
@@ -981,7 +701,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M2 18h20M4 18l2-6h12l2 6M12 12V8M8 4h8l-2 4H10L8 4z"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/696a927cf8c5b88eddefdacb.svg" alt="Cama de playa">
         </span>
         <div>
           <h3 data-i18n="vip_b4_titulo">Cama en playa</h3>
@@ -1007,7 +727,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M3 17l1.5-6h15L21 17M5 17v3M19 17v3M8 11l-2-6M16 11l2-6M3 17h18"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69657ffebc89824a5911cf9a.svg" alt="Lancha">
         </span>
         <div>
           <h3 data-i18n="exclusive_b1_titulo">Transporte en lancha deportiva</h3>
@@ -1017,7 +737,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M5 3h14l-2 8H7L5 3zM7 11v8M17 11v8M9 21h6M4 11h16"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/6965843dc7683b27feeb0c71.svg" alt="Cocktail">
         </span>
         <div>
           <h3 data-i18n="exclusive_b2_titulo">Cocktail de Bienvenida</h3>
@@ -1027,7 +747,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M7 3v8a3 3 0 006 0V3M10 11v8M8 21h4M16 3c-1.5 0-3 1.5-3 3s1.5 3 3 3 3-1.5 3-3-1.5-3-3-3zM16 9v12M14 21h4"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69658477c6ecf9e85b8b23a6.svg" alt="Almuerzo Premium">
         </span>
         <div>
           <h3 data-i18n="exclusive_b3_titulo">Almuerzo Premium</h3>
@@ -1037,7 +757,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/696a93177b4d1ebb7a4beff1.svg" alt="Cabaña">
         </span>
         <div>
           <h3 data-i18n="exclusive_b4_titulo">Cabaña Luxury</h3>
@@ -1047,7 +767,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M8 3h8l-1 8a3 3 0 01-6 0L8 3zM12 14v7M8 21h8"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69f0d77ac428703a04175207.svg" alt="Vino">
         </span>
         <div>
           <h3 data-i18n="exclusive_b5_titulo">Espumoso</h3>
@@ -1081,7 +801,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M3 17l1.5-6h15L21 17M5 17v3M19 17v3M8 11l-2-6M16 11l2-6M3 17h18"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69657ffebc89824a5911cf9a.svg" alt="Lancha">
         </span>
         <div>
           <h3 data-i18n="experience_b1_titulo">Transporte en lancha deportiva</h3>
@@ -1091,7 +811,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M5 3h14l-2 8H7L5 3zM7 11v8M17 11v8M9 21h6M4 11h16"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/6965843dc7683b27feeb0c71.svg" alt="Cocktail">
         </span>
         <div>
           <h3 data-i18n="experience_b2_titulo">Cocktail de Bienvenida</h3>
@@ -1101,7 +821,7 @@ nav a {
 
       <div class="beneficio">
         <span class="icono">
-          <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>
+          <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/696a93177b4d1ebb7a4beff1.svg" alt="Cabaña">
         </span>
         <div>
           <h3 data-i18n="experience_b3_titulo">Cabaña Luxury</h3>
@@ -1150,7 +870,7 @@ nav a {
   </a>
 </section>
 
-<!-- SLIDER (después del WhatsApp) -->
+<!-- SLIDER -->
 <section class="slider-section">
   <div class="slider" id="slider">
     <div class="slider-track" id="sliderTrack">
@@ -1697,7 +1417,6 @@ const slides = document.querySelectorAll('.slider-slide');
 const track = document.getElementById('sliderTrack');
 const dotsContainer = document.getElementById('sliderDots');
 
-// Crear los dots dinámicamente
 slides.forEach((_, i) => {
   const dot = document.createElement('button');
   dot.addEventListener('click', () => irASlide(i));
@@ -1723,10 +1442,8 @@ function irASlide(i) {
   actualizarSlider();
 }
 
-// Autoplay
 let sliderInterval = setInterval(() => cambiarSlide(1), 5000);
 
-// Pausar al pasar el mouse
 document.getElementById('slider').addEventListener('mouseenter', () => {
   clearInterval(sliderInterval);
 });

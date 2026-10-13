@@ -101,25 +101,12 @@
   .language-dropdown li.active { background: #eaf2f8; font-weight: bold; }
 
   /* =========================
-     LOGO CENTRAL (entre header y contenido)
-  ========================== */
-  .logo-central {
-    text-align: center;
-    padding: 30px 20px 20px;
-  }
-  .logo-central img {
-    width: 130px;
-    height: auto;
-    display: inline-block;
-  }
-
-  /* =========================
      CONTENIDO PRINCIPAL
   ========================== */
   .main-container {
     flex: 1;
     max-width: 900px;
-    margin: 0 auto 40px;
+    margin: 40px auto;
     padding: 0 20px;
     width: 100%;
   }
@@ -129,14 +116,28 @@
     padding: 40px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   }
+
+  /* Logo dentro de la tarjeta */
+  .card-logo {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .card-logo img {
+    width: 130px;
+    height: auto;
+    display: inline-block;
+  }
+
   .card h1 {
     font-size: 26px;
     margin-bottom: 5px;
+    text-align: center;
   }
   .card .subtitle {
     color: #666;
     font-size: 14px;
     margin-bottom: 30px;
+    text-align: center;
   }
 
   /* =========================
@@ -280,10 +281,9 @@
     .language-selector { padding: 5px 10px; font-size: 11px; }
     .language-selector .bandera { width: 16px; height: 12px; }
 
-    .logo-central { padding: 20px 15px 15px; }
-    .logo-central img { width: 100px; }
-
+    .main-container { margin: 20px auto; padding: 0 15px; }
     .card { padding: 25px 20px; }
+    .card-logo img { width: 100px; }
     .card h1 { font-size: 22px; }
     .experiencia-item { padding: 15px; }
     .experiencia-icono { width: 40px; height: 40px; font-size: 20px; }
@@ -325,14 +325,14 @@
   </div>
 </header>
 
-<!-- LOGO CENTRAL (entre header y contenido) -->
-<div class="logo-central">
-  <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Beach Club">
-</div>
-
 <!-- CONTENIDO PRINCIPAL -->
 <div class="main-container">
   <div class="card">
+    <!-- Logo dentro de la tarjeta -->
+    <div class="card-logo">
+      <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Beach Club">
+    </div>
+
     <h1 data-i18n="titulo">Selecciona tu experiencia</h1>
     <p class="subtitle" data-i18n="subtitulo">Atolon Beach Club — Isla Tierra Bomba, Cartagena</p>
 
@@ -593,9 +593,6 @@ const translations = {
 
 let idiomaActual = localStorage.getItem('idioma') || 'es';
 
-// =========================
-// APLICAR TRADUCCIONES
-// =========================
 function aplicarTraducciones(lang) {
   idiomaActual = lang;
   localStorage.setItem('idioma', lang);
@@ -621,9 +618,6 @@ function aplicarTraducciones(lang) {
   });
 }
 
-// =========================
-// SELECTOR DE IDIOMA
-// =========================
 function toggleLanguageDropdown(event) {
   event.stopPropagation();
   document.getElementById('languageSelector').classList.toggle('open');
@@ -641,9 +635,6 @@ document.addEventListener('click', function() {
   document.getElementById('languageSelector').classList.remove('open');
 });
 
-// =========================
-// INICIALIZAR
-// =========================
 aplicarTraducciones(idiomaActual);
 </script>
 

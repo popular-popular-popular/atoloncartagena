@@ -393,10 +393,14 @@
     font-size: 12px; color: var(--navy); line-height: 1.4;
   }
 
-  /* Itinerario */
+  /* Itinerario (oculto por defecto) */
   .itinerario-box {
     background: #f4f7f9; border-radius: 8px;
     padding: 16px; margin-bottom: 15px;
+    display: none;
+  }
+  .itinerario-box.visible {
+    display: block;
   }
   .itinerario-header {
     display: flex; justify-content: space-between;
@@ -505,7 +509,6 @@
     .logo small { font-size: 5px; }
     .nav-links { display: none; }
     .language-selector { padding: 4px 8px; font-size: 10px; }
-    .bandera-colombia { width: 14px; height: 10px; }
 
     .main-container { margin: 15px auto; padding: 0 12px; }
     .reserva-layout { padding: 15px; gap: 20px; }
@@ -549,7 +552,6 @@
       <a href="#" data-i18n="nav_galeria">GALERÍA</a>
     </div>
 
-    <!-- Selector de idioma funcional -->
     <div class="language-selector" id="languageSelector" onclick="toggleLanguageDropdown(event)">
       <img class="bandera" id="banderaActual" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera">
       <span id="idiomaActual">ES</span>
@@ -578,7 +580,7 @@
 <div class="main-container">
   <div class="reserva-layout">
     
-    <!-- Columna Izquierda: Participantes y Resumen -->
+    <!-- Columna Izquierda -->
     <div class="col-izquierda">
       <img id="imagen-principal" src="https://ncdyttgxuicyruathkxd.supabase.co/storage/v1/object/public/b2b-docs/pasadias/PAS-VIP/main-1775018835710.JPG" alt="Atolón Beach Club">
       
@@ -647,7 +649,7 @@
       </div>
     </div>
 
-    <!-- Columna Derecha: Paquete, Calendario y Horarios -->
+    <!-- Columna Derecha -->
     <div class="col-derecha">
       <div class="subtitulo-ubicacion" data-i18n="ubicacion">ATOLON BEACH CLUB · ISLA TIERRA BOMBA</div>
       
@@ -783,7 +785,7 @@
         </div>
       </div>
 
-      <!-- Aviso de cambios de fecha -->
+      <!-- Aviso de cambios de fecha (siempre visible) -->
       <div class="aviso-cambios">
         <div class="check-icon">✅</div>
         <div class="aviso-texto">
@@ -792,10 +794,10 @@
         </div>
       </div>
 
-      <!-- Itinerario dinámico según fecha y horario -->
+      <!-- Itinerario (oculto hasta que elija fecha + horario) -->
       <div class="itinerario-box" id="itinerarioBox">
         <div class="itinerario-header" onclick="toggleItinerario()">
-          <h4 data-i18n="itinerario_titulo">📅 Itinerario de tu día · 8:00 a. m. – 3:30 p. m.</h4>
+          <h4 data-i18n="itinerario_titulo">📅 Itinerario de tu día</h4>
           <span class="toggle-icon">▲</span>
         </div>
         <div class="itinerario-contenido" id="itinerarioContenido">
@@ -1321,14 +1323,25 @@
   // =========================
   function renderizarItinerario() {
     const dict = translations[idiomaActual] || translations.es;
+    const box = document.getElementById('itinerarioBox');
     const contenedor = document.getElementById('itinerarioContenido');
     const titulo = document.querySelector('#itinerarioBox .itinerario-header h4');
 
-    // Si no hay horario seleccionado, mostrar itinerario base 08:30
-    const salida = horarioSeleccionado ? horarioSeleccionado.salida : '08:30';
-    const regreso = horarioSeleccionado ? horarioSeleccionado.regreso : '15:30';
+    // Si NO hay fecha + horario → ocultar itinerario
+    if (!fechaSeleccionada || !horarioSeleccionado) {
+      box.classList.remove('visible');
+      contenedor.innerHTML = '';
+      titulo.textContent = dict.itinerario_titulo;
+      return;
+    }
 
-    // Calcular hora de llegada al muelle (30 min antes de la salida)
+    // Mostrar itinerario
+    box.classList.add('visible');
+
+    const salida = horarioSeleccionado.salida;
+    const regreso = horarioSeleccionado.regreso;
+
+    // Hora de llegada al muelle = 30 min antes de la salida
     const [hSalida, mSalida] = salida.split(':').map(Number);
     let hLlegada = hSalida;
     let mLlegada = mSalida - 30;
@@ -1346,16 +1359,15 @@
       if (idiomaActual === 'fr' || idiomaActual === 'it') {
         return `${hh}h${String(mm).padStart(2,'0')}`;
       }
-      // es, pt
       const ampm = hh >= 12 ? 'p. m.' : 'a. m.';
       const h12 = hh % 12 || 12;
       return `${h12}:${String(mm).padStart(2,'0')} ${ampm}`;
     };
 
-    // Actualizar título con rango horario
+    // Título con rango horario
     titulo.textContent = `${dict.itinerario_titulo} · ${formatoHora(salida)} – ${formatoHora(regreso)}`;
 
-    // Construir HTML del itinerario
+    // Contenido del itinerario
     contenedor.innerHTML = `
       <div class="itinerario-item">
         <div class="itinerario-hora">${formatoHora(horaLlegada)}</div>

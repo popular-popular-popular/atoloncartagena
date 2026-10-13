@@ -39,16 +39,17 @@
     z-index: 10;
   }
   .logo {
-    display: flex;
-    align-items: center;
+    border: 2px solid var(--navy);
+    padding: 4px 8px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
     text-decoration: none;
     color: var(--navy);
+    line-height: 1.1;
   }
-  .logo img {
-    height: 50px;
-    width: auto;
-    display: block;
-  }
+  .logo small { display: block; font-size: 6px; letter-spacing: 1.5px; }
 
   .language-selector {
     position: relative;
@@ -464,7 +465,8 @@
   }
   @media (max-width: 600px) {
     header { padding: 0 12px; height: 60px; }
-    .logo img { height: 38px; }
+    .logo { font-size: 13px; padding: 4px 6px; }
+    .logo small { font-size: 5px; }
     .language-selector { padding: 4px 8px; font-size: 10px; }
 
     .main-container { margin: 15px auto; padding: 0 15px; }
@@ -490,9 +492,7 @@
 <body>
 
 <header>
-  <a href="index.html" class="logo">
-    <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Beach Club">
-  </a>
+  <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
 
   <div class="language-selector" id="languageSelector" onclick="toggleLanguageDropdown(event)">
     <img class="bandera" id="banderaActual" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera">
@@ -894,7 +894,6 @@
   // =========================
   function parsearFecha(fechaStr) {
     if (!fechaStr) return null;
-    // Quitar "de" y normalizar
     const limpia = fechaStr.replace(/\s+de\s+/gi, ' ').trim();
     const partes = limpia.split(/\s+/);
     if (partes.length < 3) return null;
@@ -903,13 +902,11 @@
     const mesNombre = partes[1];
     const anio = parseInt(partes[2]);
 
-    // Buscar el mes en cualquier idioma
     let mesIndex = -1;
     for (const lang in nombresMeses) {
       const idx = nombresMeses[lang].indexOf(mesNombre);
       if (idx >= 0) { mesIndex = idx; break; }
     }
-    // También aceptar abreviaciones
     if (mesIndex < 0) {
       for (const lang in mesesCorto) {
         const idx = mesesCorto[lang].indexOf(mesNombre);
@@ -1108,11 +1105,8 @@
       return;
     }
 
-    // Parsear la fecha de salida
     const fechaSalida = parsearFecha(reserva.fecha);
     if (!fechaSalida) {
-      // Si no se puede parsear, mostrar texto genérico traducido
-      const dict = translations[idiomaActual] || translations.es;
       aviso.classList.add('visible');
       const genericos = {
         es: 'Puedes cambiar la fecha sin costo hasta 24 horas antes de tu salida.',

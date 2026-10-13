@@ -52,20 +52,23 @@
   }
   .logo small { display: block; font-size: 6px; letter-spacing: 1.5px; }
 
+  /* Selector de idioma */
   .language-selector {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 5px;
     background: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     font-size: 12px;
     font-weight: bold;
     color: var(--navy);
     cursor: pointer;
+    user-select: none;
   }
-  .bandera-colombia {
+  .language-selector .bandera {
     width: 18px;
     height: 12px;
     object-fit: cover;
@@ -73,6 +76,33 @@
     display: inline-block;
     vertical-align: middle;
   }
+  .language-selector .arrow {
+    font-size: 10px;
+    margin-left: 4px;
+    transition: transform 0.2s;
+  }
+  .language-selector.open .arrow { transform: rotate(180deg); }
+  .language-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; right: 0; margin-top: 6px;
+    background: white; border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    min-width: 180px; padding: 6px 0;
+    z-index: 100; overflow: hidden;
+  }
+  .language-selector.open .language-dropdown { display: block; }
+  .language-dropdown li {
+    list-style: none; padding: 10px 16px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .language-dropdown li:hover { background: #f0f4f8; }
+  .language-dropdown li img {
+    width: 22px; height: 15px; object-fit: cover; border-radius: 2px;
+  }
+  .language-dropdown li.active { background: #eaf2f8; font-weight: bold; }
 
   /* =========================
      CONTENIDO PRINCIPAL
@@ -474,7 +504,7 @@
     .logo { font-size: 13px; padding: 4px 6px; }
     .logo small { font-size: 5px; }
     .language-selector { padding: 4px 8px; font-size: 10px; }
-    .bandera-colombia { width: 14px; height: 10px; }
+    .language-selector .bandera { width: 14px; height: 10px; }
 
     .main-container { margin: 15px auto; padding: 0 15px; }
     h1 { font-size: 20px; }
@@ -494,30 +524,47 @@
 <header>
   <a href="index.html" class="logo">ATOLON<small>BEACH CLUB</small></a>
 
-  <div class="language-selector">
-    <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
-    <span>ES</span>
-    <span>⌃</span>
+  <div class="language-selector" id="languageSelector" onclick="toggleLanguageDropdown(event)">
+    <img class="bandera" id="banderaActual" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera">
+    <span id="idiomaActual">ES</span>
+    <span class="arrow">⌄</span>
+    <ul class="language-dropdown" id="languageDropdown">
+      <li data-lang="en" data-flag="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="English"> English
+      </li>
+      <li data-lang="pt" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Portuguese"> Portuguese
+      </li>
+      <li data-lang="fr" data-flag="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" alt="French"> French
+      </li>
+      <li data-lang="it" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg" alt="Italian"> Italian
+      </li>
+      <li data-lang="es" data-flag="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" class="active">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Español"> ES
+      </li>
+    </ul>
   </div>
 </header>
 
 <div class="main-container">
   
   <!-- Botón volver -->
-  <a href="checkout.html" class="volver-btn">← Volver</a>
+  <a href="checkout.html" class="volver-btn">← <span data-i18n="volver">Volver</span></a>
 
-  <h1>Completa tu experiencia</h1>
+  <h1 data-i18n="titulo">Completa tu experiencia</h1>
 
   <!-- Banner de tiempo -->
   <div class="tiempo-banner">
     <div class="tiempo">
-      ⏱️ Completa tu reserva en <span id="contador">14:23</span>
+      ⏱️ <span data-i18n="completa_reserva">Completa tu reserva en</span> <span id="contador">14:23</span>
     </div>
-    <div class="aviso">Los cupos de esta salida son limitados</div>
+    <div class="aviso" data-i18n="cupos_limitados">Los cupos de esta salida son limitados</div>
   </div>
 
   <!-- Subtítulo -->
-  <p class="subtitulo-extras">Agrega opciones especiales antes de pagar</p>
+  <p class="subtitulo-extras" data-i18n="subtitulo_extras">Agrega opciones especiales antes de pagar</p>
 
   <!-- Grid de extras -->
   <div class="extras-grid">
@@ -526,71 +573,71 @@
     <div class="extra-card">
       <div class="extra-header">
         <span class="extra-icono">⛵</span>
-        <span class="extra-titulo">Sunset Catamaran Flamante</span>
+        <span class="extra-titulo" data-i18n="extra_sunset_titulo">Sunset Catamaran Flamante</span>
       </div>
-      <p class="extra-descripcion">
+      <p class="extra-descripcion" data-i18n="extra_sunset_desc">
         Experiencia al atardecer en la bahía de Cartagena con Flamante Catamaran. Dos horas navegando entre ritmos, cócteles y la magia dorada del atardecer en Cartagena. Una experiencia que te conecta con lo más bello del Caribe y te deja memorias para toda la vida.
       </p>
-      <div class="extra-precio">+$145.000 <small>(1p)</small></div>
-      <button class="btn-agregar" onclick="toggleExtra(this, 'sunset', 145000)">Agregar</button>
+      <div class="extra-precio">+$145.000 <small data-i18n="por_1p">(1p)</small></div>
+      <button class="btn-agregar" data-i18n="btn_agregar" onclick="toggleExtra(this, 'sunset', 145000)">Agregar</button>
     </div>
 
     <!-- Extra 2: Upgrade a Exclusive Pass -->
     <div class="extra-card destacado">
       <div class="extra-header">
         <span class="extra-icono">⭐</span>
-        <span class="extra-titulo">Upgrade a Exclusive Pass</span>
-        <span class="extra-badge">Upgrade</span>
+        <span class="extra-titulo" data-i18n="extra_upgrade_titulo">Upgrade a Exclusive Pass</span>
+        <span class="extra-badge" data-i18n="badge_upgrade">Upgrade</span>
       </div>
-      <p class="extra-descripcion">
+      <p class="extra-descripcion" data-i18n="extra_upgrade_desc">
         Haz tu experiencia aún más exclusiva con cabaña en el área de piscina, atención personalizada de mayordomo, botella de Espumoso y un almuerzo premium con entrada, plato fuerte y postre.
       </p>
-      <div class="extra-precio">+$220.000 <small>(1p)</small></div>
-      <button class="btn-agregar btn-upgrade" onclick="toggleExtra(this, 'upgrade', 220000)">Upgrade →</button>
+      <div class="extra-precio">+$220.000 <small data-i18n="por_1p">(1p)</small></div>
+      <button class="btn-agregar btn-upgrade" data-i18n="btn_upgrade" onclick="toggleExtra(this, 'upgrade', 220000)">Upgrade →</button>
     </div>
 
     <!-- Extra 3: Champagne -->
     <div class="extra-card">
       <div class="extra-header">
         <span class="extra-icono">🍾</span>
-        <span class="extra-titulo">Champagne Veuve Clicquot</span>
+        <span class="extra-titulo" data-i18n="extra_champagne_titulo">Champagne Veuve Clicquot</span>
       </div>
-      <p class="extra-descripcion">
+      <p class="extra-descripcion" data-i18n="extra_champagne_desc">
         Botella de Veuve Clicquot 750ml (Precio solo válido en pre-compra)
       </p>
-      <div class="extra-precio">+$900.000 <small>fijo</small></div>
-      <button class="btn-agregar" onclick="toggleExtra(this, 'champagne', 900000)">Agregar</button>
+      <div class="extra-precio">+$900.000 <small data-i18n="fijo">fijo</small></div>
+      <button class="btn-agregar" data-i18n="btn_agregar" onclick="toggleExtra(this, 'champagne', 900000)">Agregar</button>
     </div>
 
   </div>
 
   <!-- Resumen -->
   <div class="resumen-box">
-    <div class="resumen-titulo">Resumen</div>
+    <div class="resumen-titulo" data-i18n="resumen">Resumen</div>
     <div id="resumen-lineas">
       <!-- Se genera dinámicamente -->
     </div>
     <div class="resumen-linea total">
-      <span>Total:</span>
+      <span data-i18n="total">Total:</span>
       <span class="precio" id="total-pagar">$0</span>
     </div>
   </div>
 
   <!-- Método de pago -->
   <div class="seccion-pago">
-    <h3>Método de pago</h3>
+    <h3 data-i18n="metodo_pago">Método de pago</h3>
     <div class="metodos-grid">
       <div class="metodo-card" onclick="seleccionarMetodo(this, 'nacional')">
         <div class="metodo-icono nacional">W</div>
         <div class="metodo-info">
-          <h4>Tarjeta Nacional</h4>
+          <h4 data-i18n="tarjeta_nacional">Tarjeta Nacional</h4>
           <p>PSE · Nequi · Bancolombia · Visa/MC Col.</p>
         </div>
       </div>
       <div class="metodo-card" onclick="seleccionarMetodo(this, 'internacional')">
         <div class="metodo-icono internacional">S</div>
         <div class="metodo-info">
-          <h4>Tarjeta Internacional</h4>
+          <h4 data-i18n="tarjeta_internacional">Tarjeta Internacional</h4>
           <p>Visa · Mastercard · Amex · Apple/Google Pay</p>
         </div>
       </div>
@@ -599,13 +646,13 @@
 
   <!-- Aviso -->
   <div class="aviso-pago">
-    💳 El cargo con tarjeta internacional aparecerá en tu estado de cuenta a nombre de X Travel Group.
+    💳 <span data-i18n="aviso_pago">El cargo con tarjeta internacional aparecerá en tu estado de cuenta a nombre de X Travel Group.</span>
   </div>
 
   <!-- Botón continuar -->
-  <button class="btn-continuar" onclick="confirmarPago()">Continuar al Pago →</button>
+  <button class="btn-continuar" data-i18n="btn_continuar_pago" onclick="confirmarPago()">Continuar al Pago →</button>
 
-  <p class="nota-seguridad">🔒 Pago seguro · Política de no reembolso</p>
+  <p class="nota-seguridad" data-i18n="nota_seguridad">🔒 Pago seguro · Política de no reembolso</p>
 
 </div>
 
@@ -616,35 +663,35 @@
   <div class="footer-contenido">
     <div class="footer-logo-seccion">
       <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
-      <p>Tierra Bomba, Cartagena</p>
+      <p data-i18n="footer_ubicacion">Tierra Bomba, Cartagena</p>
     </div>
     <div class="footer-columna">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <p>+57 300 3194 215</p>
       <p>info@atolonbeachclub.com</p>
-      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">✉️ Escríbenos</a>
+      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">✉️ <span data-i18n="footer_escribenos">Escríbenos</span></a>
     </div>
     <div class="footer-columna">
-      <h4>Links Útiles</h4>
+      <h4 data-i18n="footer_links">Links Útiles</h4>
       <ul>
-        <li><a href="#">Pasadías</a></li>
-        <li><a href="#">Eventos</a></li>
-        <li><a href="#">Galería</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#" data-i18n="footer_pasadias">Pasadías</a></li>
+        <li><a href="#" data-i18n="footer_eventos">Eventos</a></li>
+        <li><a href="#" data-i18n="footer_galeria">Galería</a></li>
+        <li><a href="#" data-i18n="footer_nosotros">Nosotros</a></li>
+        <li><a href="#" data-i18n="footer_contacto_link">Contacto</a></li>
+        <li><a href="#" data-i18n="footer_blog">Blog</a></li>
       </ul>
     </div>
     <div class="footer-columna">
-      <h4>Legal</h4>
+      <h4 data-i18n="footer_legal">Legal</h4>
       <ul>
-        <li><a href="#">Políticas de cancelación</a></li>
-        <li><a href="#">Políticas de privacidad</a></li>
-        <li><a href="#">Aliados Comerciales</a></li>
-        <li><a href="#">PQRs</a></li>
+        <li><a href="#" data-i18n="footer_cancelacion">Políticas de cancelación</a></li>
+        <li><a href="#" data-i18n="footer_privacidad">Políticas de privacidad</a></li>
+        <li><a href="#" data-i18n="footer_aliados">Aliados Comerciales</a></li>
+        <li><a href="#" data-i18n="footer_pqrs">PQRs</a></li>
       </ul>
       <div style="margin-top: 20px;">
-        <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
+        <p><em data-i18n="footer_horarios">Los horarios de transporte están sujetos a clima y operación</em></p>
         <div class="footer-redes">
           <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>
           <a href="https://www.instagram.com/atoloncartegena/" target="_blank">📷</a>
@@ -653,11 +700,295 @@
     </div>
   </div>
   <div class="footer-copyright">
-    <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
+    <p data-i18n="footer_copyright">Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
   </div>
 </footer>
 
 <script>
+  // =========================
+  // DICCIONARIO DE TRADUCCIONES
+  // =========================
+  const translations = {
+    es: {
+      volver: "Volver",
+      titulo: "Completa tu experiencia",
+      completa_reserva: "Completa tu reserva en",
+      cupos_limitados: "Los cupos de esta salida son limitados",
+      subtitulo_extras: "Agrega opciones especiales antes de pagar",
+      extra_sunset_titulo: "Sunset Catamaran Flamante",
+      extra_sunset_desc: "Experiencia al atardecer en la bahía de Cartagena con Flamante Catamaran. Dos horas navegando entre ritmos, cócteles y la magia dorada del atardecer en Cartagena. Una experiencia que te conecta con lo más bello del Caribe y te deja memorias para toda la vida.",
+      extra_upgrade_titulo: "Upgrade a Exclusive Pass",
+      extra_upgrade_desc: "Haz tu experiencia aún más exclusiva con cabaña en el área de piscina, atención personalizada de mayordomo, botella de Espumoso y un almuerzo premium con entrada, plato fuerte y postre.",
+      badge_upgrade: "Upgrade",
+      extra_champagne_titulo: "Champagne Veuve Clicquot",
+      extra_champagne_desc: "Botella de Veuve Clicquot 750ml (Precio solo válido en pre-compra)",
+      por_1p: "(1p)",
+      fijo: "fijo",
+      btn_agregar: "Agregar",
+      btn_upgrade: "Upgrade →",
+      btn_agregado: "✓ Agregado",
+      resumen: "Resumen",
+      total: "Total:",
+      metodo_pago: "Método de pago",
+      tarjeta_nacional: "Tarjeta Nacional",
+      tarjeta_internacional: "Tarjeta Internacional",
+      aviso_pago: "El cargo con tarjeta internacional aparecerá en tu estado de cuenta a nombre de X Travel Group.",
+      btn_continuar_pago: "Continuar al Pago →",
+      nota_seguridad: "🔒 Pago seguro · Política de no reembolso",
+      alert_metodo: "⚠️ Por favor selecciona un método de pago.",
+      footer_ubicacion: "Tierra Bomba, Cartagena",
+      footer_contacto: "Contacto",
+      footer_escribenos: "Escríbenos",
+      footer_links: "Links Útiles",
+      footer_pasadias: "Pasadías",
+      footer_eventos: "Eventos",
+      footer_galeria: "Galería",
+      footer_nosotros: "Nosotros",
+      footer_contacto_link: "Contacto",
+      footer_blog: "Blog",
+      footer_legal: "Legal",
+      footer_cancelacion: "Políticas de cancelación",
+      footer_privacidad: "Políticas de privacidad",
+      footer_aliados: "Aliados Comerciales",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Los horarios de transporte están sujetos a clima y operación",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    en: {
+      volver: "Back",
+      titulo: "Complete your experience",
+      completa_reserva: "Complete your booking in",
+      cupos_limitados: "Spots for this departure are limited",
+      subtitulo_extras: "Add special options before paying",
+      extra_sunset_titulo: "Sunset Catamaran Flamante",
+      extra_sunset_desc: "Sunset experience in the Bay of Cartagena with Flamante Catamaran. Two hours sailing with rhythms, cocktails and the golden magic of the Cartagena sunset. An experience that connects you with the most beautiful of the Caribbean and leaves memories for a lifetime.",
+      extra_upgrade_titulo: "Upgrade to Exclusive Pass",
+      extra_upgrade_desc: "Make your experience even more exclusive with a pool cabana, personalized butler service, a bottle of sparkling wine and a premium lunch with starter, main course and dessert.",
+      badge_upgrade: "Upgrade",
+      extra_champagne_titulo: "Champagne Veuve Clicquot",
+      extra_champagne_desc: "Bottle of Veuve Clicquot 750ml (Price only valid in pre-purchase)",
+      por_1p: "(1p)",
+      fijo: "fixed",
+      btn_agregar: "Add",
+      btn_upgrade: "Upgrade →",
+      btn_agregado: "✓ Added",
+      resumen: "Summary",
+      total: "Total:",
+      metodo_pago: "Payment method",
+      tarjeta_nacional: "National Card",
+      tarjeta_internacional: "International Card",
+      aviso_pago: "International card charges will appear on your statement under X Travel Group.",
+      btn_continuar_pago: "Continue to Payment →",
+      nota_seguridad: "🔒 Secure payment · No refund policy",
+      alert_metodo: "⚠️ Please select a payment method.",
+      footer_ubicacion: "Tierra Bomba, Cartagena",
+      footer_contacto: "Contact",
+      footer_escribenos: "Write to us",
+      footer_links: "Useful Links",
+      footer_pasadias: "Day Passes",
+      footer_eventos: "Events",
+      footer_galeria: "Gallery",
+      footer_nosotros: "About us",
+      footer_contacto_link: "Contact",
+      footer_blog: "Blog",
+      footer_legal: "Legal",
+      footer_cancelacion: "Cancellation policies",
+      footer_privacidad: "Privacy policies",
+      footer_aliados: "Commercial partners",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Transportation schedules are subject to weather and operation",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    pt: {
+      volver: "Voltar",
+      titulo: "Complete sua experiência",
+      completa_reserva: "Complete sua reserva em",
+      cupos_limitados: "As vagas desta saída são limitadas",
+      subtitulo_extras: "Adicione opções especiais antes de pagar",
+      extra_sunset_titulo: "Sunset Catamaran Flamante",
+      extra_sunset_desc: "Experiência ao pôr do sol na baía de Cartagena com Flamante Catamaran. Duas horas navegando entre ritmos, coquetéis e a magia dourada do pôr do sol em Cartagena. Uma experiência que conecta você com o mais belo do Caribe e deixa memórias para toda a vida.",
+      extra_upgrade_titulo: "Upgrade para Exclusive Pass",
+      extra_upgrade_desc: "Torne sua experiência ainda mais exclusiva com cabana na área da piscina, atendimento personalizado de mordomo, garrafa de espumante e um almoço premium com entrada, prato principal e sobremesa.",
+      badge_upgrade: "Upgrade",
+      extra_champagne_titulo: "Champagne Veuve Clicquot",
+      extra_champagne_desc: "Garrafa de Veuve Clicquot 750ml (Preço válido apenas na pré-compra)",
+      por_1p: "(1p)",
+      fijo: "fixo",
+      btn_agregar: "Adicionar",
+      btn_upgrade: "Upgrade →",
+      btn_agregado: "✓ Adicionado",
+      resumen: "Resumo",
+      total: "Total:",
+      metodo_pago: "Método de pagamento",
+      tarjeta_nacional: "Cartão Nacional",
+      tarjeta_internacional: "Cartão Internacional",
+      aviso_pago: "Cobranças no cartão internacional aparecerão no seu extrato em nome da X Travel Group.",
+      btn_continuar_pago: "Continuar para Pagamento →",
+      nota_seguridad: "🔒 Pagamento seguro · Política de não reembolso",
+      alert_metodo: "⚠️ Por favor selecione um método de pagamento.",
+      footer_ubicacion: "Tierra Bomba, Cartagena",
+      footer_contacto: "Contato",
+      footer_escribenos: "Escreva-nos",
+      footer_links: "Links Úteis",
+      footer_pasadias: "Day Passes",
+      footer_eventos: "Eventos",
+      footer_galeria: "Galeria",
+      footer_nosotros: "Sobre nós",
+      footer_contacto_link: "Contato",
+      footer_blog: "Blog",
+      footer_legal: "Legal",
+      footer_cancelacion: "Políticas de cancelamento",
+      footer_privacidad: "Políticas de privacidade",
+      footer_aliados: "Parceiros comerciais",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Os horários de transporte estão sujeitos ao clima e à operação",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    fr: {
+      volver: "Retour",
+      titulo: "Complétez votre expérience",
+      completa_reserva: "Complétez votre réservation en",
+      cupos_limitados: "Les places pour ce départ sont limitées",
+      subtitulo_extras: "Ajoutez des options spéciales avant de payer",
+      extra_sunset_titulo: "Sunset Catamaran Flamante",
+      extra_sunset_desc: "Expérience au coucher du soleil dans la baie de Carthagène avec Flamante Catamaran. Deux heures de navigation entre rythmes, cocktails et la magie dorée du coucher du soleil à Carthagène. Une expérience qui vous connecte au plus beau des Caraïbes et laisse des souvenirs pour la vie.",
+      extra_upgrade_titulo: "Upgrade vers Exclusive Pass",
+      extra_upgrade_desc: "Rendez votre expérience encore plus exclusive avec une cabane à la piscine, un service de majordome personnalisé, une bouteille de mousseux et un déjeuner premium avec entrée, plat principal et dessert.",
+      badge_upgrade: "Upgrade",
+      extra_champagne_titulo: "Champagne Veuve Clicquot",
+      extra_champagne_desc: "Bouteille de Veuve Clicquot 750ml (Prix valable uniquement en pré-achat)",
+      por_1p: "(1p)",
+      fijo: "fixe",
+      btn_agregar: "Ajouter",
+      btn_upgrade: "Upgrade →",
+      btn_agregado: "✓ Ajouté",
+      resumen: "Résumé",
+      total: "Total :",
+      metodo_pago: "Mode de paiement",
+      tarjeta_nacional: "Carte Nationale",
+      tarjeta_internacional: "Carte Internationale",
+      aviso_pago: "Les frais de carte internationale apparaîtront sur votre relevé sous X Travel Group.",
+      btn_continuar_pago: "Continuer vers le paiement →",
+      nota_seguridad: "🔒 Paiement sécurisé · Politique de non-remboursement",
+      alert_metodo: "⚠️ Veuillez sélectionner un mode de paiement.",
+      footer_ubicacion: "Tierra Bomba, Carthagène",
+      footer_contacto: "Contact",
+      footer_escribenos: "Écrivez-nous",
+      footer_links: "Liens utiles",
+      footer_pasadias: "Day Pass",
+      footer_eventos: "Événements",
+      footer_galeria: "Galerie",
+      footer_nosotros: "À propos",
+      footer_contacto_link: "Contact",
+      footer_blog: "Blog",
+      footer_legal: "Mentions légales",
+      footer_cancelacion: "Politiques d'annulation",
+      footer_privacidad: "Politiques de confidentialité",
+      footer_aliados: "Partenaires commerciaux",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Les horaires de transport sont soumis à la météo et à l'exploitation",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    it: {
+      volver: "Indietro",
+      titulo: "Completa la tua esperienza",
+      completa_reserva: "Completa la tua prenotazione in",
+      cupos_limitados: "I posti per questa partenza sono limitati",
+      subtitulo_extras: "Aggiungi opzioni speciali prima di pagare",
+      extra_sunset_titulo: "Sunset Catamaran Flamante",
+      extra_sunset_desc: "Esperienza al tramonto nella baia di Cartagena con Flamante Catamaran. Due ore navigando tra ritmi, cocktail e la magia dorata del tramonto di Cartagena. Un'esperienza che ti connette con il meglio dei Caraibi e lascia ricordi per tutta la vita.",
+      extra_upgrade_titulo: "Upgrade a Exclusive Pass",
+      extra_upgrade_desc: "Rendi la tua esperienza ancora più esclusiva con cabina nella zona piscina, servizio maggiordomo personalizzato, bottiglia di spumante e un pranzo premium con antipasto, piatto principale e dessert.",
+      badge_upgrade: "Upgrade",
+      extra_champagne_titulo: "Champagne Veuve Clicquot",
+      extra_champagne_desc: "Bottiglia di Veuve Clicquot 750ml (Prezzo valido solo in pre-acquisto)",
+      por_1p: "(1p)",
+      fijo: "fisso",
+      btn_agregar: "Aggiungi",
+      btn_upgrade: "Upgrade →",
+      btn_agregado: "✓ Aggiunto",
+      resumen: "Riepilogo",
+      total: "Totale:",
+      metodo_pago: "Metodo di pagamento",
+      tarjeta_nacional: "Carta Nazionale",
+      tarjeta_internacional: "Carta Internazionale",
+      aviso_pago: "Gli addebiti sulla carta internazionale appariranno sul tuo estratto conto a nome di X Travel Group.",
+      btn_continuar_pago: "Continua al pagamento →",
+      nota_seguridad: "🔒 Pagamento sicuro · Politica di non rimborso",
+      alert_metodo: "⚠️ Seleziona un metodo di pagamento.",
+      footer_ubicacion: "Tierra Bomba, Cartagena",
+      footer_contacto: "Contatto",
+      footer_escribenos: "Scrivici",
+      footer_links: "Link utili",
+      footer_pasadias: "Day Pass",
+      footer_eventos: "Eventi",
+      footer_galeria: "Galleria",
+      footer_nosotros: "Chi siamo",
+      footer_contacto_link: "Contatto",
+      footer_blog: "Blog",
+      footer_legal: "Legale",
+      footer_cancelacion: "Politiche di cancellazione",
+      footer_privacidad: "Politiche sulla privacy",
+      footer_aliados: "Partner commerciali",
+      footer_pqrs: "PQRs",
+      footer_horarios: "Gli orari di trasporto sono soggetti a meteo e operatività",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    }
+  };
+
+  let idiomaActual = localStorage.getItem('idioma') || 'es';
+
+  // =========================
+  // APLICAR TRADUCCIONES
+  // =========================
+  function aplicarTraducciones(lang) {
+    idiomaActual = lang;
+    localStorage.setItem('idioma', lang);
+    const dict = translations[lang] || translations.es;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+
+    const flagMap = {
+      es: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg',
+      en: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg',
+      pt: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg',
+      fr: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg',
+      it: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg'
+    };
+    document.getElementById('banderaActual').src = flagMap[lang] || flagMap.es;
+    document.getElementById('idiomaActual').textContent = lang.toUpperCase();
+
+    document.querySelectorAll('#languageDropdown li').forEach(li => {
+      li.classList.toggle('active', li.dataset.lang === lang);
+    });
+
+    // Re-renderizar el resumen para que los textos de las líneas se actualicen
+    renderizarResumen();
+  }
+
+  // =========================
+  // SELECTOR DE IDIOMA
+  // =========================
+  function toggleLanguageDropdown(event) {
+    event.stopPropagation();
+    document.getElementById('languageSelector').classList.toggle('open');
+  }
+
+  document.querySelectorAll('#languageDropdown li').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.stopPropagation();
+      aplicarTraducciones(this.dataset.lang);
+      document.getElementById('languageSelector').classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', function() {
+    document.getElementById('languageSelector').classList.remove('open');
+  });
+
   // =========================
   // LEER DATOS DE LA RESERVA
   // =========================
@@ -684,22 +1015,22 @@
   // RENDERIZAR RESUMEN
   // =========================
   function renderizarResumen() {
+    if (!reserva) return;
+    const dict = translations[idiomaActual] || translations.es;
     const contenedor = document.getElementById('resumen-lineas');
     contenedor.innerHTML = '';
 
     let total = reserva.total;
 
-    // Línea principal: paquete
     const lineaPaquete = document.createElement('div');
     lineaPaquete.className = 'resumen-linea';
     lineaPaquete.innerHTML = `<span>${reserva.paquete} × ${reserva.totalPersonas}</span><span>$${reserva.total.toLocaleString('es-CO')}</span>`;
     contenedor.appendChild(lineaPaquete);
 
-    // Extras
     if (extrasSeleccionados.sunset) {
       const linea = document.createElement('div');
       linea.className = 'resumen-linea';
-      linea.innerHTML = `<span>Sunset Catamaran Flamante</span><span>$145.000</span>`;
+      linea.innerHTML = `<span>${dict.extra_sunset_titulo}</span><span>$145.000</span>`;
       contenedor.appendChild(linea);
       total += 145000;
     }
@@ -707,7 +1038,7 @@
     if (extrasSeleccionados.upgrade) {
       const linea = document.createElement('div');
       linea.className = 'resumen-linea';
-      linea.innerHTML = `<span>Upgrade a Exclusive Pass</span><span>$220.000</span>`;
+      linea.innerHTML = `<span>${dict.extra_upgrade_titulo}</span><span>$220.000</span>`;
       contenedor.appendChild(linea);
       total += 220000;
     }
@@ -715,15 +1046,12 @@
     if (extrasSeleccionados.champagne) {
       const linea = document.createElement('div');
       linea.className = 'resumen-linea';
-      linea.innerHTML = `<span>Champagne Veuve Clicquot</span><span>$900.000</span>`;
+      linea.innerHTML = `<span>${dict.extra_champagne_titulo}</span><span>$900.000</span>`;
       contenedor.appendChild(linea);
       total += 900000;
     }
 
-    // Actualizar total
     document.getElementById('total-pagar').textContent = '$' + total.toLocaleString('es-CO');
-
-    // Guardar total en sessionStorage
     sessionStorage.setItem('totalFinal', total);
   }
 
@@ -731,13 +1059,14 @@
   // TOGGLE EXTRA
   // =========================
   function toggleExtra(boton, tipo, precio) {
+    const dict = translations[idiomaActual] || translations.es;
     extrasSeleccionados[tipo] = !extrasSeleccionados[tipo];
 
     if (extrasSeleccionados[tipo]) {
-      boton.textContent = '✓ Agregado';
+      boton.textContent = dict.btn_agregado;
       boton.classList.add('agregado');
     } else {
-      boton.textContent = tipo === 'upgrade' ? 'Upgrade →' : 'Agregar';
+      boton.textContent = tipo === 'upgrade' ? dict.btn_upgrade : dict.btn_agregar;
       boton.classList.remove('agregado');
     }
 
@@ -754,18 +1083,16 @@
   }
 
   // =========================
-  // CONFIRMAR PAGO → REDIRIGIR A REDIRIGIR-PAGO.HTML
+  // CONFIRMAR PAGO
   // =========================
   function confirmarPago() {
+    const dict = translations[idiomaActual] || translations.es;
     if (!metodoPago) {
-      alert('⚠️ Por favor selecciona un método de pago.');
+      alert(dict.alert_metodo);
       return;
     }
 
-    // Guardar método de pago en sessionStorage
     sessionStorage.setItem('metodoPago', metodoPago);
-
-    // Redirigir a la página de resumen y Wompi
     window.location.href = 'redirigir-pago.html';
   }
 
@@ -794,6 +1121,7 @@
   // =========================
   // INICIALIZAR
   // =========================
+  aplicarTraducciones(idiomaActual);
   renderizarResumen();
 </script>
 

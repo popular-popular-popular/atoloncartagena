@@ -84,62 +84,34 @@
     user-select: none;
   }
   .language-selector .bandera {
-    width: 18px;
-    height: 12px;
-    object-fit: cover;
-    border-radius: 2px;
-    display: inline-block;
-    vertical-align: middle;
+    width: 18px; height: 12px; object-fit: cover;
+    border-radius: 2px; display: inline-block; vertical-align: middle;
   }
   .language-selector .arrow {
-    font-size: 10px;
-    margin-left: 4px;
-    transition: transform 0.2s;
+    font-size: 10px; margin-left: 4px; transition: transform 0.2s;
   }
-  .language-selector.open .arrow {
-    transform: rotate(180deg);
-  }
+  .language-selector.open .arrow { transform: rotate(180deg); }
   .language-dropdown {
     display: none;
     position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 6px;
-    background: white;
-    border-radius: 8px;
+    top: 100%; right: 0; margin-top: 6px;
+    background: white; border-radius: 8px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    min-width: 180px;
-    padding: 6px 0;
-    z-index: 100;
-    overflow: hidden;
+    min-width: 180px; padding: 6px 0;
+    z-index: 100; overflow: hidden;
   }
-  .language-selector.open .language-dropdown {
-    display: block;
-  }
+  .language-selector.open .language-dropdown { display: block; }
   .language-dropdown li {
-    list-style: none;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
+    list-style: none; padding: 10px 16px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
     transition: background 0.15s;
   }
-  .language-dropdown li:hover {
-    background: #f0f4f8;
-  }
+  .language-dropdown li:hover { background: #f0f4f8; }
   .language-dropdown li img {
-    width: 22px;
-    height: 15px;
-    object-fit: cover;
-    border-radius: 2px;
+    width: 22px; height: 15px; object-fit: cover; border-radius: 2px;
   }
-  .language-dropdown li.active {
-    background: #eaf2f8;
-    font-weight: bold;
-  }
+  .language-dropdown li.active { background: #eaf2f8; font-weight: bold; }
 
   .main-container {
     flex: 1;
@@ -287,7 +259,6 @@
     flex-shrink: 0;
   }
 
-  /* Calendario y horarios */
   .calendario-header {
     display: flex; justify-content: space-between;
     align-items: center; margin-bottom: 10px;
@@ -360,192 +331,111 @@
     cursor: pointer;
   }
   .factura-toggle input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--gold);
-    margin-top: 2px;
-    cursor: pointer;
+    width: 18px; height: 18px; accent-color: var(--gold);
+    margin-top: 2px; cursor: pointer;
   }
   .factura-toggle .factura-texto h4 {
-    font-size: 13px;
-    color: var(--gold);
-    margin-bottom: 2px;
+    font-size: 13px; color: var(--gold); margin-bottom: 2px;
   }
   .factura-toggle .factura-texto p {
-    font-size: 11px;
-    color: #8a7a4a;
+    font-size: 11px; color: #8a7a4a;
   }
   .factura-form {
-    display: none;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #f0d78c;
+    display: none; margin-top: 16px;
+    padding-top: 16px; border-top: 1px solid #f0d78c;
   }
-  .factura-form.visible {
-    display: block;
-  }
+  .factura-form.visible { display: block; }
   .factura-form .form-titulo {
-    font-size: 12px;
-    font-weight: bold;
-    color: var(--gold);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    font-size: 12px; font-weight: bold; color: var(--gold);
+    margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
   }
   .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
   }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .form-group.full {
-    grid-column: 1 / -1;
-  }
+  .form-group { display: flex; flex-direction: column; gap: 4px; }
+  .form-group.full { grid-column: 1 / -1; }
   .form-group label {
-    font-size: 10px;
-    font-weight: bold;
-    color: #8a7a4a;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
+    font-size: 10px; font-weight: bold; color: #8a7a4a;
+    text-transform: uppercase; letter-spacing: 0.3px;
   }
-  .form-group label .req {
-    color: #c0392b;
-    margin-left: 2px;
-  }
+  .form-group label .req { color: #c0392b; margin-left: 2px; }
   .form-group input,
   .form-group select {
-    padding: 9px 10px;
-    border: 1px solid #e0d5b0;
-    border-radius: 6px;
-    font-size: 12px;
-    color: var(--navy);
-    background: white;
-    outline: none;
-    transition: border-color 0.2s;
+    padding: 9px 10px; border: 1px solid #e0d5b0;
+    border-radius: 6px; font-size: 12px; color: var(--navy);
+    background: white; outline: none; transition: border-color 0.2s;
   }
   .form-group input:focus,
   .form-group select:focus {
     border-color: var(--gold);
     box-shadow: 0 0 0 2px rgba(212, 160, 23, 0.15);
   }
-  .form-group input::placeholder {
-    color: #aaa;
-  }
+  .form-group input::placeholder { color: #aaa; }
   .factura-nota {
-    font-size: 10px;
-    color: #8a7a4a;
-    margin-top: 12px;
-    line-height: 1.4;
+    font-size: 10px; color: #8a7a4a;
+    margin-top: 12px; line-height: 1.4;
   }
 
   /* Aviso cambios de fecha */
   .aviso-cambios {
-    background: #f4f7f9;
-    border-radius: 8px;
-    padding: 14px 16px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+    background: #f4f7f9; border-radius: 8px;
+    padding: 14px 16px; margin-bottom: 15px;
+    display: flex; align-items: flex-start; gap: 10px;
   }
   .aviso-cambios .check-icon {
-    font-size: 18px;
-    color: #2ecc71;
-    flex-shrink: 0;
+    font-size: 18px; color: #2ecc71; flex-shrink: 0;
   }
   .aviso-cambios .aviso-texto h4 {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #666;
-    margin-bottom: 4px;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.5px; color: #666; margin-bottom: 4px;
   }
   .aviso-cambios .aviso-texto p {
-    font-size: 12px;
-    color: var(--navy);
-    line-height: 1.4;
+    font-size: 12px; color: var(--navy); line-height: 1.4;
   }
 
   /* Itinerario */
   .itinerario-box {
-    background: #f4f7f9;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 15px;
+    background: #f4f7f9; border-radius: 8px;
+    padding: 16px; margin-bottom: 15px;
   }
   .itinerario-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    margin-bottom: 12px;
+    display: flex; justify-content: space-between;
+    align-items: center; cursor: pointer; margin-bottom: 12px;
   }
   .itinerario-header h4 {
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 13px; display: flex; align-items: center; gap: 8px;
   }
   .itinerario-header .toggle-icon {
-    font-size: 12px;
-    transition: transform 0.2s;
-    color: #0047ab;
+    font-size: 12px; transition: transform 0.2s; color: #0047ab;
   }
   .itinerario-box.collapsed .itinerario-header .toggle-icon {
     transform: rotate(-90deg);
   }
   .itinerario-contenido {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    display: flex; flex-direction: column; gap: 14px;
   }
-  .itinerario-box.collapsed .itinerario-contenido {
-    display: none;
-  }
-  .itinerario-item {
-    display: flex;
-    gap: 12px;
-  }
+  .itinerario-box.collapsed .itinerario-contenido { display: none; }
+  .itinerario-item { display: flex; gap: 12px; }
   .itinerario-hora {
-    font-size: 12px;
-    font-weight: bold;
-    color: #0047ab;
-    min-width: 55px;
-    flex-shrink: 0;
-    padding-top: 1px;
+    font-size: 12px; font-weight: bold; color: #0047ab;
+    min-width: 55px; flex-shrink: 0; padding-top: 1px;
   }
-  .itinerario-detalle {
-    flex: 1;
-  }
+  .itinerario-detalle { flex: 1; }
   .itinerario-detalle h5 {
-    font-size: 12px;
-    margin-bottom: 2px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 12px; margin-bottom: 2px;
+    display: flex; align-items: center; gap: 5px;
   }
   .itinerario-detalle p {
-    font-size: 11px;
-    color: #666;
-    line-height: 1.4;
-    margin-bottom: 2px;
+    font-size: 11px; color: #666;
+    line-height: 1.4; margin-bottom: 2px;
   }
   .itinerario-detalle .sub {
-    font-size: 11px;
-    color: #666;
-    line-height: 1.4;
-    padding-left: 0;
+    font-size: 11px; color: #666;
+    line-height: 1.4; padding-left: 0;
   }
   .itinerario-detalle .incluye-lista {
-    font-size: 11px;
-    color: #666;
-    line-height: 1.5;
-    margin-top: 2px;
+    font-size: 11px; color: #666;
+    line-height: 1.5; margin-top: 2px;
   }
 
   .btn-reservar {
@@ -615,6 +505,7 @@
     .logo small { font-size: 5px; }
     .nav-links { display: none; }
     .language-selector { padding: 4px 8px; font-size: 10px; }
+    .bandera-colombia { width: 14px; height: 10px; }
 
     .main-container { margin: 15px auto; padding: 0 12px; }
     .reserva-layout { padding: 15px; gap: 20px; }
@@ -653,9 +544,9 @@
 
   <div class="nav-right">
     <div class="nav-links">
-      <a href="#">PASADÍAS</a>
-      <a href="#">EVENTOS</a>
-      <a href="#">GALERÍA</a>
+      <a href="#" data-i18n="nav_pasadias">PASADÍAS</a>
+      <a href="#" data-i18n="nav_eventos">EVENTOS</a>
+      <a href="#" data-i18n="nav_galeria">GALERÍA</a>
     </div>
 
     <!-- Selector de idioma funcional -->
@@ -698,12 +589,12 @@
         <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=150&q=80" alt="Hamacas" onclick="cambiarImagen(this, 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80')">
       </div>
       
-      <div class="seccion-titulo">Participantes</div>
+      <div class="seccion-titulo" data-i18n="participantes">Participantes</div>
 
       <div class="participante-item">
         <div class="participante-info">
-          <h4>Adultos</h4>
-          <p>Mayores de 12 años · $320.000</p>
+          <h4 data-i18n="adultos">Adultos</h4>
+          <p data-i18n="adultos_desc">Mayores de 12 años · $320.000</p>
         </div>
         <div class="contador">
           <button onclick="cambiarCantidad('adultos', -1)">−</button>
@@ -714,8 +605,8 @@
 
       <div class="participante-item">
         <div class="participante-info">
-          <h4>Niños</h4>
-          <p>Hasta 11 años · $240.000</p>
+          <h4 data-i18n="ninos">Niños</h4>
+          <p data-i18n="ninos_desc">Hasta 11 años · $240.000</p>
         </div>
         <div class="contador">
           <button onclick="cambiarCantidad('ninos', -1)">−</button>
@@ -726,8 +617,8 @@
 
       <div class="participante-item" style="border-bottom: none;">
         <div class="participante-info">
-          <h4>Infantes</h4>
-          <p>Edad 0 – 2 (sin costo)</p>
+          <h4 data-i18n="infantes">Infantes</h4>
+          <p data-i18n="infantes_desc">Edad 0 – 2 (sin costo)</p>
         </div>
         <div class="contador">
           <button onclick="cambiarCantidad('infantes', -1)">−</button>
@@ -738,47 +629,47 @@
 
       <div class="resumen-box">
         <div class="resumen-linea">
-          <span>VIP Pass</span>
+          <span data-i18n="vip_pass">VIP Pass</span>
           <span id="resumen-paquete">$320.000</span>
         </div>
         <div class="resumen-linea" id="linea-adultos">
-          <span>Adultos (1×)</span>
+          <span data-i18n="adultos_linea">Adultos (1×)</span>
           <span>$320.000</span>
         </div>
         <div class="resumen-linea" id="linea-ninos" style="display: none;">
-          <span>Niños (0×)</span>
+          <span data-i18n="ninos_linea">Niños (0×)</span>
           <span>$0</span>
         </div>
         <div class="resumen-linea total">
-          <span>Total:</span>
+          <span data-i18n="total">Total:</span>
           <span id="total-pagar">$320.000</span>
         </div>
       </div>
     </div>
 
-    <!-- Columna Derecha: Paquete, Calendario, Horarios, Facturación, Itinerario -->
+    <!-- Columna Derecha: Paquete, Calendario y Horarios -->
     <div class="col-derecha">
-      <div class="subtitulo-ubicacion">ATOLON BEACH CLUB · ISLA TIERRA BOMBA</div>
+      <div class="subtitulo-ubicacion" data-i18n="ubicacion">ATOLON BEACH CLUB · ISLA TIERRA BOMBA</div>
       
       <div class="paquete-header">
-        <h1>🌴 VIP Pass</h1>
+        <h1>🌴 <span data-i18n="vip_pass">VIP Pass</span></h1>
         <div class="precio">
           $320.000
-          <small>por persona</small>
+          <small data-i18n="por_persona">por persona</small>
         </div>
       </div>
 
       <div class="incluye-box">
-        <h4>Qué incluye</h4>
+        <h4 data-i18n="que_incluye">Qué incluye</h4>
         <ul>
-          <li>Transporte ida y vuelta · Lancha Deportiva</li>
-          <li>Cocktail de Bienvenida</li>
-          <li>Cama de Playa</li>
-          <li>Almuerzo (Plato Fuerte y Postre)</li>
+          <li data-i18n="incluye_1">Transporte ida y vuelta · Lancha Deportiva</li>
+          <li data-i18n="incluye_2">Cocktail de Bienvenida</li>
+          <li data-i18n="incluye_3">Cama de Playa</li>
+          <li data-i18n="incluye_4">Almuerzo (Plato Fuerte y Postre)</li>
         </ul>
       </div>
 
-      <div class="seccion-titulo">Selecciona una fecha</div>
+      <div class="seccion-titulo" data-i18n="selecciona_fecha">Selecciona una fecha</div>
       <div class="calendario-header">
         <button onclick="cambiarMes(-1)">‹</button>
         <h4 id="mes-titulo">Octubre 2026</h4>
@@ -787,30 +678,30 @@
       <div class="calendario-grid" id="calendario"></div>
 
       <div class="horarios-section" id="horarios-section">
-        <div class="seccion-titulo" style="margin-top: 15px;">Selecciona el horario de salida</div>
+        <div class="seccion-titulo" style="margin-top: 15px;" data-i18n="selecciona_horario">Selecciona el horario de salida</div>
         
         <div class="horario-item" onclick="seleccionarHorario(this, '08:30', '15:30')">
           <div class="horario-info">
             <div class="horario-icono">⛵</div>
             <div class="horario-texto">
-              <h4>Salida 08:30</h4>
-              <p>🕒 Salida: 08:30 →</p>
-              <p>🔄 Regreso: 15:30</p>
+              <h4 data-i18n="salida_0830">Salida 08:30</h4>
+              <p>🕒 <span data-i18n="salida">Salida</span>: 08:30 →</p>
+              <p>🔄 <span data-i18n="regreso">Regreso</span>: 15:30</p>
             </div>
           </div>
-          <div class="horario-disponible">Disponible</div>
+          <div class="horario-disponible" data-i18n="disponible">Disponible</div>
         </div>
 
         <div class="horario-item" onclick="seleccionarHorario(this, '10:00', '16:30')">
           <div class="horario-info">
             <div class="horario-icono">⛵</div>
             <div class="horario-texto">
-              <h4>Salida 10:00</h4>
-              <p>🕒 Salida: 10:00 →</p>
-              <p>🔄 Regreso: 16:30</p>
+              <h4 data-i18n="salida_1000">Salida 10:00</h4>
+              <p>🕒 <span data-i18n="salida">Salida</span>: 10:00 →</p>
+              <p>🔄 <span data-i18n="regreso">Regreso</span>: 16:30</p>
             </div>
           </div>
-          <div class="horario-disponible">Disponible</div>
+          <div class="horario-disponible" data-i18n="disponible">Disponible</div>
         </div>
       </div>
 
@@ -819,76 +710,76 @@
         <label class="factura-toggle">
           <input type="checkbox" id="requiereFactura" onchange="toggleFactura()">
           <div class="factura-texto">
-            <h4>📄 Requiere facturación electrónica</h4>
-            <p>Marca si necesitas factura electrónica DIAN</p>
+            <h4 data-i18n="factura_titulo">📄 Requiere facturación electrónica</h4>
+            <p data-i18n="factura_desc">Marca si necesitas factura electrónica DIAN</p>
           </div>
         </label>
 
         <div class="factura-form" id="facturaForm">
-          <div class="form-titulo">📄 DATOS PARA FACTURACIÓN ELECTRÓNICA</div>
+          <div class="form-titulo" data-i18n="factura_form_titulo">📄 DATOS PARA FACTURACIÓN ELECTRÓNICA</div>
           <div class="form-grid">
             <div class="form-group">
-              <label>TIPO DE PERSONA <span class="req">*</span></label>
+              <label data-i18n="tipo_persona">TIPO DE PERSONA <span class="req">*</span></label>
               <select id="tipoPersona">
-                <option value="Natural">Natural</option>
-                <option value="Jurídica">Jurídica</option>
+                <option value="Natural" data-i18n="natural">Natural</option>
+                <option value="Jurídica" data-i18n="juridica">Jurídica</option>
               </select>
             </div>
             <div class="form-group">
-              <label>TIPO DOCUMENTO <span class="req">*</span></label>
+              <label data-i18n="tipo_documento">TIPO DOCUMENTO <span class="req">*</span></label>
               <select id="tipoDocumento">
                 <option value="CC">CC</option>
                 <option value="NIT">NIT</option>
                 <option value="CE">CE</option>
-                <option value="Pasaporte">Pasaporte</option>
+                <option value="Pasaporte" data-i18n="pasaporte">Pasaporte</option>
               </select>
             </div>
             <div class="form-group full">
-              <label>NÚMERO DE DOCUMENTO <span class="req">*</span></label>
-              <input type="text" id="numDocumento" placeholder="Sin puntos ni guiones">
+              <label data-i18n="num_documento">NÚMERO DE DOCUMENTO <span class="req">*</span></label>
+              <input type="text" id="numDocumento" data-i18n-placeholder="num_documento_ph" placeholder="Sin puntos ni guiones">
             </div>
             <div class="form-group">
-              <label>NOMBRES <span class="req">*</span></label>
+              <label data-i18n="nombres">NOMBRES <span class="req">*</span></label>
               <input type="text" id="nombresFactura" placeholder="">
             </div>
             <div class="form-group">
-              <label>APELLIDOS <span class="req">*</span></label>
+              <label data-i18n="apellidos">APELLIDOS <span class="req">*</span></label>
               <input type="text" id="apellidosFactura" placeholder="">
             </div>
             <div class="form-group">
-              <label>EMAIL FACTURACIÓN <span class="req">*</span></label>
+              <label data-i18n="email_factura">EMAIL FACTURACIÓN <span class="req">*</span></label>
               <input type="email" id="emailFactura" placeholder="correo@ejemplo.com">
             </div>
             <div class="form-group">
-              <label>TELÉFONO <span class="req">*</span></label>
+              <label data-i18n="telefono">TELÉFONO <span class="req">*</span></label>
               <input type="tel" id="telefonoFactura" placeholder="+57 30...">
             </div>
             <div class="form-group full">
-              <label>DIRECCIÓN <span class="req">*</span></label>
+              <label data-i18n="direccion">DIRECCIÓN <span class="req">*</span></label>
               <input type="text" id="direccionFactura" placeholder="Cra 7 #12-34">
             </div>
             <div class="form-group">
-              <label>CIUDAD <span class="req">*</span></label>
+              <label data-i18n="ciudad">CIUDAD <span class="req">*</span></label>
               <input type="text" id="ciudadFactura" placeholder="Cartagena">
             </div>
             <div class="form-group">
-              <label>DEPARTAMENTO <span class="req">*</span></label>
+              <label data-i18n="departamento">DEPARTAMENTO <span class="req">*</span></label>
               <input type="text" id="departamentoFactura" placeholder="Bolívar">
             </div>
             <div class="form-group">
-              <label>PAÍS <span class="req">*</span></label>
+              <label data-i18n="pais">PAÍS <span class="req">*</span></label>
               <input type="text" id="paisFactura" placeholder="Colombia">
             </div>
             <div class="form-group">
-              <label>RÉGIMEN TRIBUTARIO <span class="req">*</span></label>
+              <label data-i18n="regimen">RÉGIMEN TRIBUTARIO <span class="req">*</span></label>
               <select id="regimenTributario">
-                <option value="No responsable">No responsable</option>
-                <option value="Responsable de IVA">Responsable de IVA</option>
-                <option value="Simplificado">Simplificado</option>
+                <option value="No responsable" data-i18n="no_responsable">No responsable</option>
+                <option value="Responsable de IVA" data-i18n="responsable_iva">Responsable de IVA</option>
+                <option value="Simplificado" data-i18n="simplificado">Simplificado</option>
               </select>
             </div>
           </div>
-          <p class="factura-nota">La factura se enviará al email indicado. Los campos marcados con * son obligatorios.</p>
+          <p class="factura-nota" data-i18n="factura_nota">La factura se enviará al email indicado. Los campos marcados con * son obligatorios.</p>
         </div>
       </div>
 
@@ -896,48 +787,26 @@
       <div class="aviso-cambios">
         <div class="check-icon">✅</div>
         <div class="aviso-texto">
-          <h4>CAMBIOS DE FECHA</h4>
-          <p>Puedes cambiar la fecha sin costo hasta el <strong>vie, 16 de oct, 8:30 a. m.</strong> (24 horas antes de tu salida).</p>
+          <h4 data-i18n="cambios_fecha">CAMBIOS DE FECHA</h4>
+          <p data-i18n="cambios_fecha_desc">Puedes cambiar la fecha sin costo hasta el <strong>vie, 16 de oct, 8:30 a. m.</strong> (24 horas antes de tu salida).</p>
         </div>
       </div>
 
-      <!-- Itinerario del día -->
+      <!-- Itinerario dinámico según fecha y horario -->
       <div class="itinerario-box" id="itinerarioBox">
         <div class="itinerario-header" onclick="toggleItinerario()">
-          <h4>📅 Itinerario de tu día · 8:00 a. m. – 3:30 p. m.</h4>
+          <h4 data-i18n="itinerario_titulo">📅 Itinerario de tu día · 8:00 a. m. – 3:30 p. m.</h4>
           <span class="toggle-icon">▲</span>
         </div>
-        <div class="itinerario-contenido">
-          <div class="itinerario-item">
-            <div class="itinerario-hora">8:00 a. m.</div>
-            <div class="itinerario-detalle">
-              <h5>📍 Llegada al muelle La Bodeguita, puerta 1</h5>
-              <p>Llega 30 min antes para el check-in. Impuesto de muelle: COP 18.000 por persona (mayores de 5 años), se paga en el muelle.</p>
-            </div>
-          </div>
-          <div class="itinerario-item">
-            <div class="itinerario-hora">8:30 a. m.</div>
-            <div class="itinerario-detalle">
-              <h5>⛵ Salida en lancha deportiva</h5>
-              <p>Recorrido por la bahía de Cartagena.</p>
-              <p class="sub">🏝️ Llegada a Atolón, Isla Tierra Bomba</p>
-              <p class="incluye-lista">Tu día incluye: Transporte ida y vuelta · Lancha Deportiva · Cocktail de Bienvenida · Cama de Playa · Almuerzo (Plato Fuerte y Postre)</p>
-            </div>
-          </div>
-          <div class="itinerario-item">
-            <div class="itinerario-hora">3:30 p. m.</div>
-            <div class="itinerario-detalle">
-              <h5>🚐 Salida de Atolón al muelle La Bodeguita</h5>
-              <p>Si quieres quedarte más tarde, pregúntanos (sujeto a disponibilidad).</p>
-            </div>
-          </div>
+        <div class="itinerario-contenido" id="itinerarioContenido">
+          <!-- Se llena dinámicamente -->
         </div>
       </div>
 
       <button class="btn-reservar" id="btn-reservar" disabled onclick="confirmarReserva()">
-        Reservar →
+        <span data-i18n="reservar">Reservar →</span>
       </button>
-      <p class="nota-fecha" id="nota-fecha">Selecciona una fecha para continuar</p>
+      <p class="nota-fecha" id="nota-fecha" data-i18n="nota_fecha">Selecciona una fecha para continuar</p>
     </div>
 
   </div>
@@ -947,35 +816,37 @@
   <div class="footer-contenido">
     <div class="footer-logo-seccion">
       <img src="https://assets.cdn.filesafe.space/Tj4NiJF6Qivkm3fs8dax/media/69616d50cef1010655b61956.webp" alt="Atolón Logo">
-      <p>Tierra Bomba, Cartagena</p>
+      <p data-i18n="footer_ubicacion">Tierra Bomba, Cartagena</p>
     </div>
     <div class="footer-columna">
-      <h4>Contacto</h4>
+      <h4 data-i18n="footer_contacto">Contacto</h4>
       <p>+57 300 3194 215</p>
       <p>info@atolonbeachclub.com</p>
-      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">✉️ Escríbenos</a>
+      <a href="https://wa.me/+573003194215" target="_blank" class="btn-escribenos">
+        ✉️ <span data-i18n="footer_escribenos">Escríbenos</span>
+      </a>
     </div>
     <div class="footer-columna">
-      <h4>Links Útiles</h4>
+      <h4 data-i18n="footer_links">Links Útiles</h4>
       <ul>
-        <li><a href="#">Pasadías</a></li>
-        <li><a href="#">Eventos</a></li>
-        <li><a href="#">Galería</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#" data-i18n="footer_pasadias">Pasadías</a></li>
+        <li><a href="#" data-i18n="footer_eventos">Eventos</a></li>
+        <li><a href="#" data-i18n="footer_galeria">Galería</a></li>
+        <li><a href="#" data-i18n="footer_nosotros">Nosotros</a></li>
+        <li><a href="#" data-i18n="footer_contacto_link">Contacto</a></li>
+        <li><a href="#" data-i18n="footer_blog">Blog</a></li>
       </ul>
     </div>
     <div class="footer-columna">
-      <h4>Legal</h4>
+      <h4 data-i18n="footer_legal">Legal</h4>
       <ul>
-        <li><a href="#">Políticas de cancelación</a></li>
-        <li><a href="#">Políticas de privacidad</a></li>
-        <li><a href="#">Aliados Comerciales</a></li>
-        <li><a href="#">PQRs</a></li>
+        <li><a href="#" data-i18n="footer_cancelacion">Políticas de cancelación</a></li>
+        <li><a href="#" data-i18n="footer_privacidad">Políticas de privacidad</a></li>
+        <li><a href="#" data-i18n="footer_aliados">Aliados Comerciales</a></li>
+        <li><a href="#" data-i18n="footer_pqrs">PQRs</a></li>
       </ul>
       <div style="margin-top: 20px;">
-        <p><em>Los horarios de transporte están sujetos a clima y operación</em></p>
+        <p><em data-i18n="footer_horarios">Los horarios de transporte están sujetos a clima y operación</em></p>
         <div class="footer-redes">
           <a href="https://www.facebook.com/atoloncartegena" target="_blank">📘</a>
           <a href="https://www.instagram.com/atoloncartegena/" target="_blank">📷</a>
@@ -984,33 +855,311 @@
     </div>
   </div>
   <div class="footer-copyright">
-    <p>Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
+    <p data-i18n="footer_copyright">Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved.</p>
   </div>
 </footer>
 
 <script>
   // =========================
+  // DICCIONARIO DE TRADUCCIONES
+  // =========================
+  const translations = {
+    es: {
+      nav_pasadias: "PASADÍAS", nav_eventos: "EVENTOS", nav_galeria: "GALERÍA",
+      participantes: "Participantes",
+      adultos: "Adultos", adultos_desc: "Mayores de 12 años · $320.000",
+      ninos: "Niños", ninos_desc: "Hasta 11 años · $240.000",
+      infantes: "Infantes", infantes_desc: "Edad 0 – 2 (sin costo)",
+      vip_pass: "VIP Pass", adultos_linea: "Adultos", ninos_linea: "Niños", total: "Total:",
+      ubicacion: "ATOLON BEACH CLUB · ISLA TIERRA BOMBA", por_persona: "por persona",
+      que_incluye: "Qué incluye",
+      incluye_1: "Transporte ida y vuelta · Lancha Deportiva",
+      incluye_2: "Cocktail de Bienvenida",
+      incluye_3: "Cama de Playa",
+      incluye_4: "Almuerzo (Plato Fuerte y Postre)",
+      selecciona_fecha: "Selecciona una fecha",
+      selecciona_horario: "Selecciona el horario de salida",
+      salida_0830: "Salida 08:30", salida_1000: "Salida 10:00",
+      salida: "Salida", regreso: "Regreso", disponible: "Disponible",
+      factura_titulo: "📄 Requiere facturación electrónica",
+      factura_desc: "Marca si necesitas factura electrónica DIAN",
+      factura_form_titulo: "📄 DATOS PARA FACTURACIÓN ELECTRÓNICA",
+      tipo_persona: "TIPO DE PERSONA", tipo_documento: "TIPO DOCUMENTO",
+      num_documento: "NÚMERO DE DOCUMENTO", num_documento_ph: "Sin puntos ni guiones",
+      nombres: "NOMBRES", apellidos: "APELLIDOS", email_factura: "EMAIL FACTURACIÓN",
+      telefono: "TELÉFONO", direccion: "DIRECCIÓN", ciudad: "CIUDAD",
+      departamento: "DEPARTAMENTO", pais: "PAÍS", regimen: "RÉGIMEN TRIBUTARIO",
+      natural: "Natural", juridica: "Jurídica", pasaporte: "Pasaporte",
+      no_responsable: "No responsable", responsable_iva: "Responsable de IVA", simplificado: "Simplificado",
+      factura_nota: "La factura se enviará al email indicado. Los campos marcados con * son obligatorios.",
+      cambios_fecha: "CAMBIOS DE FECHA",
+      cambios_fecha_desc: "Puedes cambiar la fecha sin costo hasta el <strong>vie, 16 de oct, 8:30 a. m.</strong> (24 horas antes de tu salida).",
+      itinerario_titulo: "📅 Itinerario de tu día",
+      hora_800: "8:00 a. m.", hora_830: "8:30 a. m.", hora_330: "3:30 p. m.",
+      it_1_titulo: "📍 Llegada al muelle La Bodeguita, puerta 1",
+      it_1_desc: "Llega 30 min antes para el check-in. Impuesto de muelle: COP 18.000 por persona (mayores de 5 años), se paga en el muelle.",
+      it_2_titulo: "⛵ Salida en lancha deportiva",
+      it_2_desc: "Recorrido por la bahía de Cartagena.",
+      it_2_sub: "🏝️ Llegada a Atolón, Isla Tierra Bomba",
+      it_2_incluye: "Tu día incluye: Transporte ida y vuelta · Lancha Deportiva · Cocktail de Bienvenida · Cama de Playa · Almuerzo (Plato Fuerte y Postre)",
+      it_3_titulo: "🚐 Salida de Atolón al muelle La Bodeguita",
+      it_3_desc: "Si quieres quedarte más tarde, pregúntanos (sujeto a disponibilidad).",
+      reservar: "Reservar →", nota_fecha: "Selecciona una fecha para continuar",
+      footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contacto",
+      footer_escribenos: "Escríbenos", footer_links: "Links Útiles",
+      footer_pasadias: "Pasadías", footer_eventos: "Eventos", footer_galeria: "Galería",
+      footer_nosotros: "Nosotros", footer_contacto_link: "Contacto", footer_blog: "Blog",
+      footer_legal: "Legal", footer_cancelacion: "Políticas de cancelación",
+      footer_privacidad: "Políticas de privacidad", footer_aliados: "Aliados Comerciales",
+      footer_pqrs: "PQRs", footer_horarios: "Los horarios de transporte están sujetos a clima y operación",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    en: {
+      nav_pasadias: "DAY PASSES", nav_eventos: "EVENTS", nav_galeria: "GALLERY",
+      participantes: "Participants",
+      adultos: "Adults", adultos_desc: "Over 12 years old · $320,000",
+      ninos: "Children", ninos_desc: "Up to 11 years old · $240,000",
+      infantes: "Infants", infantes_desc: "Age 0 – 2 (no cost)",
+      vip_pass: "VIP Pass", adultos_linea: "Adults", ninos_linea: "Children", total: "Total:",
+      ubicacion: "ATOLON BEACH CLUB · TIERRA BOMBA ISLAND", por_persona: "per person",
+      que_incluye: "What's included",
+      incluye_1: "Round-trip transportation · Sport boat",
+      incluye_2: "Welcome cocktail", incluye_3: "Beach bed",
+      incluye_4: "Lunch (Main course and dessert)",
+      selecciona_fecha: "Select a date", selecciona_horario: "Select departure time",
+      salida_0830: "Departure 08:30", salida_1000: "Departure 10:00",
+      salida: "Departure", regreso: "Return", disponible: "Available",
+      factura_titulo: "📄 Requires electronic invoice",
+      factura_desc: "Check if you need a DIAN electronic invoice",
+      factura_form_titulo: "📄 ELECTRONIC INVOICE DATA",
+      tipo_persona: "PERSON TYPE", tipo_documento: "DOCUMENT TYPE",
+      num_documento: "DOCUMENT NUMBER", num_documento_ph: "No dots or dashes",
+      nombres: "FIRST NAMES", apellidos: "LAST NAMES", email_factura: "BILLING EMAIL",
+      telefono: "PHONE", direccion: "ADDRESS", ciudad: "CITY",
+      departamento: "STATE", pais: "COUNTRY", regimen: "TAX REGIME",
+      natural: "Natural", juridica: "Legal entity", pasaporte: "Passport",
+      no_responsable: "Not responsible", responsable_iva: "VAT responsible", simplificado: "Simplified",
+      factura_nota: "The invoice will be sent to the indicated email. Fields marked with * are required.",
+      cambios_fecha: "DATE CHANGES",
+      cambios_fecha_desc: "You can change the date at no cost until <strong>Fri, Oct 16, 8:30 a.m.</strong> (24 hours before your departure).",
+      itinerario_titulo: "📅 Itinerary of your day",
+      hora_800: "8:00 a.m.", hora_830: "8:30 a.m.", hora_330: "3:30 p.m.",
+      it_1_titulo: "📍 Arrival at La Bodeguita dock, gate 1",
+      it_1_desc: "Arrive 30 min before for check-in. Dock tax: COP 18,000 per person (over 5 years old), paid at the dock.",
+      it_2_titulo: "⛵ Departure on sport boat",
+      it_2_desc: "Tour of the Bay of Cartagena.",
+      it_2_sub: "🏝️ Arrival at Atolón, Tierra Bomba Island",
+      it_2_incluye: "Your day includes: Round-trip transportation · Sport boat · Welcome cocktail · Beach bed · Lunch (Main course and dessert)",
+      it_3_titulo: "🚐 Departure from Atolón to La Bodeguita dock",
+      it_3_desc: "If you want to stay longer, ask us (subject to availability).",
+      reservar: "Book →", nota_fecha: "Select a date to continue",
+      footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contact",
+      footer_escribenos: "Write to us", footer_links: "Useful Links",
+      footer_pasadias: "Day Passes", footer_eventos: "Events", footer_galeria: "Gallery",
+      footer_nosotros: "About us", footer_contacto_link: "Contact", footer_blog: "Blog",
+      footer_legal: "Legal", footer_cancelacion: "Cancellation policies",
+      footer_privacidad: "Privacy policies", footer_aliados: "Commercial partners",
+      footer_pqrs: "PQRs", footer_horarios: "Transportation schedules are subject to weather and operation",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    pt: {
+      nav_pasadias: "DAY PASSES", nav_eventos: "EVENTOS", nav_galeria: "GALERIA",
+      participantes: "Participantes",
+      adultos: "Adultos", adultos_desc: "Maiores de 12 anos · $320.000",
+      ninos: "Crianças", ninos_desc: "Até 11 anos · $240.000",
+      infantes: "Bebês", infantes_desc: "Idade 0 – 2 (sem custo)",
+      vip_pass: "VIP Pass", adultos_linea: "Adultos", ninos_linea: "Crianças", total: "Total:",
+      ubicacion: "ATOLON BEACH CLUB · ILHA TIERRA BOMBA", por_persona: "por pessoa",
+      que_incluye: "O que inclui",
+      incluye_1: "Transporte ida e volta · Lancha esportiva",
+      incluye_2: "Coquetel de boas-vindas", incluye_3: "Cama de praia",
+      incluye_4: "Almoço (Prato principal e sobremesa)",
+      selecciona_fecha: "Selecione uma data", selecciona_horario: "Selecione o horário de saída",
+      salida_0830: "Saída 08:30", salida_1000: "Saída 10:00",
+      salida: "Saída", regreso: "Retorno", disponible: "Disponível",
+      factura_titulo: "📄 Requer fatura eletrônica",
+      factura_desc: "Marque se precisar de fatura eletrônica DIAN",
+      factura_form_titulo: "📄 DADOS PARA FATURA ELETRÔNICA",
+      tipo_persona: "TIPO DE PESSOA", tipo_documento: "TIPO DE DOCUMENTO",
+      num_documento: "NÚMERO DO DOCUMENTO", num_documento_ph: "Sem pontos ou traços",
+      nombres: "NOMES", apellidos: "SOBRENOMES", email_factura: "EMAIL DE FATURAMENTO",
+      telefono: "TELEFONE", direccion: "ENDEREÇO", ciudad: "CIDADE",
+      departamento: "ESTADO", pais: "PAÍS", regimen: "REGIME TRIBUTÁRIO",
+      natural: "Natural", juridica: "Pessoa jurídica", pasaporte: "Passaporte",
+      no_responsable: "Não responsável", responsable_iva: "Responsável pelo IVA", simplificado: "Simplificado",
+      factura_nota: "A fatura será enviada para o email indicado. Campos marcados com * são obrigatórios.",
+      cambios_fecha: "ALTERAÇÕES DE DATA",
+      cambios_fecha_desc: "Você pode alterar a data sem custo até <strong>sex, 16 de out, 8:30 a.m.</strong> (24 horas antes da sua saída).",
+      itinerario_titulo: "📅 Itinerário do seu dia",
+      hora_800: "8:00 a.m.", hora_830: "8:30 a.m.", hora_330: "3:30 p.m.",
+      it_1_titulo: "📍 Chegada ao cais La Bodeguita, portão 1",
+      it_1_desc: "Chegue 30 min antes para o check-in. Taxa do cais: COP 18.000 por pessoa (maiores de 5 anos), paga no cais.",
+      it_2_titulo: "⛵ Saída em lancha esportiva",
+      it_2_desc: "Passeio pela baía de Cartagena.",
+      it_2_sub: "🏝️ Chegada a Atolón, Ilha Tierra Bomba",
+      it_2_incluye: "Seu dia inclui: Transporte ida e volta · Lancha esportiva · Coquetel de boas-vindas · Cama de praia · Almoço (Prato principal e sobremesa)",
+      it_3_titulo: "🚐 Saída de Atolón ao cais La Bodeguita",
+      it_3_desc: "Se quiser ficar mais tempo, pergunte-nos (sujeito a disponibilidade).",
+      reservar: "Reservar →", nota_fecha: "Selecione uma data para continuar",
+      footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contato",
+      footer_escribenos: "Escreva-nos", footer_links: "Links Úteis",
+      footer_pasadias: "Day Passes", footer_eventos: "Eventos", footer_galeria: "Galeria",
+      footer_nosotros: "Sobre nós", footer_contacto_link: "Contato", footer_blog: "Blog",
+      footer_legal: "Legal", footer_cancelacion: "Políticas de cancelamento",
+      footer_privacidad: "Políticas de privacidade", footer_aliados: "Parceiros comerciais",
+      footer_pqrs: "PQRs", footer_horarios: "Os horários de transporte estão sujeitos ao clima e à operação",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    fr: {
+      nav_pasadias: "DAY PASS", nav_eventos: "ÉVÉNEMENTS", nav_galeria: "GALERIE",
+      participantes: "Participants",
+      adultos: "Adultes", adultos_desc: "Plus de 12 ans · $320 000",
+      ninos: "Enfants", ninos_desc: "Jusqu'à 11 ans · $240 000",
+      infantes: "Nourrissons", infantes_desc: "Âge 0 – 2 (gratuit)",
+      vip_pass: "VIP Pass", adultos_linea: "Adultes", ninos_linea: "Enfants", total: "Total :",
+      ubicacion: "ATOLON BEACH CLUB · ÎLE TIERRA BOMBA", por_persona: "par personne",
+      que_incluye: "Ce qui est inclus",
+      incluye_1: "Transport aller-retour · Bateau sportif",
+      incluye_2: "Cocktail de bienvenue", incluye_3: "Lit de plage",
+      incluye_4: "Déjeuner (Plat principal et dessert)",
+      selecciona_fecha: "Sélectionnez une date", selecciona_horario: "Sélectionnez l'heure de départ",
+      salida_0830: "Départ 08:30", salida_1000: "Départ 10:00",
+      salida: "Départ", regreso: "Retour", disponible: "Disponible",
+      factura_titulo: "📄 Nécessite une facture électronique",
+      factura_desc: "Cochez si vous avez besoin d'une facture électronique DIAN",
+      factura_form_titulo: "📄 DONNÉES POUR FACTURE ÉLECTRONIQUE",
+      tipo_persona: "TYPE DE PERSONNE", tipo_documento: "TYPE DE DOCUMENT",
+      num_documento: "NUMÉRO DE DOCUMENT", num_documento_ph: "Sans points ni tirets",
+      nombres: "PRÉNOMS", apellidos: "NOMS", email_factura: "EMAIL DE FACTURATION",
+      telefono: "TÉLÉPHONE", direccion: "ADRESSE", ciudad: "VILLE",
+      departamento: "DÉPARTEMENT", pais: "PAYS", regimen: "RÉGIME FISCAL",
+      natural: "Naturel", juridica: "Personne morale", pasaporte: "Passeport",
+      no_responsable: "Non responsable", responsable_iva: "Responsable TVA", simplificado: "Simplifié",
+      factura_nota: "La facture sera envoyée à l'email indiqué. Les champs marqués d'un * sont obligatoires.",
+      cambios_fecha: "CHANGEMENTS DE DATE",
+      cambios_fecha_desc: "Vous pouvez changer la date sans frais jusqu'au <strong>ven, 16 oct, 8h30</strong> (24 heures avant votre départ).",
+      itinerario_titulo: "📅 Itinéraire de votre journée",
+      hora_800: "8h00", hora_830: "8h30", hora_330: "15h30",
+      it_1_titulo: "📍 Arrivée au quai La Bodeguita, porte 1",
+      it_1_desc: "Arrivez 30 min avant pour l'enregistrement. Taxe de quai : COP 18 000 par personne (plus de 5 ans), payée au quai.",
+      it_2_titulo: "⛵ Départ en bateau sportif",
+      it_2_desc: "Tour de la baie de Carthagène.",
+      it_2_sub: "🏝️ Arrivée à Atolón, île Tierra Bomba",
+      it_2_incluye: "Votre journée comprend : Transport aller-retour · Bateau sportif · Cocktail de bienvenue · Lit de plage · Déjeuner (Plat principal et dessert)",
+      it_3_titulo: "🚐 Départ d'Atolón vers le quai La Bodeguita",
+      it_3_desc: "Si vous souhaitez rester plus longtemps, demandez-nous (sous réserve de disponibilité).",
+      reservar: "Réserver →", nota_fecha: "Sélectionnez une date pour continuer",
+      footer_ubicacion: "Tierra Bomba, Carthagène", footer_contacto: "Contact",
+      footer_escribenos: "Écrivez-nous", footer_links: "Liens utiles",
+      footer_pasadias: "Day Pass", footer_eventos: "Événements", footer_galeria: "Galerie",
+      footer_nosotros: "À propos", footer_contacto_link: "Contact", footer_blog: "Blog",
+      footer_legal: "Mentions légales", footer_cancelacion: "Politiques d'annulation",
+      footer_privacidad: "Politiques de confidentialité", footer_aliados: "Partenaires commerciaux",
+      footer_pqrs: "PQRs", footer_horarios: "Les horaires de transport sont soumis à la météo et à l'exploitation",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    },
+    it: {
+      nav_pasadias: "DAY PASS", nav_eventos: "EVENTI", nav_galeria: "GALLERIA",
+      participantes: "Partecipanti",
+      adultos: "Adulti", adultos_desc: "Oltre 12 anni · $320.000",
+      ninos: "Bambini", ninos_desc: "Fino a 11 anni · $240.000",
+      infantes: "Neonati", infantes_desc: "Età 0 – 2 (gratuito)",
+      vip_pass: "VIP Pass", adultos_linea: "Adulti", ninos_linea: "Bambini", total: "Totale:",
+      ubicacion: "ATOLON BEACH CLUB · ISOLA TIERRA BOMBA", por_persona: "a persona",
+      que_incluye: "Cosa include",
+      incluye_1: "Trasporto andata e ritorno · Barca sportiva",
+      incluye_2: "Cocktail di benvenuto", incluye_3: "Letto da spiaggia",
+      incluye_4: "Pranzo (Piatto principale e dessert)",
+      selecciona_fecha: "Seleziona una data", selecciona_horario: "Seleziona l'orario di partenza",
+      salida_0830: "Partenza 08:30", salida_1000: "Partenza 10:00",
+      salida: "Partenza", regreso: "Ritorno", disponible: "Disponibile",
+      factura_titulo: "📄 Richiede fattura elettronica",
+      factura_desc: "Seleziona se hai bisogno della fattura elettronica DIAN",
+      factura_form_titulo: "📄 DATI PER FATTURA ELETTRONICA",
+      tipo_persona: "TIPO DI PERSONA", tipo_documento: "TIPO DI DOCUMENTO",
+      num_documento: "NUMERO DI DOCUMENTO", num_documento_ph: "Senza punti o trattini",
+      nombres: "NOMI", apellidos: "COGNOMI", email_factura: "EMAIL DI FATTURAZIONE",
+      telefono: "TELEFONO", direccion: "INDIRIZZO", ciudad: "CITTÀ",
+      departamento: "DIPARTIMENTO", pais: "PAESE", regimen: "REGIME FISCALE",
+      natural: "Naturale", juridica: "Persona giuridica", pasaporte: "Passaporto",
+      no_responsable: "Non responsabile", responsable_iva: "Responsabile IVA", simplificado: "Semplificato",
+      factura_nota: "La fattura verrà inviata all'email indicata. I campi contrassegnati con * sono obbligatori.",
+      cambios_fecha: "CAMBI DI DATA",
+      cambios_fecha_desc: "Puoi cambiare la data senza costi fino a <strong>ven, 16 ott, 8:30</strong> (24 ore prima della partenza).",
+      itinerario_titulo: "📅 Itinerario della tua giornata",
+      hora_800: "8:00", hora_830: "8:30", hora_330: "15:30",
+      it_1_titulo: "📍 Arrivo al molo La Bodeguita, porta 1",
+      it_1_desc: "Arriva 30 min prima per il check-in. Tassa del molo: COP 18.000 a persona (maggiori di 5 anni), pagata al molo.",
+      it_2_titulo: "⛵ Partenza in barca sportiva",
+      it_2_desc: "Tour della baia di Cartagena.",
+      it_2_sub: "🏝️ Arrivo ad Atolón, Isola Tierra Bomba",
+      it_2_incluye: "La tua giornata include: Trasporto andata e ritorno · Barca sportiva · Cocktail di benvenuto · Letto da spiaggia · Pranzo (Piatto principale e dessert)",
+      it_3_titulo: "🚐 Partenza da Atolón al molo La Bodeguita",
+      it_3_desc: "Se vuoi restare più a lungo, chiedici (soggetto a disponibilità).",
+      reservar: "Prenota →", nota_fecha: "Seleziona una data per continuare",
+      footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contatto",
+      footer_escribenos: "Scrivici", footer_links: "Link utili",
+      footer_pasadias: "Day Pass", footer_eventos: "Eventi", footer_galeria: "Galleria",
+      footer_nosotros: "Chi siamo", footer_contacto_link: "Contatto", footer_blog: "Blog",
+      footer_legal: "Legale", footer_cancelacion: "Politiche di cancellazione",
+      footer_privacidad: "Politiche sulla privacy", footer_aliados: "Partner commerciali",
+      footer_pqrs: "PQRs", footer_horarios: "Gli orari di trasporto sono soggetti a meteo e operatività",
+      footer_copyright: "Copyright 2026. Atolón Beach Club Cartagena. All Rights Reserved."
+    }
+  };
+
+  let idiomaActual = localStorage.getItem('idioma') || 'es';
+
+  // =========================
+  // APLICAR TRADUCCIONES
+  // =========================
+  function aplicarTraducciones(lang) {
+    idiomaActual = lang;
+    localStorage.setItem('idioma', lang);
+    const dict = translations[lang] || translations.es;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (dict[key] !== undefined) el.placeholder = dict[key];
+    });
+
+    const flagMap = {
+      es: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg',
+      en: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg',
+      pt: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg',
+      fr: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg',
+      it: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg'
+    };
+    document.getElementById('banderaActual').src = flagMap[lang] || flagMap.es;
+    document.getElementById('idiomaActual').textContent = lang.toUpperCase();
+
+    document.querySelectorAll('#languageDropdown li').forEach(li => {
+      li.classList.toggle('active', li.dataset.lang === lang);
+    });
+
+    renderizarCalendario();
+    actualizarResumen();
+    actualizarBotonReserva();
+    renderizarItinerario();
+  }
+
+  // =========================
   // SELECTOR DE IDIOMA
   // =========================
   function toggleLanguageDropdown(event) {
     event.stopPropagation();
-    const selector = document.getElementById('languageSelector');
-    selector.classList.toggle('open');
+    document.getElementById('languageSelector').classList.toggle('open');
   }
 
   document.querySelectorAll('#languageDropdown li').forEach(item => {
     item.addEventListener('click', function(e) {
       e.stopPropagation();
-      const lang = this.dataset.lang;
-      const flag = this.dataset.flag;
-      const text = this.textContent.trim();
-
-      document.getElementById('banderaActual').src = flag;
-      document.getElementById('idiomaActual').textContent = lang.toUpperCase();
-
-      document.querySelectorAll('#languageDropdown li').forEach(li => li.classList.remove('active'));
-      this.classList.add('active');
-
+      aplicarTraducciones(this.dataset.lang);
       document.getElementById('languageSelector').classList.remove('open');
     });
   });
@@ -1044,13 +1193,14 @@
   }
 
   function actualizarResumen() {
+    const dict = translations[idiomaActual] || translations.es;
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
     document.getElementById('total-pagar').textContent = '$' + total.toLocaleString('es-CO');
 
     const lineaAdultos = document.getElementById('linea-adultos');
     if (cantidades.adultos > 0) {
       lineaAdultos.style.display = 'flex';
-      lineaAdultos.innerHTML = `<span>Adultos (${cantidades.adultos}×)</span><span>$${(cantidades.adultos * precios.adultos).toLocaleString('es-CO')}</span>`;
+      lineaAdultos.innerHTML = `<span>${dict.adultos_linea} (${cantidades.adultos}×)</span><span>$${(cantidades.adultos * precios.adultos).toLocaleString('es-CO')}</span>`;
     } else {
       lineaAdultos.style.display = 'none';
     }
@@ -1058,7 +1208,7 @@
     const lineaNinos = document.getElementById('linea-ninos');
     if (cantidades.ninos > 0) {
       lineaNinos.style.display = 'flex';
-      lineaNinos.innerHTML = `<span>Niños (${cantidades.ninos}×)</span><span>$${(cantidades.ninos * precios.ninos).toLocaleString('es-CO')}</span>`;
+      lineaNinos.innerHTML = `<span>${dict.ninos_linea} (${cantidades.ninos}×)</span><span>$${(cantidades.ninos * precios.ninos).toLocaleString('es-CO')}</span>`;
     } else {
       lineaNinos.style.display = 'none';
     }
@@ -1070,8 +1220,24 @@
   let mesActual = 9;
   let anioActual = 2026;
 
+  const mesesPorIdioma = {
+    es: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+    en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    pt: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+    fr: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+    it: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre']
+  };
+
+  const diasSemanaPorIdioma = {
+    es: ['LU','MA','MI','JU','VI','SA','DO'],
+    en: ['MO','TU','WE','TH','FR','SA','SU'],
+    pt: ['SE','TE','QU','QU','SE','SA','DO'],
+    fr: ['LU','MA','ME','JE','VE','SA','DI'],
+    it: ['LU','MA','ME','GI','VE','SA','DO']
+  };
+
   function renderizarCalendario() {
-    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    const meses = mesesPorIdioma[idiomaActual] || mesesPorIdioma.es;
     document.getElementById('mes-titulo').textContent = meses[mesActual] + ' ' + anioActual;
 
     const primerDia = new Date(anioActual, mesActual, 1).getDay();
@@ -1079,7 +1245,7 @@
     const calendario = document.getElementById('calendario');
     calendario.innerHTML = '';
 
-    const diasSemana = ['LU', 'MA', 'MI', 'JU', 'VI', 'SA', 'DO'];
+    const diasSemana = diasSemanaPorIdioma[idiomaActual] || diasSemanaPorIdioma.es;
     diasSemana.forEach(d => {
       const div = document.createElement('div');
       div.className = 'dia-semana';
@@ -1108,13 +1274,14 @@
     document.querySelectorAll('.dia').forEach(d => d.classList.remove('seleccionado'));
     elemento.classList.add('seleccionado');
 
-    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    fechaSeleccionada = `${dia} de ${meses[mesActual]} de ${anioActual}`;
+    const meses = mesesPorIdioma[idiomaActual] || mesesPorIdioma.es;
+    fechaSeleccionada = `${dia} ${meses[mesActual]} ${anioActual}`;
 
     document.getElementById('horarios-section').classList.add('visible');
     horarioSeleccionado = null;
     document.querySelectorAll('.horario-item').forEach(h => h.classList.remove('seleccionado'));
     actualizarBotonReserva();
+    renderizarItinerario();
   }
 
   function seleccionarHorario(elemento, salida, regreso) {
@@ -1122,21 +1289,23 @@
     elemento.classList.add('seleccionado');
     horarioSeleccionado = { salida, regreso };
     actualizarBotonReserva();
+    renderizarItinerario();
   }
 
   function actualizarBotonReserva() {
     const btn = document.getElementById('btn-reservar');
     const nota = document.getElementById('nota-fecha');
+    const dict = translations[idiomaActual] || translations.es;
 
     if (fechaSeleccionada && horarioSeleccionado) {
       btn.disabled = false;
-      nota.textContent = `✅ ${fechaSeleccionada} · Salida ${horarioSeleccionado.salida}`;
+      nota.textContent = `✅ ${fechaSeleccionada} · ${dict.salida} ${horarioSeleccionado.salida}`;
     } else if (fechaSeleccionada && !horarioSeleccionado) {
       btn.disabled = true;
-      nota.textContent = 'Selecciona un horario de salida';
+      nota.textContent = dict.selecciona_horario;
     } else {
       btn.disabled = true;
-      nota.textContent = 'Selecciona una fecha para continuar';
+      nota.textContent = dict.nota_fecha;
     }
   }
 
@@ -1148,16 +1317,79 @@
   }
 
   // =========================
+  // ITINERARIO DINÁMICO
+  // =========================
+  function renderizarItinerario() {
+    const dict = translations[idiomaActual] || translations.es;
+    const contenedor = document.getElementById('itinerarioContenido');
+    const titulo = document.querySelector('#itinerarioBox .itinerario-header h4');
+
+    // Si no hay horario seleccionado, mostrar itinerario base 08:30
+    const salida = horarioSeleccionado ? horarioSeleccionado.salida : '08:30';
+    const regreso = horarioSeleccionado ? horarioSeleccionado.regreso : '15:30';
+
+    // Calcular hora de llegada al muelle (30 min antes de la salida)
+    const [hSalida, mSalida] = salida.split(':').map(Number);
+    let hLlegada = hSalida;
+    let mLlegada = mSalida - 30;
+    if (mLlegada < 0) { mLlegada += 60; hLlegada -= 1; }
+    const horaLlegada = `${String(hLlegada).padStart(2,'0')}:${String(mLlegada).padStart(2,'0')}`;
+
+    // Formatear horas según idioma
+    const formatoHora = (h) => {
+      const [hh, mm] = h.split(':').map(Number);
+      if (idiomaActual === 'en') {
+        const ampm = hh >= 12 ? 'p.m.' : 'a.m.';
+        const h12 = hh % 12 || 12;
+        return `${h12}:${String(mm).padStart(2,'0')} ${ampm}`;
+      }
+      if (idiomaActual === 'fr' || idiomaActual === 'it') {
+        return `${hh}h${String(mm).padStart(2,'0')}`;
+      }
+      // es, pt
+      const ampm = hh >= 12 ? 'p. m.' : 'a. m.';
+      const h12 = hh % 12 || 12;
+      return `${h12}:${String(mm).padStart(2,'0')} ${ampm}`;
+    };
+
+    // Actualizar título con rango horario
+    titulo.textContent = `${dict.itinerario_titulo} · ${formatoHora(salida)} – ${formatoHora(regreso)}`;
+
+    // Construir HTML del itinerario
+    contenedor.innerHTML = `
+      <div class="itinerario-item">
+        <div class="itinerario-hora">${formatoHora(horaLlegada)}</div>
+        <div class="itinerario-detalle">
+          <h5>${dict.it_1_titulo}</h5>
+          <p>${dict.it_1_desc}</p>
+        </div>
+      </div>
+      <div class="itinerario-item">
+        <div class="itinerario-hora">${formatoHora(salida)}</div>
+        <div class="itinerario-detalle">
+          <h5>${dict.it_2_titulo}</h5>
+          <p>${dict.it_2_desc}</p>
+          <p class="sub">${dict.it_2_sub}</p>
+          <p class="incluye-lista">${dict.it_2_incluye}</p>
+        </div>
+      </div>
+      <div class="itinerario-item">
+        <div class="itinerario-hora">${formatoHora(regreso)}</div>
+        <div class="itinerario-detalle">
+          <h5>${dict.it_3_titulo}</h5>
+          <p>${dict.it_3_desc}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  // =========================
   // FACTURACIÓN ELECTRÓNICA
   // =========================
   function toggleFactura() {
     const checkbox = document.getElementById('requiereFactura');
     const form = document.getElementById('facturaForm');
-    if (checkbox.checked) {
-      form.classList.add('visible');
-    } else {
-      form.classList.remove('visible');
-    }
+    form.classList.toggle('visible', checkbox.checked);
   }
 
   // =========================
@@ -1167,11 +1399,7 @@
     const box = document.getElementById('itinerarioBox');
     box.classList.toggle('collapsed');
     const icon = box.querySelector('.toggle-icon');
-    if (box.classList.contains('collapsed')) {
-      icon.textContent = '▼';
-    } else {
-      icon.textContent = '▲';
-    }
+    icon.textContent = box.classList.contains('collapsed') ? '▼' : '▲';
   }
 
   // =========================
@@ -1180,7 +1408,6 @@
   function confirmarReserva() {
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
 
-    // Datos de facturación si aplica
     let datosFactura = null;
     if (document.getElementById('requiereFactura').checked) {
       datosFactura = {
@@ -1210,15 +1437,21 @@
       ninos: cantidades.ninos,
       infantes: cantidades.infantes,
       totalPersonas: cantidades.adultos + cantidades.ninos + cantidades.infantes,
-      facturaElectronica: datosFactura
+      facturaElectronica: datosFactura,
+      idioma: idiomaActual
     };
 
     sessionStorage.setItem('reservaActual', JSON.stringify(datosReserva));
     window.location.href = 'checkout.html';
   }
 
+  // =========================
+  // INICIALIZAR
+  // =========================
+  aplicarTraducciones(idiomaActual);
   renderizarCalendario();
   actualizarResumen();
+  renderizarItinerario();
 </script>
 
 </body>

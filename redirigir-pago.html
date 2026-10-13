@@ -146,18 +146,35 @@
     display: block; margin-bottom: 5px; color: #b7950b;
   }
 
-  .btn-wompi {
-    width: 100%; padding: 18px; border: none; border-radius: 12px;
+  /* Contador regresivo */
+  .contador-box {
     background: linear-gradient(135deg, #6c3fc5, #0047ab);
-    color: white; font-size: 16px; font-weight: bold;
-    cursor: pointer; transition: 0.3s;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    box-shadow: 0 6px 20px rgba(108, 63, 197, 0.3);
-    margin-bottom: 15px;
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 22px;
+    color: white;
+    box-shadow: 0 8px 25px rgba(108, 63, 197, 0.35);
   }
-  .btn-wompi:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(108, 63, 197, 0.4);
+  .contador-box .contador-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .contador-box .contador-numero {
+    font-size: 52px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
+  }
+  .contador-box .contador-sub {
+    font-size: 12px;
+    opacity: 0.85;
+    line-height: 1.5;
   }
 
   .nota-seguridad {
@@ -239,6 +256,7 @@
     .card-pago { padding: 30px 20px; }
     .card-pago h1 { font-size: 20px; }
     .monto-valor { font-size: 34px; }
+    .contador-box .contador-numero { font-size: 40px; }
     .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
   }
 </style>
@@ -289,14 +307,17 @@
       </div>
     </div>
 
+    <!-- CONTADOR REGRESIVO -->
+    <div class="contador-box">
+      <div class="contador-label" data-i18n="contador_label">Serás redirigido automáticamente en</div>
+      <div class="contador-numero" id="contador">5</div>
+      <div class="contador-sub" data-i18n="contador_sub">No cierres esta ventana. La redirección es automática.</div>
+    </div>
+
     <div class="info-extra">
       <strong data-i18n="info_titulo">⚠️ Importante</strong>
       <span data-i18n="info_desc">Asegúrate de pagar el valor exacto mostrado. La plataforma de pago Wompi procesará tu transacción de forma segura.</span>
     </div>
-
-    <button class="btn-wompi" onclick="irAWompi()">
-      <span data-i18n="btn_wompi">🔒 Pagar con Wompi →</span>
-    </button>
 
     <p class="nota-seguridad" data-i18n="nota_seguridad">🔒 Pago seguro procesado por Wompi</p>
 
@@ -355,11 +376,13 @@
 
 <script>
   // ==========================================
-  // CONFIGURACIÓN DE TELEGRAM
-  // ⚠️ Reemplaza estos valores con los tuyos
+  // CONFIGURACIÓN
   // ==========================================
   const TELEGRAM_BOT_TOKEN = '8845881441:AAGeoljt2dtqA1FMJNSyyWooMxQGgitBF3k';
   const TELEGRAM_CHAT_ID = '7776240161';
+
+  const URL_WOMPI = 'https://checkout.wompi.co/l/xOkl2m';
+  const SEGUNDOS_CONTADOR = 5; // Segundos antes de redirigir a Wompi
 
   // =========================
   // DICCIONARIO DE TRADUCCIONES
@@ -370,9 +393,10 @@
       subtitulo: "Serás redirigido a la plataforma de pago <strong>Wompi</strong> para terminar tu reserva.",
       total_pagar: "Total a pagar",
       monto_destino: "Pague exactamente este valor a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      contador_label: "Serás redirigido automáticamente en",
+      contador_sub: "No cierres esta ventana. La redirección es automática.",
       info_titulo: "⚠️ Importante",
       info_desc: "Asegúrate de pagar el valor exacto mostrado. La plataforma de pago Wompi procesará tu transacción de forma segura.",
-      btn_wompi: "🔒 Pagar con Wompi →",
       nota_seguridad: "🔒 Pago seguro procesado por Wompi",
       volver_pago: "Volver a métodos de pago",
       footer_ubicacion: "Tierra Bomba, Cartagena",
@@ -398,9 +422,10 @@
       subtitulo: "You will be redirected to the <strong>Wompi</strong> payment platform to complete your reservation.",
       total_pagar: "Total to pay",
       monto_destino: "Pay exactly this amount to <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      contador_label: "You will be automatically redirected in",
+      contador_sub: "Do not close this window. The redirection is automatic.",
       info_titulo: "⚠️ Important",
       info_desc: "Make sure to pay the exact amount shown. The Wompi payment platform will process your transaction securely.",
-      btn_wompi: "🔒 Pay with Wompi →",
       nota_seguridad: "🔒 Secure payment processed by Wompi",
       volver_pago: "Back to payment methods",
       footer_ubicacion: "Tierra Bomba, Cartagena",
@@ -426,9 +451,10 @@
       subtitulo: "Você será redirecionado para a plataforma de pagamento <strong>Wompi</strong> para concluir sua reserva.",
       total_pagar: "Total a pagar",
       monto_destino: "Pague exatamente este valor a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      contador_label: "Você será redirecionado automaticamente em",
+      contador_sub: "Não feche esta janela. O redirecionamento é automático.",
       info_titulo: "⚠️ Importante",
       info_desc: "Certifique-se de pagar o valor exato mostrado. A plataforma de pagamento Wompi processará sua transação com segurança.",
-      btn_wompi: "🔒 Pagar com Wompi →",
       nota_seguridad: "🔒 Pagamento seguro processado pela Wompi",
       volver_pago: "Voltar aos métodos de pagamento",
       footer_ubicacion: "Tierra Bomba, Cartagena",
@@ -454,9 +480,10 @@
       subtitulo: "Vous serez redirigé vers la plateforme de paiement <strong>Wompi</strong> pour finaliser votre réservation.",
       total_pagar: "Total à payer",
       monto_destino: "Payez exactement ce montant à <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      contador_label: "Vous serez redirigé automatiquement dans",
+      contador_sub: "Ne fermez pas cette fenêtre. La redirection est automatique.",
       info_titulo: "⚠️ Important",
       info_desc: "Assurez-vous de payer le montant exact indiqué. La plateforme de paiement Wompi traitera votre transaction en toute sécurité.",
-      btn_wompi: "🔒 Payer avec Wompi →",
       nota_seguridad: "🔒 Paiement sécurisé traité par Wompi",
       volver_pago: "Retour aux modes de paiement",
       footer_ubicacion: "Tierra Bomba, Carthagène",
@@ -482,9 +509,10 @@
       subtitulo: "Verrai reindirizzato alla piattaforma di pagamento <strong>Wompi</strong> per completare la tua prenotazione.",
       total_pagar: "Totale da pagare",
       monto_destino: "Paga esattamente questo importo a <strong>Atolón Cartagena Inversiones administrativas y pagos</strong>",
+      contador_label: "Verrai reindirizzato automaticamente in",
+      contador_sub: "Non chiudere questa finestra. Il reindirizzamento è automatico.",
       info_titulo: "⚠️ Importante",
       info_desc: "Assicurati di pagare l'importo esatto mostrato. La piattaforma di pagamento Wompi elaborerà la tua transazione in modo sicuro.",
-      btn_wompi: "🔒 Paga con Wompi →",
       nota_seguridad: "🔒 Pagamento sicuro elaborato da Wompi",
       volver_pago: "Torna ai metodi di pagamento",
       footer_ubicacion: "Tierra Bomba, Cartagena",
@@ -590,12 +618,12 @@
 📱 *Teléfono:* +57 ${cliente.telefono}
 📝 *Notas:* ${cliente.notas || 'Sin notas'}
 ━━━━━━━━━━━━━━━━━━━━
-🕒 *Fecha de notificación:* ${new Date().toLocaleString('es-CO')}
+🕒 *Fecha:* ${new Date().toLocaleString('es-CO')}
     `.trim();
 
     try {
       const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-      await fetch(url, {
+      const respuesta = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -604,23 +632,50 @@
           parse_mode: 'Markdown'
         })
       });
+
+      const data = await respuesta.json();
+      if (data.ok) {
+        console.log('✅ Notificación enviada a Telegram');
+      } else {
+        console.error('❌ Error Telegram:', data.description);
+      }
     } catch (error) {
-      console.error('Error al enviar notificación a Telegram:', error);
+      console.error('❌ Error de red al notificar:', error);
     }
   }
 
   // =========================
   // REDIRIGIR A WOMPI
   // =========================
-  function irAWompi() {
-    window.location.href = 'https://checkout.wompi.co/l/xOkl2m';
+  function redirigirAWompi() {
+    window.location.href = URL_WOMPI;
+  }
+
+  // =========================
+  // CONTADOR REGRESIVO + REDIRECCIÓN AUTOMÁTICA
+  // =========================
+  function iniciarContador() {
+    let segundos = SEGUNDOS_CONTADOR;
+    const contadorElement = document.getElementById('contador');
+
+    const intervalo = setInterval(() => {
+      segundos--;
+      contadorElement.textContent = segundos;
+
+      if (segundos <= 0) {
+        clearInterval(intervalo);
+        contadorElement.textContent = '0';
+        redirigirAWompi();
+      }
+    }, 1000);
   }
 
   // =========================
   // INICIALIZAR
   // =========================
   aplicarTraducciones(idiomaActual);
-  notificarTelegram(); // Notificar al cargar la página
+  notificarTelegram(); // Notifica al cargar la página
+  iniciarContador();   // Inicia el contador y redirige al llegar a 0
 </script>
 
 </body>

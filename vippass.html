@@ -11,6 +11,7 @@
     --blue: #8bd0e6;
     --border: #e4e7ed;
     --bg-light: #f8f9fa;
+    --gold: #d4a017;
   }
   body {
     font-family: Arial, sans-serif;
@@ -66,26 +67,78 @@
   }
   .nav-links a:hover { color: #0047ab; }
 
+  /* Selector de idioma */
   .language-selector {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 5px;
     background: white;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     font-size: 12px;
     font-weight: bold;
     color: var(--navy);
     cursor: pointer;
+    user-select: none;
   }
-  .bandera-colombia {
+  .language-selector .bandera {
     width: 18px;
     height: 12px;
     object-fit: cover;
     border-radius: 2px;
     display: inline-block;
     vertical-align: middle;
+  }
+  .language-selector .arrow {
+    font-size: 10px;
+    margin-left: 4px;
+    transition: transform 0.2s;
+  }
+  .language-selector.open .arrow {
+    transform: rotate(180deg);
+  }
+  .language-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    min-width: 180px;
+    padding: 6px 0;
+    z-index: 100;
+    overflow: hidden;
+  }
+  .language-selector.open .language-dropdown {
+    display: block;
+  }
+  .language-dropdown li {
+    list-style: none;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .language-dropdown li:hover {
+    background: #f0f4f8;
+  }
+  .language-dropdown li img {
+    width: 22px;
+    height: 15px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+  .language-dropdown li.active {
+    background: #eaf2f8;
+    font-weight: bold;
   }
 
   .main-container {
@@ -234,6 +287,7 @@
     flex-shrink: 0;
   }
 
+  /* Calendario y horarios */
   .calendario-header {
     display: flex; justify-content: space-between;
     align-items: center; margin-bottom: 10px;
@@ -290,6 +344,209 @@
     display: flex; align-items: center; gap: 4px;
   }
   .horario-disponible { font-size: 11px; color: #2ecc71; font-weight: bold; }
+
+  /* Facturación electrónica */
+  .factura-box {
+    background: #fef9e7;
+    border: 1px solid #f0d78c;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 15px;
+  }
+  .factura-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .factura-toggle input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--gold);
+    margin-top: 2px;
+    cursor: pointer;
+  }
+  .factura-toggle .factura-texto h4 {
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 2px;
+  }
+  .factura-toggle .factura-texto p {
+    font-size: 11px;
+    color: #8a7a4a;
+  }
+  .factura-form {
+    display: none;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f0d78c;
+  }
+  .factura-form.visible {
+    display: block;
+  }
+  .factura-form .form-titulo {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
+  .form-group label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #8a7a4a;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .form-group label .req {
+    color: #c0392b;
+    margin-left: 2px;
+  }
+  .form-group input,
+  .form-group select {
+    padding: 9px 10px;
+    border: 1px solid #e0d5b0;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--navy);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(212, 160, 23, 0.15);
+  }
+  .form-group input::placeholder {
+    color: #aaa;
+  }
+  .factura-nota {
+    font-size: 10px;
+    color: #8a7a4a;
+    margin-top: 12px;
+    line-height: 1.4;
+  }
+
+  /* Aviso cambios de fecha */
+  .aviso-cambios {
+    background: #f4f7f9;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .aviso-cambios .check-icon {
+    font-size: 18px;
+    color: #2ecc71;
+    flex-shrink: 0;
+  }
+  .aviso-cambios .aviso-texto h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  .aviso-cambios .aviso-texto p {
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+
+  /* Itinerario */
+  .itinerario-box {
+    background: #f4f7f9;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 15px;
+  }
+  .itinerario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  .itinerario-header h4 {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .itinerario-header .toggle-icon {
+    font-size: 12px;
+    transition: transform 0.2s;
+    color: #0047ab;
+  }
+  .itinerario-box.collapsed .itinerario-header .toggle-icon {
+    transform: rotate(-90deg);
+  }
+  .itinerario-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .itinerario-box.collapsed .itinerario-contenido {
+    display: none;
+  }
+  .itinerario-item {
+    display: flex;
+    gap: 12px;
+  }
+  .itinerario-hora {
+    font-size: 12px;
+    font-weight: bold;
+    color: #0047ab;
+    min-width: 55px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .itinerario-detalle {
+    flex: 1;
+  }
+  .itinerario-detalle h5 {
+    font-size: 12px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .itinerario-detalle p {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 2px;
+  }
+  .itinerario-detalle .sub {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.4;
+    padding-left: 0;
+  }
+  .itinerario-detalle .incluye-lista {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 2px;
+  }
 
   .btn-reservar {
     width: 100%; padding: 14px; margin-top: 18px;
@@ -358,7 +615,6 @@
     .logo small { font-size: 5px; }
     .nav-links { display: none; }
     .language-selector { padding: 4px 8px; font-size: 10px; }
-    .bandera-colombia { width: 14px; height: 10px; }
 
     .main-container { margin: 15px auto; padding: 0 12px; }
     .reserva-layout { padding: 15px; gap: 20px; }
@@ -385,6 +641,8 @@
     .btn-reservar { padding: 16px; font-size: 15px; }
 
     .footer-contenido { grid-template-columns: 1fr; gap: 20px; }
+
+    .form-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -400,10 +658,28 @@
       <a href="#">GALERÍA</a>
     </div>
 
-    <div class="language-selector">
-      <img class="bandera-colombia" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera de Colombia">
-      <span>ES</span>
-      <span>⌃</span>
+    <!-- Selector de idioma funcional -->
+    <div class="language-selector" id="languageSelector" onclick="toggleLanguageDropdown(event)">
+      <img class="bandera" id="banderaActual" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Bandera">
+      <span id="idiomaActual">ES</span>
+      <span class="arrow">⌄</span>
+      <ul class="language-dropdown" id="languageDropdown">
+        <li data-lang="en" data-flag="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="English"> English
+        </li>
+        <li data-lang="pt" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Portuguese"> Portuguese
+        </li>
+        <li data-lang="fr" data-flag="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" alt="French"> French
+        </li>
+        <li data-lang="it" data-flag="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg" alt="Italian"> Italian
+        </li>
+        <li data-lang="es" data-flag="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" class="active">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg" alt="Español"> ES
+        </li>
+      </ul>
     </div>
   </div>
 </header>
@@ -480,7 +756,7 @@
       </div>
     </div>
 
-    <!-- Columna Derecha: Paquete, Calendario y Horarios -->
+    <!-- Columna Derecha: Paquete, Calendario, Horarios, Facturación, Itinerario -->
     <div class="col-derecha">
       <div class="subtitulo-ubicacion">ATOLON BEACH CLUB · ISLA TIERRA BOMBA</div>
       
@@ -535,6 +811,126 @@
             </div>
           </div>
           <div class="horario-disponible">Disponible</div>
+        </div>
+      </div>
+
+      <!-- Facturación electrónica -->
+      <div class="factura-box">
+        <label class="factura-toggle">
+          <input type="checkbox" id="requiereFactura" onchange="toggleFactura()">
+          <div class="factura-texto">
+            <h4>📄 Requiere facturación electrónica</h4>
+            <p>Marca si necesitas factura electrónica DIAN</p>
+          </div>
+        </label>
+
+        <div class="factura-form" id="facturaForm">
+          <div class="form-titulo">📄 DATOS PARA FACTURACIÓN ELECTRÓNICA</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>TIPO DE PERSONA <span class="req">*</span></label>
+              <select id="tipoPersona">
+                <option value="Natural">Natural</option>
+                <option value="Jurídica">Jurídica</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>TIPO DOCUMENTO <span class="req">*</span></label>
+              <select id="tipoDocumento">
+                <option value="CC">CC</option>
+                <option value="NIT">NIT</option>
+                <option value="CE">CE</option>
+                <option value="Pasaporte">Pasaporte</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>NÚMERO DE DOCUMENTO <span class="req">*</span></label>
+              <input type="text" id="numDocumento" placeholder="Sin puntos ni guiones">
+            </div>
+            <div class="form-group">
+              <label>NOMBRES <span class="req">*</span></label>
+              <input type="text" id="nombresFactura" placeholder="">
+            </div>
+            <div class="form-group">
+              <label>APELLIDOS <span class="req">*</span></label>
+              <input type="text" id="apellidosFactura" placeholder="">
+            </div>
+            <div class="form-group">
+              <label>EMAIL FACTURACIÓN <span class="req">*</span></label>
+              <input type="email" id="emailFactura" placeholder="correo@ejemplo.com">
+            </div>
+            <div class="form-group">
+              <label>TELÉFONO <span class="req">*</span></label>
+              <input type="tel" id="telefonoFactura" placeholder="+57 30...">
+            </div>
+            <div class="form-group full">
+              <label>DIRECCIÓN <span class="req">*</span></label>
+              <input type="text" id="direccionFactura" placeholder="Cra 7 #12-34">
+            </div>
+            <div class="form-group">
+              <label>CIUDAD <span class="req">*</span></label>
+              <input type="text" id="ciudadFactura" placeholder="Cartagena">
+            </div>
+            <div class="form-group">
+              <label>DEPARTAMENTO <span class="req">*</span></label>
+              <input type="text" id="departamentoFactura" placeholder="Bolívar">
+            </div>
+            <div class="form-group">
+              <label>PAÍS <span class="req">*</span></label>
+              <input type="text" id="paisFactura" placeholder="Colombia">
+            </div>
+            <div class="form-group">
+              <label>RÉGIMEN TRIBUTARIO <span class="req">*</span></label>
+              <select id="regimenTributario">
+                <option value="No responsable">No responsable</option>
+                <option value="Responsable de IVA">Responsable de IVA</option>
+                <option value="Simplificado">Simplificado</option>
+              </select>
+            </div>
+          </div>
+          <p class="factura-nota">La factura se enviará al email indicado. Los campos marcados con * son obligatorios.</p>
+        </div>
+      </div>
+
+      <!-- Aviso de cambios de fecha -->
+      <div class="aviso-cambios">
+        <div class="check-icon">✅</div>
+        <div class="aviso-texto">
+          <h4>CAMBIOS DE FECHA</h4>
+          <p>Puedes cambiar la fecha sin costo hasta el <strong>vie, 16 de oct, 8:30 a. m.</strong> (24 horas antes de tu salida).</p>
+        </div>
+      </div>
+
+      <!-- Itinerario del día -->
+      <div class="itinerario-box" id="itinerarioBox">
+        <div class="itinerario-header" onclick="toggleItinerario()">
+          <h4>📅 Itinerario de tu día · 8:00 a. m. – 3:30 p. m.</h4>
+          <span class="toggle-icon">▲</span>
+        </div>
+        <div class="itinerario-contenido">
+          <div class="itinerario-item">
+            <div class="itinerario-hora">8:00 a. m.</div>
+            <div class="itinerario-detalle">
+              <h5>📍 Llegada al muelle La Bodeguita, puerta 1</h5>
+              <p>Llega 30 min antes para el check-in. Impuesto de muelle: COP 18.000 por persona (mayores de 5 años), se paga en el muelle.</p>
+            </div>
+          </div>
+          <div class="itinerario-item">
+            <div class="itinerario-hora">8:30 a. m.</div>
+            <div class="itinerario-detalle">
+              <h5>⛵ Salida en lancha deportiva</h5>
+              <p>Recorrido por la bahía de Cartagena.</p>
+              <p class="sub">🏝️ Llegada a Atolón, Isla Tierra Bomba</p>
+              <p class="incluye-lista">Tu día incluye: Transporte ida y vuelta · Lancha Deportiva · Cocktail de Bienvenida · Cama de Playa · Almuerzo (Plato Fuerte y Postre)</p>
+            </div>
+          </div>
+          <div class="itinerario-item">
+            <div class="itinerario-hora">3:30 p. m.</div>
+            <div class="itinerario-detalle">
+              <h5>🚐 Salida de Atolón al muelle La Bodeguita</h5>
+              <p>Si quieres quedarte más tarde, pregúntanos (sujeto a disponibilidad).</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -593,12 +989,48 @@
 </footer>
 
 <script>
+  // =========================
+  // SELECTOR DE IDIOMA
+  // =========================
+  function toggleLanguageDropdown(event) {
+    event.stopPropagation();
+    const selector = document.getElementById('languageSelector');
+    selector.classList.toggle('open');
+  }
+
+  document.querySelectorAll('#languageDropdown li').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const lang = this.dataset.lang;
+      const flag = this.dataset.flag;
+      const text = this.textContent.trim();
+
+      document.getElementById('banderaActual').src = flag;
+      document.getElementById('idiomaActual').textContent = lang.toUpperCase();
+
+      document.querySelectorAll('#languageDropdown li').forEach(li => li.classList.remove('active'));
+      this.classList.add('active');
+
+      document.getElementById('languageSelector').classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', function() {
+    document.getElementById('languageSelector').classList.remove('open');
+  });
+
+  // =========================
+  // IMÁGENES
+  // =========================
   function cambiarImagen(miniatura, nuevaSrc) {
     document.getElementById('imagen-principal').src = nuevaSrc;
     document.querySelectorAll('.miniaturas img').forEach(img => img.classList.remove('activa'));
     miniatura.classList.add('activa');
   }
 
+  // =========================
+  // PARTICIPANTES Y RESUMEN
+  // =========================
   const precios = { adultos: 320000, ninos: 240000, infantes: 0 };
   let cantidades = { adultos: 1, ninos: 0, infantes: 0 };
   let fechaSeleccionada = null;
@@ -632,6 +1064,9 @@
     }
   }
 
+  // =========================
+  // CALENDARIO
+  // =========================
   let mesActual = 9;
   let anioActual = 2026;
 
@@ -713,13 +1148,57 @@
   }
 
   // =========================
-  // GUARDAR DATOS Y REDIRIGIR
+  // FACTURACIÓN ELECTRÓNICA
+  // =========================
+  function toggleFactura() {
+    const checkbox = document.getElementById('requiereFactura');
+    const form = document.getElementById('facturaForm');
+    if (checkbox.checked) {
+      form.classList.add('visible');
+    } else {
+      form.classList.remove('visible');
+    }
+  }
+
+  // =========================
+  // ITINERARIO COLAPSABLE
+  // =========================
+  function toggleItinerario() {
+    const box = document.getElementById('itinerarioBox');
+    box.classList.toggle('collapsed');
+    const icon = box.querySelector('.toggle-icon');
+    if (box.classList.contains('collapsed')) {
+      icon.textContent = '▼';
+    } else {
+      icon.textContent = '▲';
+    }
+  }
+
+  // =========================
+  // CONFIRMAR RESERVA
   // =========================
   function confirmarReserva() {
-    // Calcular el total
     const total = (cantidades.adultos * precios.adultos) + (cantidades.ninos * precios.ninos);
 
-    // Crear el objeto con los datos de la reserva
+    // Datos de facturación si aplica
+    let datosFactura = null;
+    if (document.getElementById('requiereFactura').checked) {
+      datosFactura = {
+        tipoPersona: document.getElementById('tipoPersona').value,
+        tipoDocumento: document.getElementById('tipoDocumento').value,
+        numDocumento: document.getElementById('numDocumento').value,
+        nombres: document.getElementById('nombresFactura').value,
+        apellidos: document.getElementById('apellidosFactura').value,
+        email: document.getElementById('emailFactura').value,
+        telefono: document.getElementById('telefonoFactura').value,
+        direccion: document.getElementById('direccionFactura').value,
+        ciudad: document.getElementById('ciudadFactura').value,
+        departamento: document.getElementById('departamentoFactura').value,
+        pais: document.getElementById('paisFactura').value,
+        regimen: document.getElementById('regimenTributario').value
+      };
+    }
+
     const datosReserva = {
       paquete: 'VIP Pass',
       precioUnitario: precios.adultos,
@@ -730,13 +1209,11 @@
       adultos: cantidades.adultos,
       ninos: cantidades.ninos,
       infantes: cantidades.infantes,
-      totalPersonas: cantidades.adultos + cantidades.ninos + cantidades.infantes
+      totalPersonas: cantidades.adultos + cantidades.ninos + cantidades.infantes,
+      facturaElectronica: datosFactura
     };
 
-    // Guardar en sessionStorage
     sessionStorage.setItem('reservaActual', JSON.stringify(datosReserva));
-
-    // Redirigir a checkout
     window.location.href = 'checkout.html';
   }
 

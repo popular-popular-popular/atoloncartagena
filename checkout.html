@@ -182,7 +182,104 @@
     color: #0047ab;
   }
 
-  /* Aviso de cambios de fecha (dinámico) */
+  /* Formulario */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--navy);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #0047ab;
+    box-shadow: 0 0 0 3px rgba(0,71,171,0.08);
+  }
+  .form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #aaa;
+  }
+
+  /* Teléfono con prefijo */
+  .telefono-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .telefono-wrapper .prefijo {
+    position: absolute;
+    left: 14px;
+    font-size: 14px;
+    color: var(--navy);
+    font-weight: 500;
+    pointer-events: none;
+  }
+  .telefono-wrapper input {
+    padding-left: 55px;
+  }
+
+  /* Términos */
+  .terminos {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 15px;
+  }
+
+  /* Botón continuar */
+  .btn-continuar {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: var(--navy);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 12px;
+  }
+  .btn-continuar:hover { background: #2a3b5c; }
+
+  /* Nota de seguridad */
+  .nota-seguridad {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 25px;
+  }
+
+  /* =========================
+     AVISO DE CAMBIOS DE FECHA
+     (debajo del formulario)
+  ========================== */
   .aviso-cambios {
     background: #f4f7f9;
     border-radius: 8px;
@@ -213,7 +310,10 @@
     line-height: 1.4;
   }
 
-  /* Itinerario (dinámico) */
+  /* =========================
+     ITINERARIO
+     (debajo del formulario)
+  ========================== */
   .itinerario-box {
     background: #f4f7f9;
     border-radius: 8px;
@@ -284,117 +384,6 @@
     color: #666;
     line-height: 1.5;
     margin-top: 2px;
-  }
-
-  /* Formulario */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  .form-group label {
-    display: block;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #555;
-    margin-bottom: 8px;
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: inherit;
-    color: var(--navy);
-    background: white;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: #0047ab;
-    box-shadow: 0 0 0 3px rgba(0,71,171,0.08);
-  }
-  .form-group textarea {
-    resize: vertical;
-    min-height: 60px;
-  }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: #aaa;
-  }
-
-  /* Teléfono con prefijo */
-  .telefono-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  .telefono-wrapper .prefijo {
-    position: absolute;
-    left: 14px;
-    font-size: 14px;
-    color: var(--navy);
-    font-weight: 500;
-    pointer-events: none;
-  }
-  .telefono-wrapper input {
-    padding-left: 55px;
-  }
-
-  /* Sección de cambios de fecha (texto inferior) */
-  .cambios-fecha-info {
-    background: #f4f7f9;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    font-size: 12px;
-    color: #555;
-  }
-  .cambios-fecha-info strong {
-    display: block;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #666;
-    margin-bottom: 8px;
-  }
-
-  /* Términos */
-  .terminos {
-    text-align: center;
-    font-size: 11px;
-    color: #888;
-    margin-bottom: 15px;
-  }
-
-  /* Botón continuar */
-  .btn-continuar {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 10px;
-    background: var(--navy);
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-bottom: 12px;
-  }
-  .btn-continuar:hover { background: #2a3b5c; }
-
-  /* Nota de seguridad */
-  .nota-seguridad {
-    text-align: center;
-    font-size: 11px;
-    color: #888;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
   }
 
   /* =========================
@@ -544,7 +533,7 @@
     <div class="aviso" data-i18n="cupos_limitados">Los cupos de esta salida son limitados</div>
   </div>
 
-  <!-- Resumen de la reserva (dinámico) -->
+  <!-- Resumen de la reserva (arriba, siempre visible) -->
   <div class="resumen-reserva">
     <div class="resumen-info">
       <h3 id="resumen-paquete">Cargando...</h3>
@@ -557,27 +546,9 @@
     <div class="resumen-precio" id="resumen-total">$0</div>
   </div>
 
-  <!-- Aviso de cambios de fecha (dinámico) -->
-  <div class="aviso-cambios" id="avisoCambios">
-    <div class="check-icon">✅</div>
-    <div class="aviso-texto">
-      <h4 data-i18n="cambios_fecha">CAMBIOS DE FECHA</h4>
-      <p id="avisoCambiosTexto"></p>
-    </div>
-  </div>
-
-  <!-- Itinerario (dinámico según paquete) -->
-  <div class="itinerario-box" id="itinerarioBox">
-    <div class="itinerario-header" onclick="toggleItinerario()">
-      <h4 id="itinerarioTitulo">📅 Itinerario de tu día</h4>
-      <span class="toggle-icon">▲</span>
-    </div>
-    <div class="itinerario-contenido" id="itinerarioContenido">
-      <!-- Se llena dinámicamente -->
-    </div>
-  </div>
-
-  <!-- Formulario -->
+  <!-- =========================
+       FORMULARIO PRIMERO
+  ========================== -->
   <form id="checkoutForm">
     <div class="form-group">
       <label for="nombre" data-i18n="nombre">Nombre completo</label>
@@ -602,17 +573,38 @@
       <textarea id="notas" data-i18n-placeholder="notas_ph" placeholder="Ej: Alergias, celebraciones, etc."></textarea>
     </div>
 
-    <div class="cambios-fecha-info">
-      <strong data-i18n="cambios_fecha">CAMBIOS DE FECHA</strong>
-      <span data-i18n="cambios_fecha_info">Puedes cambiar la fecha de tu reserva sin costo hasta 24 horas antes de la salida.</span>
-    </div>
-
     <p class="terminos" data-i18n="terminos">Al continuar, acepto los términos y condiciones.</p>
 
     <button type="submit" class="btn-continuar" data-i18n="continuar">Continuar →</button>
 
     <p class="nota-seguridad" data-i18n="nota_seguridad">🔒 Pago seguro · Cambio de fecha sin costo hasta 24 h antes</p>
   </form>
+
+  <!-- =========================
+       AVISO DE CAMBIOS DE FECHA
+       (DESPUÉS del formulario)
+  ========================== -->
+  <div class="aviso-cambios" id="avisoCambios">
+    <div class="check-icon">✅</div>
+    <div class="aviso-texto">
+      <h4 data-i18n="cambios_fecha">CAMBIOS DE FECHA</h4>
+      <p id="avisoCambiosTexto"></p>
+    </div>
+  </div>
+
+  <!-- =========================
+       ITINERARIO
+       (DESPUÉS del formulario)
+  ========================== -->
+  <div class="itinerario-box" id="itinerarioBox">
+    <div class="itinerario-header" onclick="toggleItinerario()">
+      <h4 id="itinerarioTitulo">📅 Itinerario de tu día</h4>
+      <span class="toggle-icon">▲</span>
+    </div>
+    <div class="itinerario-contenido" id="itinerarioContenido">
+      <!-- Se llena dinámicamente -->
+    </div>
+  </div>
 
 </div>
 
@@ -678,19 +670,16 @@
       telefono: "Teléfono / WhatsApp",
       notas: "Notas / Solicitudes especiales (opcional)",
       notas_ph: "Ej: Alergias, celebraciones, etc.",
-      cambios_fecha: "CAMBIOS DE FECHA",
-      cambios_fecha_info: "Puedes cambiar la fecha de tu reserva sin costo hasta 24 horas antes de la salida.",
       terminos: "Al continuar, acepto los términos y condiciones.",
       continuar: "Continuar →",
       nota_seguridad: "🔒 Pago seguro · Cambio de fecha sin costo hasta 24 h antes",
+      cambios_fecha: "CAMBIOS DE FECHA",
       itinerario_titulo: "📅 Itinerario de tu día",
-      // Bloques de itinerario
       it_1_titulo: "📍 Llegada al muelle La Bodeguita, puerta 1",
       it_1_desc: "Llega 30 min antes para el check-in. Impuesto de muelle: COP 18.000 por persona (mayores de 5 años), se paga en el muelle.",
       it_2_titulo: "⛵ Salida en lancha deportiva",
       it_2_desc: "Recorrido por la bahía de Cartagena.",
       it_2_sub: "🏝️ Llegada a Atolón, Isla Tierra Bomba",
-      it_2_incluye: "Tu día incluye: Transporte ida y vuelta · Lancha Deportiva · Cocktail de Bienvenida · Cama de Playa · Almuerzo (Plato Fuerte y Postre)",
       it_3_titulo: "🚐 Salida de Atolón al muelle La Bodeguita",
       it_3_desc: "Si quieres quedarte más tarde, pregúntanos (sujeto a disponibilidad).",
       footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contacto",
@@ -712,18 +701,16 @@
       telefono: "Phone / WhatsApp",
       notas: "Notes / Special requests (optional)",
       notas_ph: "E.g.: Allergies, celebrations, etc.",
-      cambios_fecha: "DATE CHANGES",
-      cambios_fecha_info: "You can change your booking date at no cost up to 24 hours before departure.",
       terminos: "By continuing, I accept the terms and conditions.",
       continuar: "Continue →",
       nota_seguridad: "🔒 Secure payment · Free date change up to 24 h before",
+      cambios_fecha: "DATE CHANGES",
       itinerario_titulo: "📅 Itinerary of your day",
       it_1_titulo: "📍 Arrival at La Bodeguita dock, gate 1",
       it_1_desc: "Arrive 30 min before for check-in. Dock tax: COP 18,000 per person (over 5 years old), paid at the dock.",
       it_2_titulo: "⛵ Departure on sport boat",
       it_2_desc: "Tour of the Bay of Cartagena.",
       it_2_sub: "🏝️ Arrival at Atolón, Tierra Bomba Island",
-      it_2_incluye: "Your day includes: Round-trip transportation · Sport boat · Welcome cocktail · Beach bed · Lunch (Main course and dessert)",
       it_3_titulo: "🚐 Departure from Atolón to La Bodeguita dock",
       it_3_desc: "If you want to stay longer, ask us (subject to availability).",
       footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contact",
@@ -745,18 +732,16 @@
       telefono: "Telefone / WhatsApp",
       notas: "Notas / Pedidos especiais (opcional)",
       notas_ph: "Ex: Alergias, celebrações, etc.",
-      cambios_fecha: "ALTERAÇÕES DE DATA",
-      cambios_fecha_info: "Você pode alterar a data da sua reserva sem custo até 24 horas antes da saída.",
       terminos: "Ao continuar, aceito os termos e condições.",
       continuar: "Continuar →",
       nota_seguridad: "🔒 Pagamento seguro · Alteração de data grátis até 24 h antes",
+      cambios_fecha: "ALTERAÇÕES DE DATA",
       itinerario_titulo: "📅 Itinerário do seu dia",
       it_1_titulo: "📍 Chegada ao cais La Bodeguita, portão 1",
       it_1_desc: "Chegue 30 min antes para o check-in. Taxa do cais: COP 18.000 por pessoa (maiores de 5 anos), paga no cais.",
       it_2_titulo: "⛵ Saída em lancha esportiva",
       it_2_desc: "Passeio pela baía de Cartagena.",
       it_2_sub: "🏝️ Chegada a Atolón, Ilha Tierra Bomba",
-      it_2_incluye: "Seu dia inclui: Transporte ida e volta · Lancha esportiva · Coquetel de boas-vindas · Cama de praia · Almoço (Prato principal e sobremesa)",
       it_3_titulo: "🚐 Saída de Atolón ao cais La Bodeguita",
       it_3_desc: "Se quiser ficar mais tempo, pergunte-nos (sujeito a disponibilidade).",
       footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contato",
@@ -778,18 +763,16 @@
       telefono: "Téléphone / WhatsApp",
       notas: "Notes / Demandes spéciales (facultatif)",
       notas_ph: "Ex : Allergies, célébrations, etc.",
-      cambios_fecha: "CHANGEMENTS DE DATE",
-      cambios_fecha_info: "Vous pouvez changer la date de votre réservation sans frais jusqu'à 24 heures avant le départ.",
       terminos: "En continuant, j'accepte les termes et conditions.",
       continuar: "Continuer →",
       nota_seguridad: "🔒 Paiement sécurisé · Changement de date gratuit jusqu'à 24 h avant",
+      cambios_fecha: "CHANGEMENTS DE DATE",
       itinerario_titulo: "📅 Itinéraire de votre journée",
       it_1_titulo: "📍 Arrivée au quai La Bodeguita, porte 1",
       it_1_desc: "Arrivez 30 min avant pour l'enregistrement. Taxe de quai : COP 18 000 par personne (plus de 5 ans), payée au quai.",
       it_2_titulo: "⛵ Départ en bateau sportif",
       it_2_desc: "Tour de la baie de Carthagène.",
       it_2_sub: "🏝️ Arrivée à Atolón, île Tierra Bomba",
-      it_2_incluye: "Votre journée comprend : Transport aller-retour · Bateau sportif · Cocktail de bienvenue · Lit de plage · Déjeuner (Plat principal et dessert)",
       it_3_titulo: "🚐 Départ d'Atolón vers le quai La Bodeguita",
       it_3_desc: "Si vous souhaitez rester plus longtemps, demandez-nous (sous réserve de disponibilité).",
       footer_ubicacion: "Tierra Bomba, Carthagène", footer_contacto: "Contact",
@@ -811,18 +794,16 @@
       telefono: "Telefono / WhatsApp",
       notas: "Note / Richieste speciali (opzionale)",
       notas_ph: "Es: Allergie, celebrazioni, ecc.",
-      cambios_fecha: "CAMBI DI DATA",
-      cambios_fecha_info: "Puoi cambiare la data della tua prenotazione senza costi fino a 24 ore prima della partenza.",
       terminos: "Continuando, accetto i termini e le condizioni.",
       continuar: "Continua →",
       nota_seguridad: "🔒 Pagamento sicuro · Cambio data gratuito fino a 24 h prima",
+      cambios_fecha: "CAMBI DI DATA",
       itinerario_titulo: "📅 Itinerario della tua giornata",
       it_1_titulo: "📍 Arrivo al molo La Bodeguita, porta 1",
       it_1_desc: "Arriva 30 min prima per il check-in. Tassa del molo: COP 18.000 a persona (maggiori di 5 anni), pagata al molo.",
       it_2_titulo: "⛵ Partenza in barca sportiva",
       it_2_desc: "Tour della baia di Cartagena.",
       it_2_sub: "🏝️ Arrivo ad Atolón, Isola Tierra Bomba",
-      it_2_incluye: "La tua giornata include: Trasporto andata e ritorno · Barca sportiva · Cocktail di benvenuto · Letto da spiaggia · Pranzo (Piatto principale e dessert)",
       it_3_titulo: "🚐 Partenza da Atolón al molo La Bodeguita",
       it_3_desc: "Se vuoi restare più a lungo, chiedici (soggetto a disponibilità).",
       footer_ubicacion: "Tierra Bomba, Cartagena", footer_contacto: "Contatto",
@@ -877,8 +858,68 @@
     }
   };
 
+  // =========================
+  // MESES EN TODOS LOS IDIOMAS
+  // =========================
+  const nombresMeses = {
+    es: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+    en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    pt: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+    fr: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+    it: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre']
+  };
+
+  const mesesCorto = {
+    es: ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],
+    en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    pt: ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'],
+    fr: ['janv','févr','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'],
+    it: ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic']
+  };
+
+  const diasSemanaCorto = {
+    es: ['dom','lun','mar','mié','jue','vie','sáb'],
+    en: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    pt: ['dom','seg','ter','qua','qui','sex','sáb'],
+    fr: ['dim','lun','mar','mer','jeu','ven','sam'],
+    it: ['dom','lun','mar','mer','gio','ven','sab']
+  };
+
   let idiomaActual = localStorage.getItem('idioma') || 'es';
   let reserva = null;
+
+  // =========================
+  // PARSEAR FECHA (flexible)
+  // Acepta: "16 Octubre 2026" o "16 de Octubre de 2026" o "16 Oct 2026"
+  // =========================
+  function parsearFecha(fechaStr) {
+    if (!fechaStr) return null;
+    // Quitar "de" y normalizar
+    const limpia = fechaStr.replace(/\s+de\s+/gi, ' ').trim();
+    const partes = limpia.split(/\s+/);
+    if (partes.length < 3) return null;
+
+    const dia = parseInt(partes[0]);
+    const mesNombre = partes[1];
+    const anio = parseInt(partes[2]);
+
+    // Buscar el mes en cualquier idioma
+    let mesIndex = -1;
+    for (const lang in nombresMeses) {
+      const idx = nombresMeses[lang].indexOf(mesNombre);
+      if (idx >= 0) { mesIndex = idx; break; }
+    }
+    // También aceptar abreviaciones
+    if (mesIndex < 0) {
+      for (const lang in mesesCorto) {
+        const idx = mesesCorto[lang].indexOf(mesNombre);
+        if (idx >= 0) { mesIndex = idx; break; }
+      }
+    }
+
+    if (mesIndex < 0 || isNaN(dia) || isNaN(anio)) return null;
+    return new Date(anio, mesIndex, dia);
+  }
 
   // =========================
   // APLICAR TRADUCCIONES
@@ -912,7 +953,6 @@
       li.classList.toggle('active', li.dataset.lang === lang);
     });
 
-    // Re-renderizar textos dinámicos
     if (reserva) {
       renderizarResumen();
       renderizarItinerario();
@@ -949,12 +989,10 @@
     reserva = JSON.parse(reservaJSON);
     renderizarResumen();
 
-    // Si la reserva tiene idioma guardado, aplicarlo
     if (reserva.idioma && !localStorage.getItem('idioma')) {
       idiomaActual = reserva.idioma;
     }
 
-    // Botón volver según paquete
     const btnVolver = document.getElementById('btn-volver');
     if (reserva.paquete === 'VIP Pass') btnVolver.href = 'vippass.html';
     else if (reserva.paquete === 'Exclusive Pass') btnVolver.href = 'exclusivepass.html';
@@ -972,8 +1010,8 @@
     if (!reserva) return;
 
     document.getElementById('resumen-paquete').textContent = reserva.paquete;
-    document.getElementById('resumen-fecha').textContent = '📅 ' + reserva.fecha;
-    document.getElementById('resumen-horario').textContent = '⛵ ' + reserva.horarioSalida;
+    document.getElementById('resumen-fecha').textContent = '📅 ' + (reserva.fecha || '');
+    document.getElementById('resumen-horario').textContent = '⛵ ' + (reserva.horarioSalida || '');
     const textoPersonas = reserva.totalPersonas === 1 ? '1 persona' : reserva.totalPersonas + ' personas';
     document.getElementById('resumen-personas').textContent = '👥 ' + textoPersonas;
     document.getElementById('resumen-total').textContent = '$' + reserva.total.toLocaleString('es-CO');
@@ -990,8 +1028,7 @@
     const contenedor = document.getElementById('itinerarioContenido');
     const titulo = document.getElementById('itinerarioTitulo');
 
-    // Sin fecha u horario → ocultar
-    if (!reserva.fecha || !reserva.horarioSalida) {
+    if (!reserva.fecha || !reserva.horarioSalida || !reserva.horarioRegreso) {
       box.classList.remove('visible');
       contenedor.innerHTML = '';
       titulo.textContent = dict.itinerario_titulo;
@@ -1003,14 +1040,12 @@
     const salida = reserva.horarioSalida;
     const regreso = reserva.horarioRegreso;
 
-    // Hora de llegada al muelle = 30 min antes
     const [hSalida, mSalida] = salida.split(':').map(Number);
     let hLlegada = hSalida;
     let mLlegada = mSalida - 30;
     if (mLlegada < 0) { mLlegada += 60; hLlegada -= 1; }
     const horaLlegada = `${String(hLlegada).padStart(2,'0')}:${String(mLlegada).padStart(2,'0')}`;
 
-    // Formato de hora según idioma
     const formatoHora = (h) => {
       const [hh, mm] = h.split(':').map(Number);
       if (idiomaActual === 'en') {
@@ -1028,9 +1063,8 @@
 
     titulo.textContent = `${dict.itinerario_titulo} · ${formatoHora(salida)} – ${formatoHora(regreso)}`;
 
-    // Qué incluye según el paquete elegido
     const incluyeMap = incluyePorPaquete[idiomaActual] || incluyePorPaquete.es;
-    const incluye = incluyeMap[reserva.paquete] || dict.it_2_incluye;
+    const incluye = incluyeMap[reserva.paquete] || '';
 
     contenedor.innerHTML = `
       <div class="itinerario-item">
@@ -1046,7 +1080,7 @@
           <h5>${dict.it_2_titulo}</h5>
           <p>${dict.it_2_desc}</p>
           <p class="sub">${dict.it_2_sub}</p>
-          <p class="incluye-lista">${incluye}</p>
+          ${incluye ? `<p class="incluye-lista">${incluye}</p>` : ''}
         </div>
       </div>
       <div class="itinerario-item">
@@ -1060,57 +1094,39 @@
   }
 
   // =========================
-  // AVISO DE CAMBIOS DE FECHA (dinámico)
+  // AVISO DE CAMBIOS DE FECHA
   // =========================
   function renderizarAvisoCambios() {
     if (!reserva) return;
 
-    const dict = translations[idiomaActual] || translations.es;
     const aviso = document.getElementById('avisoCambios');
     const texto = document.getElementById('avisoCambiosTexto');
 
     if (!reserva.fecha || !reserva.horarioSalida) {
       aviso.classList.remove('visible');
+      texto.innerHTML = '';
+      return;
+    }
+
+    // Parsear la fecha de salida
+    const fechaSalida = parsearFecha(reserva.fecha);
+    if (!fechaSalida) {
+      // Si no se puede parsear, mostrar texto genérico traducido
+      const dict = translations[idiomaActual] || translations.es;
+      aviso.classList.add('visible');
+      const genericos = {
+        es: 'Puedes cambiar la fecha sin costo hasta 24 horas antes de tu salida.',
+        en: 'You can change the date at no cost up to 24 hours before your departure.',
+        pt: 'Você pode alterar a data sem custo até 24 horas antes da sua saída.',
+        fr: 'Vous pouvez changer la date sans frais jusqu\'à 24 heures avant votre départ.',
+        it: 'Puoi cambiare la data senza costi fino a 24 ore prima della partenza.'
+      };
+      texto.innerHTML = genericos[idiomaActual] || genericos.es;
       return;
     }
 
     aviso.classList.add('visible');
 
-    // Parsear fecha: viene como "16 Octubre 2026" o similar
-    const mesesCorto = {
-      es: { 'Enero':'ene','Febrero':'feb','Marzo':'mar','Abril':'abr','Mayo':'may','Junio':'jun','Julio':'jul','Agosto':'ago','Septiembre':'sep','Octubre':'oct','Noviembre':'nov','Diciembre':'dic' },
-      en: { 'January':'Jan','February':'Feb','March':'Mar','April':'Apr','May':'May','June':'Jun','July':'Jul','August':'Aug','September':'Sep','October':'Oct','November':'Nov','December':'Dec' },
-      pt: { 'Janeiro':'jan','Fevereiro':'fev','Março':'mar','Abril':'abr','Maio':'mai','Junho':'jun','Julho':'jul','Agosto':'ago','Setembro':'set','Outubro':'out','Novembro':'nov','Dezembro':'dez' },
-      fr: { 'Janvier':'janv','Février':'févr','Mars':'mars','Avril':'avr','Mai':'mai','Juin':'juin','Juillet':'juil','Août':'août','Septembre':'sept','Octobre':'oct','Novembre':'nov','Décembre':'déc' },
-      it: { 'Gennaio':'gen','Febbraio':'feb','Marzo':'mar','Aprile':'apr','Maggio':'mag','Giugno':'giu','Luglio':'lug','Agosto':'ago','Settembre':'set','Ottobre':'ott','Novembre':'nov','Dicembre':'dic' }
-    };
-
-    const diasSemanaCorto = {
-      es: ['dom','lun','mar','mié','jue','vie','sáb'],
-      en: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-      pt: ['dom','seg','ter','qua','qui','sex','sáb'],
-      fr: ['dim','lun','mar','mer','jeu','ven','sam'],
-      it: ['dom','lun','mar','mer','gio','ven','sab']
-    };
-
-    // Extraer día, mes, año de la fecha guardada
-    const partes = reserva.fecha.split(' ');
-    const dia = parseInt(partes[0]);
-    const mesNombre = partes[1];
-    const anio = parseInt(partes[2]);
-
-    // Mapear nombre de mes a número
-    const nombresMeses = {
-      es: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-      en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-      pt: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-      fr: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-      it: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre']
-    };
-    const mesIndex = nombresMeses[idiomaActual].indexOf(mesNombre);
-    const mes = mesIndex >= 0 ? mesIndex : 9;
-
-    const fechaSalida = new Date(anio, mes, dia);
     const [hSalida, mSalida] = reserva.horarioSalida.split(':').map(Number);
     fechaSalida.setHours(hSalida, mSalida, 0, 0);
 
@@ -1118,11 +1134,10 @@
 
     const ds = diasSemanaCorto[idiomaActual] || diasSemanaCorto.es;
     const ms = mesesCorto[idiomaActual] || mesesCorto.es;
-    const nombreMes = Object.keys(ms).find(k => k === Object.keys(ms)[fechaLimite.getMonth()]);
-    const mesAbrev = Object.values(ms)[fechaLimite.getMonth()];
 
     const diaSemana = ds[fechaLimite.getDay()];
     const diaLimite = fechaLimite.getDate();
+    const mesAbrev = ms[fechaLimite.getMonth()];
     const hh = fechaLimite.getHours();
     const mm = String(fechaLimite.getMinutes()).padStart(2, '0');
 
